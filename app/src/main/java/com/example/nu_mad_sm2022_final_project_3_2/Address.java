@@ -6,11 +6,10 @@ public class Address {
     private String state;
     private int zipcode;
 
-    public Address(String address, String city, String state, int zipcode) {
+    public Address(String address, String city, String state) {
         this.address = address;
         this.city = city;
         this.state = state;
-        this.zipcode = zipcode;
     }
 
     public Address() {}
@@ -37,13 +36,5 @@ public class Address {
 
     public void setState(String state) {
         this.state = state;
-    }
-
-    public int getZipcode() {
-        return zipcode;
-    }
-
-    public void setZipcode(int zipcode) {
-        this.zipcode = zipcode;
     }
 }

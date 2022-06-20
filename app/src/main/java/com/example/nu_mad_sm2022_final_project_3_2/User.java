@@ -11,6 +11,29 @@ public class User {
     private Address address;
     private String phoneNumber;
     private String email;
+    private String username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public User(String id, String firstName, String lastName, int age, Address address,
+                String phoneNumber, String email, String username, Role role) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        Age = age;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.username = username;
+        this.role = role;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     private Role role;
 
     public User(String id) {

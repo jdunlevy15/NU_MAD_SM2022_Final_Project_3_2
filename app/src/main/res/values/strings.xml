@@ -100,6 +100,9 @@
     <string name="account_type_employee">Employee</string>
     <string name="account_signup_button">Sign Up</string>
     <string name="account_information_header">Account Information:</string>
+    <string name="user">User</string>
+    <string name="applicant">Applicant</string>
+    <string name="parent">Parent</string>
 
 
 </resources>

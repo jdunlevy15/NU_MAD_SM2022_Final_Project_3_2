@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/loginUsernameLabel"
+        android:id="@+id/loginEmailLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -14,10 +14,10 @@
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/login_username" />
+        tools:text="@string/application_email" />
 
     <EditText
-        android:id="@+id/loginUsernameEditText"
+        android:id="@+id/loginEmailEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -26,8 +26,8 @@
         android:hint="@string/placeholder_text"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/loginUsernameLabel"
-        app:layout_constraintTop_toBottomOf="@+id/loginUsernameLabel" />
+        app:layout_constraintStart_toStartOf="@+id/loginEmailLabel"
+        app:layout_constraintTop_toBottomOf="@+id/loginEmailLabel" />
 
     <TextView
         android:id="@+id/loginPasswordLabel"
@@ -35,8 +35,8 @@
         android:layout_height="wrap_content"
         android:textSize="24sp"
         android:layout_marginTop="32dp"
-        app:layout_constraintStart_toStartOf="@+id/loginUsernameEditText"
-        app:layout_constraintTop_toBottomOf="@+id/loginUsernameEditText"
+        app:layout_constraintStart_toStartOf="@+id/loginEmailEditText"
+        app:layout_constraintTop_toBottomOf="@+id/loginEmailEditText"
         tools:text="@string/login_password" />
 
     <EditText
