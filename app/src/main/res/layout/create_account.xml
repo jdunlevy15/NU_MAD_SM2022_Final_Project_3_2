@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <TextView
+        android:id="@+id/createAccountHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/account_create_header"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/accountUsernameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/login_username"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/accountInfromationHeader"
+        app:layout_constraintTop_toBottomOf="@+id/accountInfromationHeader" />
+
+    <TextView
+        android:id="@+id/accountPasswordLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/login_password"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/accountUsernameLabel"
+        app:layout_constraintTop_toBottomOf="@+id/accountUsernameLabel" />
+
+    <TextView
+        android:id="@+id/accountConfirmPasswordLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/account_confirm_password_label"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/accountPasswordLabel"
+        app:layout_constraintTop_toBottomOf="@+id/accountPasswordLabel" />
+
+    <EditText
+        android:id="@+id/accountUsernameEditText"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="3dp"
+        android:ems="10"
+        android:hint="@string/placeholder_text"
+        android:inputType="textPersonName"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/accountUsernameLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/applicationPhoneEditText"
+        app:layout_constraintTop_toTopOf="@+id/accountUsernameLabel" />
+
+    <EditText
+        android:id="@+id/accountPasswordEditText"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="3dp"
+        android:ems="10"
+        android:hint="@string/login_password_placeholder"
+        android:inputType="textPassword"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/accountPasswordLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/accountUsernameEditText"
+        app:layout_constraintTop_toTopOf="@+id/accountPasswordLabel" />
+
+    <EditText
+        android:id="@+id/accountConfirmPasswordEditText"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="3dp"
+        android:ems="10"
+        android:hint="@string/login_password_placeholder"
+        android:inputType="textPassword"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/accountConfirmPasswordLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/accountPasswordEditText"
+        app:layout_constraintTop_toTopOf="@+id/accountConfirmPasswordLabel" />
+
+    <TextView
+        android:id="@+id/personalInformationHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/application_personal_information_header"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/createAccountHeader"
+        app:layout_constraintTop_toBottomOf="@+id/createAccountHeader" />
+
+    <TextView
+        android:id="@+id/applicationFirstNameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/application_first_name"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/personalInformationHeader"
+        app:layout_constraintTop_toBottomOf="@+id/personalInformationHeader" />
+
+    <TextView
+        android:id="@+id/applicationLastNameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/application_last_name"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/applicationFirstNameLabel"
+        app:layout_constraintTop_toBottomOf="@+id/applicationFirstNameLabel" />
+
+    <TextView
+        android:id="@+id/applicationAgeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/application_age"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/applicationLastNameLabel"
+        app:layout_constraintTop_toBottomOf="@+id/applicationLastNameLabel" />
+
+    <TextView
+        android:id="@+id/applicationAddressLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/application_address"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/applicationAgeLabel"
+        app:layout_constraintTop_toBottomOf="@+id/applicationAgeLabel" />
+
+    <TextView
+        android:id="@+id/applicationCityLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/application_city"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/applicationAddressLabel"
+        app:layout_constraintTop_toBottomOf="@+id/applicationAddressLabel" />
+
+    <TextView
+        android:id="@+id/applicationStateLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/application_state"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/applicationCityLabel"
+        app:layout_constraintTop_toBottomOf="@+id/applicationCityLabel" />
+
+    <TextView
+        android:id="@+id/applicationEmailLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/application_email"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/applicationStateLabel"
+        app:layout_constraintTop_toBottomOf="@+id/applicationStateLabel" />
+
+    <TextView
+        android:id="@+id/applicationPhoneLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/application_phone"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/applicationEmailLabel"
+        app:layout_constraintTop_toBottomOf="@+id/applicationEmailLabel" />
+
+    <TextView
+        android:id="@+id/accountInfromationHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/account_information_header"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/applicationPhoneLabel"
+        app:layout_constraintTop_toBottomOf="@+id/applicationPhoneLabel" />
+
+    <EditText
+        android:id="@+id/applicationFirstNameEditText"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="32dp"
+        android:ems="10"
+        android:hint="@string/placeholder_text"
+        android:inputType="textPersonName"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/applicationLastNameLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/applicationFirstNameLabel"
+        app:layout_constraintTop_toTopOf="@+id/applicationFirstNameLabel" />
+
+    <EditText
+        android:id="@+id/applicationLastNameEditText"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:ems="10"
+        android:hint="@string/placeholder_text"
+        android:inputType="textPersonName"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/applicationLastNameLabel"
+        app:layout_constraintEnd_toEndOf="@+id/applicationFirstNameEditText"
+        app:layout_constraintStart_toStartOf="@+id/applicationFirstNameEditText"
+        app:layout_constraintTop_toBottomOf="@+id/applicationLastNameLabel" />
+
+    <EditText
+        android:id="@+id/applicationAgeEditText"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:ems="10"
+        android:hint="@string/placeholder_text"
+        android:inputType="textPersonName"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/applicationAgeLabel"
+        app:layout_constraintEnd_toEndOf="@+id/applicationLastNameEditText"
+        app:layout_constraintStart_toStartOf="@+id/applicationLastNameEditText"
+        app:layout_constraintTop_toBottomOf="@+id/applicationAgeLabel" />
+
+    <EditText
+        android:id="@+id/applicationAddressEditText"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:ems="10"
+        android:hint="@string/placeholder_text"
+        android:inputType="textPersonName"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/applicationAddressLabel"
+        app:layout_constraintEnd_toEndOf="@+id/applicationAgeEditText"
+        app:layout_constraintStart_toStartOf="@+id/applicationAgeEditText"
+        app:layout_constraintTop_toBottomOf="@+id/applicationAddressLabel" />
+
+    <EditText
+        android:id="@+id/applicationCityEditText"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:ems="10"
+        android:hint="@string/placeholder_text"
+        android:inputType="textPersonName"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/applicationCityLabel"
+        app:layout_constraintEnd_toEndOf="@+id/applicationAddressEditText"
+        app:layout_constraintStart_toStartOf="@+id/applicationAddressEditText"
+        app:layout_constraintTop_toBottomOf="@+id/applicationCityLabel" />
+
+    <EditText
+        android:id="@+id/applicationStateEditText"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:ems="10"
+        android:hint="@string/placeholder_text"
+        android:inputType="textPersonName"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/applicationStateLabel"
+        app:layout_constraintEnd_toEndOf="@+id/applicationCityEditText"
+        app:layout_constraintStart_toStartOf="@+id/applicationCityEditText"
+        app:layout_constraintTop_toBottomOf="@+id/applicationStateLabel" />
+
+    <EditText
+        android:id="@+id/applicationEmailEditText"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:ems="10"
+        android:hint="@string/placeholder_text"
+        android:inputType="textEmailAddress"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/applicationEmailLabel"
+        app:layout_constraintEnd_toEndOf="@+id/applicationStateEditText"
+        app:layout_constraintStart_toStartOf="@+id/applicationStateEditText"
+        app:layout_constraintTop_toBottomOf="@+id/applicationEmailLabel" />
+
+    <EditText
+        android:id="@+id/applicationPhoneEditText"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:ems="10"
+        android:hint="@string/placeholder_text"
+        android:inputType="phone"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/applicationPhoneLabel"
+        app:layout_constraintEnd_toEndOf="@+id/applicationEmailEditText"
+        app:layout_constraintStart_toStartOf="@+id/applicationEmailEditText"
+        app:layout_constraintTop_toBottomOf="@+id/applicationPhoneLabel" />
+
+    <TextView
+        android:id="@+id/accountTypeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/account_type_label"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/accountConfirmPasswordLabel"
+        app:layout_constraintTop_toBottomOf="@+id/accountConfirmPasswordLabel" />
+
+    <RadioGroup
+        android:id="@+id/accountTypeRadioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/accountTypeLabel"
+        app:layout_constraintEnd_toEndOf="@+id/accountConfirmPasswordEditText"
+        app:layout_constraintStart_toStartOf="@+id/accountConfirmPasswordEditText"
+        app:layout_constraintTop_toBottomOf="@+id/accountTypeLabel"
+        app:layout_constraintVertical_bias="1.0">
+
+        <RadioButton
+            android:id="@+id/accountUserRadioButton"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:text="@string/login_username" />
+
+        <RadioButton
+            android:id="@+id/accountFosterParentRadioButton"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:text="@string/account_type_foster_parent" />
+
+        <RadioButton
+            android:id="@+id/accountEmployeeRadioButton"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:text="@string/account_type_employee" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/accountSignUpButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/account_signup_button"
+        app:layout_constraintEnd_toEndOf="@+id/accountConfirmPasswordEditText"
+        app:layout_constraintStart_toStartOf="@+id/accountTypeLabel"
+        app:layout_constraintTop_toBottomOf="@+id/accountTypeLabel" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

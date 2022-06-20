@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/adopHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/application_adopt_header"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/dogName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/placeholder_text"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/adopHeader"
+        app:layout_constraintStart_toEndOf="@+id/adopHeader"
+        app:layout_constraintTop_toTopOf="@+id/adopHeader" />
+
+    <TextView
+        android:id="@+id/applicationStatusHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/application_status_header"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/adopHeader"
+        app:layout_constraintTop_toBottomOf="@+id/adopHeader" />
+
+    <TextView
+        android:id="@+id/applicationStatusLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/application_pending_status"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/applicationStatusHeader"
+        app:layout_constraintStart_toEndOf="@+id/applicationStatusHeader"
+        app:layout_constraintTop_toTopOf="@+id/applicationStatusHeader" />
+
+    <TextView
+        android:id="@+id/personalInformationHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/application_personal_information_header"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/applicationStatusHeader"
+        app:layout_constraintTop_toBottomOf="@+id/applicationStatusHeader" />
+
+    <TextView
+        android:id="@+id/applicationFirstNameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/application_first_name"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/personalInformationHeader"
+        app:layout_constraintTop_toBottomOf="@+id/personalInformationHeader" />
+
+    <TextView
+        android:id="@+id/applicationLastNameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/application_last_name"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/applicationFirstNameLabel"
+        app:layout_constraintTop_toBottomOf="@+id/applicationFirstNameLabel" />
+
+    <TextView
+        android:id="@+id/applicationAgeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/application_age"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/applicationLastNameLabel"
+        app:layout_constraintTop_toBottomOf="@+id/applicationLastNameLabel" />
+
+    <TextView
+        android:id="@+id/applicationAddressLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/application_address"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/applicationAgeLabel"
+        app:layout_constraintTop_toBottomOf="@+id/applicationAgeLabel" />
+
+    <TextView
+        android:id="@+id/applicationCityLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/application_city"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/applicationAddressLabel"
+        app:layout_constraintTop_toBottomOf="@+id/applicationAddressLabel" />
+
+    <TextView
+        android:id="@+id/applicationStateLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/application_state"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/applicationCityLabel"
+        app:layout_constraintTop_toBottomOf="@+id/applicationCityLabel" />
+
+    <TextView
+        android:id="@+id/applicationEmailLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/application_email"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/applicationStateLabel"
+        app:layout_constraintTop_toBottomOf="@+id/applicationStateLabel" />
+
+    <TextView
+        android:id="@+id/applicationPhoneLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/application_phone"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/applicationEmailLabel"
+        app:layout_constraintTop_toBottomOf="@+id/applicationEmailLabel" />
+
+    <TextView
+        android:id="@+id/applicationGeneralInformationHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/application_general_information_header"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/applicationPhoneLabel"
+        app:layout_constraintTop_toBottomOf="@+id/applicationPhoneLabel" />
+
+    <TextView
+        android:id="@+id/applicationQuestionLabel1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/application_general_question1"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/applicationGeneralInformationHeader"
+        app:layout_constraintTop_toBottomOf="@+id/applicationGeneralInformationHeader" />
+
+    <EditText
+        android:id="@+id/applicationQuestion1EditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/placeholder_text"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/applicationQuestionLabel1"
+        app:layout_constraintTop_toBottomOf="@+id/applicationQuestionLabel1" />
+
+    <TextView
+        android:id="@+id/applicationQuestion2Header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/application_general_question2"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/applicationQuestion1EditText"
+        app:layout_constraintTop_toBottomOf="@+id/applicationQuestion1EditText" />
+
+    <EditText
+        android:id="@+id/applicationQuestion2EditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/placeholder_text"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/applicationQuestion2Header"
+        app:layout_constraintTop_toBottomOf="@+id/applicationQuestion2Header" />
+
+    <Button
+        android:id="@+id/applicationEditButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/application_edit_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/applicationQuestion2EditText" />
+
+    <EditText
+        android:id="@+id/applicationFirstNameEditText"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:textSize="16sp"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="32dp"
+        android:ems="10"
+        android:hint="@string/placeholder_text"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/applicationLastNameLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/applicationFirstNameLabel"
+        app:layout_constraintTop_toTopOf="@+id/applicationFirstNameLabel" />
+
+    <EditText
+        android:id="@+id/applicationLastNameEditText"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:textSize="16sp"
+        android:ems="10"
+        android:hint="@string/placeholder_text"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/applicationLastNameLabel"
+        app:layout_constraintEnd_toEndOf="@+id/applicationFirstNameEditText"
+        app:layout_constraintStart_toStartOf="@+id/applicationFirstNameEditText"
+        app:layout_constraintTop_toBottomOf="@+id/applicationLastNameLabel" />
+
+    <EditText
+        android:id="@+id/applicationAgeEditText"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:ems="10"
+        android:hint="@string/placeholder_text"
+        android:inputType="textPersonName"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/applicationAgeLabel"
+        app:layout_constraintTop_toBottomOf="@+id/applicationAgeLabel"
+        app:layout_constraintEnd_toEndOf="@+id/applicationLastNameEditText"
+        app:layout_constraintStart_toStartOf="@+id/applicationLastNameEditText"  />
+
+    <EditText
+        android:id="@+id/applicationAddressEditText"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:textSize="16sp"
+        android:ems="10"
+        android:hint="@string/placeholder_text"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/applicationAgeEditText"
+        app:layout_constraintStart_toStartOf="@+id/applicationAgeEditText"
+        app:layout_constraintBottom_toBottomOf="@+id/applicationAddressLabel"
+        app:layout_constraintTop_toBottomOf="@+id/applicationAddressLabel" />
+
+    <EditText
+        android:id="@+id/applicationCityEditText"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:textSize="16sp"
+        android:ems="10"
+        android:hint="@string/placeholder_text"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/applicationAddressEditText"
+        app:layout_constraintStart_toStartOf="@+id/applicationAddressEditText"
+        app:layout_constraintBottom_toBottomOf="@+id/applicationCityLabel"
+        app:layout_constraintTop_toBottomOf="@+id/applicationCityLabel" />
+
+    <EditText
+        android:id="@+id/applicationStateEditText"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:textSize="16sp"
+        android:ems="10"
+        android:hint="@string/placeholder_text"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/applicationCityEditText"
+        app:layout_constraintStart_toStartOf="@+id/applicationCityEditText"
+        app:layout_constraintBottom_toBottomOf="@+id/applicationStateLabel"
+        app:layout_constraintTop_toBottomOf="@+id/applicationStateLabel" />
+
+    <EditText
+        android:id="@+id/applicationEmailEditText"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:textSize="16sp"
+        android:ems="10"
+        android:hint="@string/placeholder_text"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="@+id/applicationStateEditText"
+        app:layout_constraintStart_toStartOf="@+id/applicationStateEditText"
+        app:layout_constraintBottom_toBottomOf="@+id/applicationEmailLabel"
+        app:layout_constraintTop_toBottomOf="@+id/applicationEmailLabel" />
+
+    <EditText
+        android:id="@+id/applicationPhoneEditText"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:textSize="16sp"
+        android:ems="10"
+        android:hint="@string/placeholder_text"
+        android:inputType="phone"
+        app:layout_constraintEnd_toEndOf="@+id/applicationEmailEditText"
+        app:layout_constraintStart_toStartOf="@+id/applicationEmailEditText"
+        app:layout_constraintBottom_toBottomOf="@+id/applicationPhoneLabel"
+        app:layout_constraintTop_toBottomOf="@+id/applicationPhoneLabel" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

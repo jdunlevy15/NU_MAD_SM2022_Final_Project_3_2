@@ -1,3 +1,105 @@
 <resources>
     <string name="app_name">NU_MAD_SM2022_Final_Project_3_2</string>
+
+
+    <string name="name_placeholder">[Name]</string>
+    <string name="breed_placeholder">[Breed]</string>
+    <string name="age_placeholder">[X Years]</string>
+    <string name="gender_placeholder">[Male/Female]</string>
+    <string name="basic_dog_info_placeholder">[Breed], [X Years], [Male/Female]</string>
+    <string name="more_info">More Info</string>
+    <string name="adopt">Adopt</string>
+
+
+    <string name="general_info">General Info:</string>
+    <string name="status">Status:</string>
+    <string name="color">Color:</string>
+    <string name="current_size">Current Size:</string>
+    <string name="potential_size">Potential Size:</string>
+    <string name="fence_required">Fence Required:</string>
+    <string name="house_trained">House-trained:</string>
+    <string name="obedience_training">Obedience Training:</string>
+    <string name="exercise_needs">Exercise Needs:</string>
+    <string name="grooming_needs">Grooming Needs:</string>
+    <string name="shedding_amount">Shedding Amount:</string>
+    <string name="owner_experience">Owner Experience Needed:</string>
+    <string name="reaction">Reaction to New People:</string>
+
+    <string name="general_info_placeholder">[General Info]</string>
+    <string name="status_placeholder">[Status]</string>
+    <string name="color_placeholder">[Color]</string>
+    <string name="current_size_placeholder">[Current Size]</string>
+    <string name="potential_size_placeholder">[Potential Size]</string>
+    <string name="fence_required_placeholder">[Fence Required]</string>
+    <string name="house_trained_placeholder">[House-trained]</string>
+    <string name="obedience_training_placeholder">[Obedience Training]</string>
+    <string name="exercise_needs_placeholder">[Exercise Needs]</string>
+    <string name="grooming_needs_placeholder">[Grooming Needs]</string>
+    <string name="shedding_amount_placeholder">[Shedding Amount]</string>
+    <string name="owner_experience_placeholder">[Owner Experience]</string>
+    <string name="reaction_placeholder">[Reaction]</string>
+
+    <string name="create_dog_profile">Create Dog Profile</string>
+    <string name="name">Name:</string>
+    <string name="age">Age:</string>
+    <string name="sex">Sex:</string>
+    <string name="breed">Breed:</string>
+    <string name="personality_training">Personality/Training:</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="foster">Foster</string>
+    <string name="none">None</string>
+    <string name="basic">Basic</string>
+    <string name="advanced">Advanced</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="low">Low</string>
+    <string name="moderate">Moderate</string>
+    <string name="high">High</string>
+    <string name="submit">Submit</string>
+    <string name="description">Description</string>
+    <string name="placeholder_text">Placeholder</string>
+
+    <string name="home_welcome_label">Welcome,</string>
+    <string name="home_view_dogs_label">View dogs for adoption</string>
+    <string name="home_application_status_label">View application status</string>
+    <string name="home_volunteer_label">Volunteer</string>
+
+    <string name="application_header">Application:</string>
+    <string name="application_adopt_header">Adopt</string>
+    <string name="application_status_header">Status:</string>
+    <string name="application_personal_information_header">Personal Information:</string>
+    <string name="application_general_information_header">General Information:</string>
+    <string name="application_pending_status">Pending</string>
+    <string name="application_first_name">First Name:</string>
+    <string name="application_last_name">Last Name:</string>
+    <string name="application_age">Age:</string>
+    <string name="application_city">City:</string>
+    <string name="application_state">State:</string>
+    <string name="application_email">Email:</string>
+    <string name="application_phone">Phone:</string>
+    <string name="application_address">Address</string>
+    <string name="application_general_question1">Why are you looking to adopt a pet?</string>
+    <string name="application_general_question2">Do you currently have or recently had a pet?</string>
+    <string name="application_edit_button">Edit</string>
+    <string name="application_approve_button">Approve</string>
+    <string name="application_reject_button">Reject</string>
+
+    <string name="login_username">Username:</string>
+    <string name="login_password">Password:</string>
+    <string name="login_signin_button">Sign In</string>
+    <string name="login_create_account_button">Create Account</string>
+    <string name="login_forgot_password_button">Forgot Password</string>
+    <string name="login_password_placeholder">***********</string>
+
+    <string name="account_create_header">Create Account</string>
+    <string name="account_confirm_password_label">Confirm Password</string>
+    <string name="account_type_label">Account Type:</string>
+    <string name="account_type_adopter">Adopter</string>
+    <string name="account_type_foster_parent">Foster Parent</string>
+    <string name="account_type_employee">Employee</string>
+    <string name="account_signup_button">Sign Up</string>
+    <string name="account_information_header">Account Information:</string>
+
+
 </resources>
