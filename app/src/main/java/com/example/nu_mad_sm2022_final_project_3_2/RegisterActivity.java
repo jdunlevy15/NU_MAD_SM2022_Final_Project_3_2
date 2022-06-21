@@ -41,6 +41,7 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_account);
+        setTitle("Register");
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -77,7 +78,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Log.d("signup", "user radio button pressed");
                     accountType = Role.APPLICANT;
                 } else {
-                    Log.d("signup", "adppter radio button pressed");
+                    Log.d("signup", "adopter radio button pressed");
                     accountType = Role.ADOPTER;
                 }
             }

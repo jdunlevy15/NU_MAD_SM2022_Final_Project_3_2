@@ -25,8 +25,49 @@ public class Dog implements Serializable {
     private User fosterParent;
     private User owner;
 
+    public Dog(String id, String name, String breed, Gender gender, DogStatus status, String color, int currentWeight, int potentialWeight, boolean fenceRequired, boolean houseTrained, Training obedienceTraining, Needs exerciseNeeds, Needs groomingNeeds, Needs sheddingAmount, Needs ownerExperienceNeeded, Reaction reactionToNewPeople) {
+        this.id = id;
+        this.name = name;
+        this.breed = breed;
+        this.gender = gender;
+        this.status = status;
+        this.color = color;
+        this.currentWeight = currentWeight;
+        this.potentialWeight = potentialWeight;
+        this.fenceRequired = fenceRequired;
+        this.houseTrained = houseTrained;
+        this.obedienceTraining = obedienceTraining;
+        this.exerciseNeeds = exerciseNeeds;
+        this.groomingNeeds = groomingNeeds;
+        this.sheddingAmount = sheddingAmount;
+        this.ownerExperienceNeeded = ownerExperienceNeeded;
+        this.reactionToNewPeople = reactionToNewPeople;
+    }
+
     public Dog(String id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Dog{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", breed='" + breed + '\'' +
+                ", gender=" + gender +
+                ", status=" + status +
+                ", color='" + color + '\'' +
+                ", currentWeight=" + currentWeight +
+                ", potentialWeight=" + potentialWeight +
+                ", fenceRequired=" + fenceRequired +
+                ", houseTrained=" + houseTrained +
+                ", obedienceTraining=" + obedienceTraining +
+                ", exerciseNeeds=" + exerciseNeeds +
+                ", groomingNeeds=" + groomingNeeds +
+                ", sheddingAmount=" + sheddingAmount +
+                ", ownerExperienceNeeded=" + ownerExperienceNeeded +
+                ", reactionToNewPeople=" + reactionToNewPeople +
+                '}';
     }
 
     public String getId() {

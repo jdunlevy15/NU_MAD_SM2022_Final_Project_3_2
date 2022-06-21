@@ -1,7 +1,9 @@
 package com.example.nu_mad_sm2022_final_project_3_2;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -21,7 +23,7 @@ public class FragmentEmployeeHome extends Fragment {
 
     TextView nameHeader;
     Button buttonViewDogsForAdoption, buttonAddDog, buttonViewApplications;
-
+    IEmployeeHomeListener eListener;
 
     public FragmentEmployeeHome() {
         // Required empty public constructor
@@ -42,7 +44,19 @@ public class FragmentEmployeeHome extends Fragment {
         if (getArguments() != null) {
             currUser = (User) getArguments().getSerializable(ARG_USER_ID);
         }
+    }
 
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+
+        if (context instanceof IEmployeeHomeListener) {
+            eListener = (IEmployeeHomeListener) context;
+        }
+
+        else {
+            throw new RuntimeException(context.toString() + "Must Implement Interface");
+        }
     }
 
     @Override
@@ -57,7 +71,17 @@ public class FragmentEmployeeHome extends Fragment {
         buttonViewDogsForAdoption = view.findViewById(R.id.buttonEmployeeHomescreenViewDogs);
 
         // TODO: button on click listeners (delegate to app activity to start new fragment)
+        buttonAddDog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                eListener.onCreateDogProfilePress();
+            }
+        });
 
         return view;
+    }
+
+    public interface IEmployeeHomeListener {
+        void onCreateDogProfilePress();
     }
 }

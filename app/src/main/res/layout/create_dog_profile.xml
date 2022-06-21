@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="16dp"
         android:text="@string/create_dog_profile"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -396,13 +396,28 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/editTextCreateReaction"
+            <RadioGroup
+                android:id="@+id/radionGroupReaction"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:orientation="horizontal"
+                >
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radioButtonReactionFriendly"
+                    android:text="@string/dog_reaction_friendly">
+                </RadioButton>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radioButtonReactionCautous"
+                    android:text="@string/dog_reaction_cautious">
+                </RadioButton>
+            </RadioGroup>
 
             <TextView
                 android:id="@+id/textViewCreateDogProfileSheddingAmountLabel"

@@ -113,5 +113,6 @@
     <string name="update_dog_profile">Update New Dog Profile</string>
     <string name="view_applications">View Applications</string>
 
-
+    <string name="dog_reaction_friendly">Friendly</string>
+    <string name="dog_reaction_cautious">Cautious</string>
 </resources>

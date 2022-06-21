@@ -17,7 +17,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
-public class AppActivity extends AppCompatActivity {
+public class AppActivity extends AppCompatActivity implements FragmentEmployeeHome.IEmployeeHomeListener, FragmentCreateDogProfile.ICreateDogListener {
     // String userId;
 
     // Firebase Authentication / db
@@ -33,6 +33,7 @@ public class AppActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app);
+        setTitle("User Home");
 
         // Initial auth
         mAuth = FirebaseAuth.getInstance();
@@ -105,5 +106,18 @@ public class AppActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    @Override
+    public void onCreateDogProfilePress() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragmentContainerAppActivity,
+                        FragmentCreateDogProfile.newInstance(),
+                        "create-dog-profile").commit();
+    }
+
+    @Override
+    public void backToHomeFragment() {
+        // send back to home fragment
     }
 }

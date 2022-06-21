@@ -11,10 +11,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
+        android:text="@string/application_email"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/application_email" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/loginEmailEditText"
@@ -25,6 +25,7 @@
         android:ems="10"
         android:hint="@string/placeholder_text"
         android:inputType="textPersonName"
+        android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/loginEmailLabel"
         app:layout_constraintTop_toBottomOf="@+id/loginEmailLabel" />
@@ -33,11 +34,11 @@
         android:id="@+id/loginPasswordLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
         android:layout_marginTop="32dp"
+        android:text="@string/login_password"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/loginEmailEditText"
-        app:layout_constraintTop_toBottomOf="@+id/loginEmailEditText"
-        tools:text="@string/login_password" />
+        app:layout_constraintTop_toBottomOf="@+id/loginEmailEditText" />
 
     <EditText
         android:id="@+id/loginPasswordEditText"
@@ -48,6 +49,7 @@
         android:ems="10"
         android:hint="@string/login_password_placeholder"
         android:inputType="textPassword"
+        android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/loginPasswordLabel"
         app:layout_constraintTop_toBottomOf="@+id/loginPasswordLabel" />
