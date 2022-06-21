@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,23 +12,24 @@ import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link FragmentUserHome#newInstance} factory method to
+ * Use the {@link FragmentEmployeeHome#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentUserHome extends Fragment {
+public class FragmentEmployeeHome extends Fragment {
     private static final String ARG_USER_ID = "user_id";
     private User currUser;
 
-    // UI elements
     TextView nameHeader;
-    Button buttonViewDogsForAdoption, buttonViewAppStatus, buttonVolunteer;
+    Button buttonViewDogsForAdoption, buttonAddDog, buttonViewApplications;
 
-    public FragmentUserHome() {
+
+    public FragmentEmployeeHome() {
         // Required empty public constructor
     }
 
-    public static FragmentUserHome newInstance(User user) {
-        FragmentUserHome fragment = new FragmentUserHome();
+
+    public static FragmentEmployeeHome newInstance(User user) {
+        FragmentEmployeeHome fragment = new FragmentEmployeeHome();
         Bundle args = new Bundle();
         args.putSerializable(ARG_USER_ID, user);
         fragment.setArguments(args);
@@ -41,7 +41,6 @@ public class FragmentUserHome extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             currUser = (User) getArguments().getSerializable(ARG_USER_ID);
-            Log.d("user", "in fragment-user-home on create: " + currUser.getFirstName());
         }
 
     }
@@ -49,19 +48,16 @@ public class FragmentUserHome extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_user_home, container, false);
+        View view =  inflater.inflate(R.layout.fragment_employee_home, container, false);
 
-        // Set up ui elements
-        nameHeader = view.findViewById(R.id.userHomeUserName);
+        nameHeader = view.findViewById(R.id.textViewEmployeeName);
         nameHeader.setText(currUser.getFirstName());
-        buttonViewDogsForAdoption = view.findViewById(R.id.buttonUserHomeScreenAdopt);
-        buttonViewAppStatus = view.findViewById(R.id.buttonUserViewStatus);
-        buttonVolunteer = view.findViewById(R.id.buttonUserVolunteer);
-
+        buttonAddDog = view.findViewById(R.id.buttonEmployeeAddDog);
+        buttonViewApplications = view.findViewById(R.id.buttonEmployeeViewApplications);
+        buttonViewDogsForAdoption = view.findViewById(R.id.buttonEmployeeHomescreenViewDogs);
 
         // TODO: button on click listeners (delegate to app activity to start new fragment)
 
         return view;
     }
-
 }

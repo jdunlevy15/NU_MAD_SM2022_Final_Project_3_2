@@ -1,6 +1,11 @@
 package com.example.nu_mad_sm2022_final_project_3_2;
 
-public class Address {
+import androidx.annotation.Keep;
+
+import java.io.Serializable;
+
+@Keep
+public class Address implements Serializable {
     private String address;
     private String city;
     private String state;

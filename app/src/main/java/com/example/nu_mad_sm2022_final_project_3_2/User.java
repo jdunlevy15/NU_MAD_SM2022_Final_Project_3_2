@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 @Keep
 public class User implements Serializable {
-    private final String id;
+    private String id;
     private String firstName;
     private String lastName;
     private int Age;
@@ -35,6 +35,8 @@ public class User implements Serializable {
         this.username = username;
         this.role = role;
     }
+
+    public User () {}
 
     public void setUsername(String username) {
         this.username = username;

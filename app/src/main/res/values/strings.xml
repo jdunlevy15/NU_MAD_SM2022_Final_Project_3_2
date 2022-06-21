@@ -109,5 +109,9 @@
     <string name="home_button">Home</string>
     <string name="logout_button">Logout</string>
 
+    <string name="add_dog_profile">Add New Dog Profile</string>
+    <string name="update_dog_profile">Update New Dog Profile</string>
+    <string name="view_applications">View Applications</string>
+
 
 </resources>

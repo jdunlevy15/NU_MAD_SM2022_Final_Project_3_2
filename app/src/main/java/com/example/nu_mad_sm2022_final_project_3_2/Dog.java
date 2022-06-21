@@ -1,6 +1,11 @@
 package com.example.nu_mad_sm2022_final_project_3_2;
 
-public class Dog {
+import androidx.annotation.Keep;
+
+import java.io.Serializable;
+
+@Keep
+public class Dog implements Serializable {
     private final String id;
     private String name;
     private String breed;
