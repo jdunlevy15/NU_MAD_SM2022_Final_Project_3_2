@@ -71,7 +71,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageViewSwipeUpPrompt" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/buttonUserVolunteer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"

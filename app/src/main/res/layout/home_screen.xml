@@ -7,29 +7,29 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/buttonUserVolunteer"
         android:layout_width="0dp"
         android:layout_height="72dp"
         android:layout_marginTop="24dp"
         android:text="@string/home_volunteer_label"
-        app:layout_constraintEnd_toEndOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="@+id/buttonUserHomeScreenAdopt"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintStart_toStartOf="@+id/buttonUserHomeScreenAdopt"
+        app:layout_constraintTop_toBottomOf="@+id/buttonUserAppStatus" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonUserAppStatus"
         android:layout_width="0dp"
         android:layout_height="72dp"
         android:layout_marginTop="24dp"
         android:text="@string/home_application_status_label"
-        app:layout_constraintEnd_toEndOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="@+id/buttonUserHomeScreenAdopt"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintStart_toStartOf="@+id/buttonUserHomeScreenAdopt"
+        app:layout_constraintTop_toBottomOf="@+id/buttonUserHomeScreenAdopt" />
 
     <TextView
-        android:id="@+id/welcomeHeader"
+        android:id="@+id/userHomeWelcomeHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -40,18 +40,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/userName"
+        android:id="@+id/userHomeUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="@string/placeholder_text"
         android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="@+id/welcomeHeader"
-        app:layout_constraintStart_toEndOf="@+id/welcomeHeader"
-        app:layout_constraintTop_toTopOf="@+id/welcomeHeader" />
+        app:layout_constraintBottom_toBottomOf="@+id/userHomeWelcomeHeader"
+        app:layout_constraintStart_toEndOf="@+id/userHomeWelcomeHeader"
+        app:layout_constraintTop_toTopOf="@+id/userHomeWelcomeHeader" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonUserHomeScreenAdopt"
         android:layout_width="0dp"
         android:layout_height="72dp"
         android:layout_marginStart="64dp"
@@ -60,5 +60,5 @@
         android:text="@string/home_view_dogs_label"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcomeHeader" />
+        app:layout_constraintTop_toBottomOf="@+id/userHomeWelcomeHeader" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,7 @@ package com.example.nu_mad_sm2022_final_project_3_2;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +21,8 @@ public class SignInActivity extends AppCompatActivity {
 
     EditText editTextEmail, editTextPassword;
     Button buttonSignIn, buttonCreateAccount;
+
+    final static String USER_KEY = "authorized-user";
 
     @Override
     public void onStart() {
@@ -70,6 +73,9 @@ public class SignInActivity extends AppCompatActivity {
                                 if (task.isSuccessful()){
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     // TODO: start main activity with this user!
+                                    Intent intent = new Intent(SignInActivity.this, AppActivity.class);
+                                    // intent.putExtra(USER_KEY, user.getUid());
+                                    startActivity(intent);
                                 }
                                 else {
                                     Toast.makeText(SignInActivity.this, "Authentication failed.", Toast.LENGTH_LONG).show();
@@ -83,7 +89,8 @@ public class SignInActivity extends AppCompatActivity {
         buttonCreateAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(SignInActivity.this, RegisterActivity.class);
+                startActivity(intent);
             }
         });
 

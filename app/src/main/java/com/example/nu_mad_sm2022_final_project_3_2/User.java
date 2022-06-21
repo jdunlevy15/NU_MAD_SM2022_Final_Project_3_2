@@ -1,9 +1,15 @@
 package com.example.nu_mad_sm2022_final_project_3_2;
 
+import androidx.annotation.Keep;
+
+import java.io.Serializable;
+
 /**
  * Basic profile information for authenticated users of the app
  */
-public class User {
+
+@Keep
+public class User implements Serializable {
     private final String id;
     private String firstName;
     private String lastName;
