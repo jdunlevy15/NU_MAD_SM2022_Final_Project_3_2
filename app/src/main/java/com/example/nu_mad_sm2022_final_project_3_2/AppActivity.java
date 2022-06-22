@@ -75,7 +75,7 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
             }
         });
 
-        // TODO: set logout listener
+
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
