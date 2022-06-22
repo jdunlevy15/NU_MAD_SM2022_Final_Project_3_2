@@ -19,7 +19,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
-public class AppActivity extends AppCompatActivity implements FragmentEmployeeHome.IEmployeeHomeListener, FragmentCreateDogProfile.ICreateDogListener, DogProfileAdapter.IDogProfileAdapterListener, FragmentFosterHome.IFosterHomeListener, FragmentUserHome.IUserHomeListener {
+public class AppActivity extends AppCompatActivity implements FragmentEmployeeHome.IEmployeeHomeListener, FragmentCreateDogProfile.ICreateDogListener, DogProfileAdapter.IDogProfileAdapterListener, FragmentFosterHome.IFosterHomeListener, FragmentUserHome.IUserHomeListener, FragmentDogDescription.IDogDescriptionListener {
     // String userId;
 
     // Firebase Authentication / db
@@ -173,5 +173,19 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
     @Override
     public void onAdoptButtonPressed(Dog toAdopt) {
         // TODO: start adopt dog fragment
+    }
+
+    @Override
+    public void onDogDescriptionBackPressed() {
+        beginViewDogProfilesFragment();
+    }
+
+    @Override
+    public void onMoreInfoButtonPressed(Dog dog) {
+        Log.d("description", dog.toString());
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragmentContainerAppActivity,
+                        FragmentDogDescription.newInstance(dog),
+                        "create-dog-profile").commit();
     }
 }

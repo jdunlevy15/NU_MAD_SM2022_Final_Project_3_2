@@ -58,7 +58,7 @@ public class DogProfileAdapter extends RecyclerView.Adapter<DogProfileAdapter.Vi
         private final ImageView imageViewDog;
         private final TextView textViewName, textViewBasicInfo;
         private final ProgressBar progressBar;
-        private final Button buttonAdopt;
+        private final Button buttonAdopt, buttonMoreInfo;
         private final View view;
 
 
@@ -72,6 +72,7 @@ public class DogProfileAdapter extends RecyclerView.Adapter<DogProfileAdapter.Vi
             textViewBasicInfo = view.findViewById(R.id.textViewDogBasicInfo);
             progressBar = view.findViewById(R.id.progressBarDogProfile);
             buttonAdopt = view.findViewById(R.id.buttonAdopt);
+            buttonMoreInfo = view.findViewById(R.id.buttonMoreDetails);
         }
 
         public ImageButton getImageButtonBack() {return imageButtonBack;}
@@ -80,6 +81,7 @@ public class DogProfileAdapter extends RecyclerView.Adapter<DogProfileAdapter.Vi
         public TextView getTextViewBasicInfo() {return textViewBasicInfo;}
         public ProgressBar getProgressBar() {return progressBar;}
         public Button getButtonAdopt() {return buttonAdopt;}
+        public Button getButtonMoreInfo() {return buttonMoreInfo;}
         public View getView() {return view;}
     }
 
@@ -117,6 +119,7 @@ public class DogProfileAdapter extends RecyclerView.Adapter<DogProfileAdapter.Vi
         TextView textViewName = holder.getTextViewName();
         TextView textViewBasicInfo = holder.getTextViewBasicInfo();
         Button buttonAdopt = holder.getButtonAdopt();
+        Button buttonMoreInfo = holder.getButtonMoreInfo();
 
 
         Dog dog = this.dogs.get(position);
@@ -211,6 +214,14 @@ public class DogProfileAdapter extends RecyclerView.Adapter<DogProfileAdapter.Vi
                     listener.onAdoptButtonPressed(dog);
                 }
             });
+
+            buttonMoreInfo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d("description", "button pressed");
+                    listener.onMoreInfoButtonPressed(dog);
+                }
+            });
         }
 
 
@@ -238,6 +249,7 @@ public class DogProfileAdapter extends RecyclerView.Adapter<DogProfileAdapter.Vi
     public interface IDogProfileAdapterListener {
         void onBackButtonPressed();
         void onAdoptButtonPressed(Dog toAdopt);
+        void onMoreInfoButtonPressed(Dog dog);
     }
 
 
