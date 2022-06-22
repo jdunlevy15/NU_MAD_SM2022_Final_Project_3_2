@@ -17,7 +17,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
-public class AppActivity extends AppCompatActivity implements FragmentEmployeeHome.IEmployeeHomeListener, FragmentCreateDogProfile.ICreateDogListener {
+public class AppActivity extends AppCompatActivity implements FragmentEmployeeHome.IEmployeeHomeListener, FragmentCreateDogProfile.ICreateDogListener, DogProfileAdapter.IDogProfileAdapterListener, FragmentFosterHome.IFosterHomeListener, FragmentUserHome.IUserHomeListener {
     // String userId;
 
     // Firebase Authentication / db
@@ -62,6 +62,30 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
 
     }
 
+    private void beginHomeFragment() {
+        Fragment fragment;
+        if (currUser.getRole() == Role.APPLICANT) {
+            fragment = FragmentUserHome.newInstance(currUser);
+        } else if (currUser.getRole() == Role.EMPLOYEE) {
+            fragment = FragmentEmployeeHome.newInstance(currUser);
+        } else {
+            fragment = FragmentFosterHome.newInstance(currUser);
+        }
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragmentContainerAppActivity,
+                        fragment,
+                        "user-home-screen").commit();
+
+    }
+
+    private void beginViewDogProfilesFragment() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragmentContainerAppActivity,
+                        FragmentViewDogs.newInstance(),
+                        "view-dog-profiles").commit();
+    }
+
 
     /**
      * Update's the activities current authorized user object from firebase db
@@ -85,20 +109,7 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
                             if(isStarting) {
                                 isStarting = false;
                                 // Begin home-screen fragment
-                                // TODO: check for user type (once different user home screens are implemented)
-                                Fragment fragment;
-                                if (user.getRole() == Role.APPLICANT) {
-                                    fragment = FragmentUserHome.newInstance(user);
-                                } else if (user.getRole() == Role.EMPLOYEE) {
-                                    fragment = FragmentEmployeeHome.newInstance(user);
-                                } else {
-                                    fragment = FragmentFosterHome.newInstance(user);
-                                }
-
-                                getSupportFragmentManager().beginTransaction()
-                                        .replace(R.id.fragmentContainerAppActivity,
-                                                fragment,
-                                                "user-home-screen").commit();
+                                beginHomeFragment();
                             }
 
                         } else {
@@ -117,7 +128,24 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
     }
 
     @Override
+    public void onViewDogProfilesPress() {
+        beginViewDogProfilesFragment();
+    }
+
+    @Override
     public void backToHomeFragment() {
-        // send back to home fragment
+        beginHomeFragment();
+    }
+
+    // Sends user back to home screen after viewing dog profiles
+    @Override
+    public void onBackButtonPressed() {
+        beginHomeFragment();
+    }
+
+    // Sends user to adoption application for the specified dog
+    @Override
+    public void onAdoptButtonPressed(Dog toAdopt) {
+        // TODO: start adopt dog fragment
     }
 }

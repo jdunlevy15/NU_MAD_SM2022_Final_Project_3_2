@@ -1,7 +1,9 @@
 package com.example.nu_mad_sm2022_final_project_3_2;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -18,6 +20,7 @@ import android.widget.TextView;
 public class FragmentFosterHome extends Fragment {
     private static final String ARG_USER_ID = "user_id";
     private User currUser;
+    private IFosterHomeListener listener;
 
     TextView nameHeader;
     Button buttonViewDogsForAdoption, buttonUpdateDog, buttonViewApplications;
@@ -33,6 +36,19 @@ public class FragmentFosterHome extends Fragment {
         args.putSerializable(ARG_USER_ID, user);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+
+        if (context instanceof FragmentFosterHome.IFosterHomeListener) {
+            listener = (FragmentFosterHome.IFosterHomeListener) context;
+        }
+
+        else {
+            throw new RuntimeException(context.toString() + " IFosterHomeListener");
+        }
     }
 
     @Override
@@ -59,7 +75,17 @@ public class FragmentFosterHome extends Fragment {
         buttonViewDogsForAdoption = view.findViewById(R.id.buttonFosterViewDogs);
 
         // TODO: set button on click listeners
+        buttonViewDogsForAdoption.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onViewDogProfilesPress();
+            }
+        });
 
         return view;
+    }
+
+    public interface IFosterHomeListener {
+        void onViewDogProfilesPress();
     }
 }

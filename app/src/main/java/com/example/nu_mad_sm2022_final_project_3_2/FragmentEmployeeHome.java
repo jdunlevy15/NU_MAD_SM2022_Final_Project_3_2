@@ -78,10 +78,19 @@ public class FragmentEmployeeHome extends Fragment {
             }
         });
 
+        buttonViewDogsForAdoption.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                eListener.onViewDogProfilesPress();
+            }
+        });
+
+
         return view;
     }
 
     public interface IEmployeeHomeListener {
         void onCreateDogProfilePress();
+        void onViewDogProfilesPress();
     }
 }

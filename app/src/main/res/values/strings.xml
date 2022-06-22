@@ -115,4 +115,6 @@
 
     <string name="dog_reaction_friendly">Friendly</string>
     <string name="dog_reaction_cautious">Cautious</string>
+
+    <string name="dog_profiles">Dog Profiles:</string>
 </resources>

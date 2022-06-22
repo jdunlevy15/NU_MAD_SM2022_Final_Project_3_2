@@ -266,6 +266,9 @@ public class FragmentCreateDogProfile extends Fragment {
                 String dogPotentialSize = dogPotentialSizeET.getText().toString();
                 String dogDescription = dogDescriptionET.getText().toString();
 
+
+
+
                 if (dogAge.equals("") || dogBreed.equals("") ||
                         dogColor.equals("") || dogName.equals("") ||
                         dogCurrentSize.equals("") || dogPotentialSize.equals("") ||
@@ -274,6 +277,8 @@ public class FragmentCreateDogProfile extends Fragment {
                     Toast.makeText(getContext(), "Fill Out All Fields", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+                int ageInt = Integer.parseInt(dogAge);
 
                 if (dogSex == null || dogStatus == null || dogObedienceTraining == null ||
                         dogExerciseNeeds == null || dogExperienceNeeds == null ||
@@ -286,7 +291,7 @@ public class FragmentCreateDogProfile extends Fragment {
                 String dogID = UUID.randomUUID().toString();
 
                 // create dog object
-                Dog dogToAdd = new Dog(dogID, dogName, dogBreed, dogSex, dogStatus,
+                Dog dogToAdd = new Dog(dogID, dogName, dogBreed, ageInt, dogSex, dogStatus,
                         dogColor, Integer.parseInt(dogCurrentSize), Integer.parseInt(dogPotentialSize), fenceRequired,
                         houseTrained, dogObedienceTraining, dogExerciseNeeds,
                         dogGroomingNeeds, dogSheddingAmount, dogExperienceNeeds,

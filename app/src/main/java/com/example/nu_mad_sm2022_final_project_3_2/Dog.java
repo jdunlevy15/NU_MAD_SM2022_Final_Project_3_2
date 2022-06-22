@@ -6,9 +6,10 @@ import java.io.Serializable;
 
 @Keep
 public class Dog implements Serializable {
-    private final String id;
+    private String id;
     private String name;
     private String breed;
+    private int age;
     private Gender gender;
     private DogStatus status;
     private String color; // Enum type? would probably require a dropdown for creating dog profile
@@ -25,7 +26,15 @@ public class Dog implements Serializable {
     private User fosterParent;
     private User owner;
 
-    public Dog(String id, String name, String breed, Gender gender, DogStatus status, String color, int currentWeight, int potentialWeight, boolean fenceRequired, boolean houseTrained, Training obedienceTraining, Needs exerciseNeeds, Needs groomingNeeds, Needs sheddingAmount, Needs ownerExperienceNeeded, Reaction reactionToNewPeople) {
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public Dog(String id, String name, String breed, int age, Gender gender, DogStatus status, String color, int currentWeight, int potentialWeight, boolean fenceRequired, boolean houseTrained, Training obedienceTraining, Needs exerciseNeeds, Needs groomingNeeds, Needs sheddingAmount, Needs ownerExperienceNeeded, Reaction reactionToNewPeople) {
         this.id = id;
         this.name = name;
         this.breed = breed;
@@ -44,8 +53,7 @@ public class Dog implements Serializable {
         this.reactionToNewPeople = reactionToNewPeople;
     }
 
-    public Dog(String id) {
-        this.id = id;
+    public Dog() {
     }
 
     @Override

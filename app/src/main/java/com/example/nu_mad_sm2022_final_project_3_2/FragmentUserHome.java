@@ -1,7 +1,9 @@
 package com.example.nu_mad_sm2022_final_project_3_2;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -19,6 +21,7 @@ import android.widget.TextView;
 public class FragmentUserHome extends Fragment {
     private static final String ARG_USER_ID = "user_id";
     private User currUser;
+    private IUserHomeListener listener;
 
     // UI elements
     TextView nameHeader;
@@ -34,6 +37,19 @@ public class FragmentUserHome extends Fragment {
         args.putSerializable(ARG_USER_ID, user);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+
+        if (context instanceof IUserHomeListener) {
+            listener = (IUserHomeListener) context;
+        }
+
+        else {
+            throw new RuntimeException(context.toString() + " IFosterHomeListener");
+        }
     }
 
     @Override
@@ -60,8 +76,18 @@ public class FragmentUserHome extends Fragment {
 
 
         // TODO: button on click listeners (delegate to app activity to start new fragment)
+        buttonViewDogsForAdoption.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onViewDogProfilesPress();
+            }
+        });
 
         return view;
+    }
+
+    public interface IUserHomeListener {
+        void onViewDogProfilesPress();
     }
 
 }
