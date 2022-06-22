@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,6 +27,10 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
     private FirebaseUser mUser;
     private FirebaseFirestore db;
     private User currUser;
+
+    // Buttons
+    private Button buttonHome;
+    private Button buttonLogout;
 
     private boolean isStarting = true;
 
@@ -56,8 +62,28 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
                 .addToBackStack(null)
                 .commit();
 
-        // TODO: get the actual user from the db, start home screen
         updateUser();
+
+        // Set on click listeners
+        buttonHome = findViewById(R.id.buttonAppHome);
+        buttonLogout = findViewById(R.id.buttonAppLogout);
+
+        buttonHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                beginHomeFragment();
+            }
+        });
+
+        // TODO: set logout listener
+        buttonLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent toSignIn = new Intent(AppActivity.this, SignInActivity.class);
+                mAuth.signOut();
+                startActivity(toSignIn);
+            }
+        });
 
 
     }
