@@ -8,339 +8,6 @@
     tools:layout_editor_absoluteX="-4dp"
     tools:layout_editor_absoluteY="0dp">
 
-    <TextView
-        android:id="@+id/textViewColorLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/color"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewStatusLabel" />
-
-    <TextView
-        android:id="@+id/textViewSheddingAmountPlaceholder"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:text="@string/shedding_amount_placeholder"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewSheddingAmountLabel"
-        app:layout_constraintStart_toEndOf="@+id/textViewSheddingAmountLabel"
-        app:layout_constraintTop_toTopOf="@+id/textViewSheddingAmountLabel" />
-
-    <TextView
-        android:id="@+id/textViewSheddingAmountLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/shedding_amount"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewGroomingNeedsLabel" />
-
-    <TextView
-        android:id="@+id/textViewOwnerExperienceNeededLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/owner_experience"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSheddingAmountLabel" />
-
-    <TextView
-        android:id="@+id/textViewGroomingNeedsPlaceholder"
-        android:layout_width="wrap_content"
-        android:layout_height="22dp"
-        android:layout_marginStart="8dp"
-        android:text="@string/grooming_needs_placeholder"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewGroomingNeedsLabel"
-        app:layout_constraintStart_toEndOf="@+id/textViewGroomingNeedsLabel"
-        app:layout_constraintTop_toTopOf="@+id/textViewGroomingNeedsLabel" />
-
-    <TextView
-        android:id="@+id/textViewExerciseNeedsPlaceholder"
-        android:layout_width="wrap_content"
-        android:layout_height="22dp"
-        android:layout_marginStart="8dp"
-        android:text="@string/exercise_needs_placeholder"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewExerciseNeedsLabel"
-        app:layout_constraintStart_toEndOf="@+id/textViewExerciseNeedsLabel"
-        app:layout_constraintTop_toTopOf="@+id/textViewExerciseNeedsLabel" />
-
-    <TextView
-        android:id="@+id/textViewStatusLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/status"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewGeneralInfo" />
-
-    <TextView
-        android:id="@+id/textViewFenceRequiredPlaceholder"
-        android:layout_width="wrap_content"
-        android:layout_height="22dp"
-        android:layout_marginStart="8dp"
-        android:text="@string/fence_required_placeholder"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewFenceRequiredLabel"
-        app:layout_constraintStart_toEndOf="@+id/textViewFenceRequiredLabel"
-        app:layout_constraintTop_toTopOf="@+id/textViewFenceRequiredLabel" />
-
-    <TextView
-        android:id="@+id/textViewObedienceTrainingPlaceholder"
-        android:layout_width="wrap_content"
-        android:layout_height="22dp"
-        android:layout_marginStart="8dp"
-        android:text="@string/obedience_training_placeholder"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewObedienceTrainingLabel"
-        app:layout_constraintStart_toEndOf="@+id/textViewObedienceTrainingLabel"
-        app:layout_constraintTop_toTopOf="@+id/textViewObedienceTrainingLabel" />
-
-    <TextView
-        android:id="@+id/textViewDescriptionStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:text="@string/status_placeholder"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewStatusLabel"
-        app:layout_constraintStart_toEndOf="@+id/textViewStatusLabel"
-        app:layout_constraintTop_toTopOf="@+id/textViewStatusLabel"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/textViewHouseTrainedLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/house_trained"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewFenceRequiredLabel" />
-
-    <TextView
-        android:id="@+id/textViewHouseTrainedPlaceholder"
-        android:layout_width="wrap_content"
-        android:layout_height="22dp"
-        android:layout_marginStart="8dp"
-        android:text="@string/house_trained_placeholder"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewHouseTrainedLabel"
-        app:layout_constraintStart_toEndOf="@+id/textViewHouseTrainedLabel"
-        app:layout_constraintTop_toTopOf="@+id/textViewHouseTrainedLabel" />
-
-    <TextView
-        android:id="@+id/textViewExerciseNeedsLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/exercise_needs"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewObedienceTrainingLabel" />
-
-    <TextView
-        android:id="@+id/textViewCurrentSizePlaceholder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@string/current_size_placeholder"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewCurrentSizeLabel"
-        app:layout_constraintStart_toEndOf="@+id/textViewCurrentSizeLabel"
-        app:layout_constraintTop_toTopOf="@+id/textViewCurrentSizeLabel" />
-
-    <TextView
-        android:id="@+id/textViewCurrentSizeLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/current_size"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewColorLabel" />
-
-    <TextView
-        android:id="@+id/textViewPotentialSizePlaceholder"
-        android:layout_width="wrap_content"
-        android:layout_height="22dp"
-        android:layout_marginStart="8dp"
-        android:text="@string/potential_size_placeholder"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewPotentialSizeLabel"
-        app:layout_constraintStart_toEndOf="@+id/textViewPotentialSizeLabel"
-        app:layout_constraintTop_toTopOf="@+id/textViewPotentialSizeLabel" />
-
-    <TextView
-        android:id="@+id/textViewObedienceTrainingLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/obedience_training"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewHouseTrainedLabel" />
-
-    <TextView
-        android:id="@+id/textViewGroomingNeedsLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/grooming_needs"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewExerciseNeedsLabel" />
-
-    <TextView
-        android:id="@+id/textViewColorPlaceholder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@string/color_placeholder"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewColorLabel"
-        app:layout_constraintStart_toEndOf="@+id/textViewColorLabel"
-        app:layout_constraintTop_toTopOf="@+id/textViewColorLabel" />
-
-    <TextView
-        android:id="@+id/textViewOwnerExerpiencePlaceholder"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:text="@string/owner_experience_placeholder"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewOwnerExperienceNeededLabel"
-        app:layout_constraintStart_toEndOf="@+id/textViewOwnerExperienceNeededLabel"
-        app:layout_constraintTop_toTopOf="@+id/textViewOwnerExperienceNeededLabel" />
-
-    <TextView
-        android:id="@+id/textViewFenceRequiredLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/fence_required"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPotentialSizeLabel" />
-
-    <TextView
-        android:id="@+id/textViewReactionToNewPeopleLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/reaction"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewOwnerExperienceNeededLabel" />
-
-    <TextView
-        android:id="@+id/textViewPotentialSizeLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/potential_size"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewCurrentSizeLabel" />
-
-    <TextView
-        android:id="@+id/textViewReactionPlaceholder"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:text="@string/reaction_placeholder"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewReactionToNewPeopleLabel"
-        app:layout_constraintStart_toEndOf="@+id/textViewReactionToNewPeopleLabel"
-        app:layout_constraintTop_toTopOf="@+id/textViewReactionToNewPeopleLabel" />
-
-    <ImageView
-        android:id="@+id/imageViewDescriptionPhoto"
-        android:layout_width="190dp"
-        android:layout_height="185dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <TextView
-        android:id="@+id/textViewDescriptionName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="4dp"
-        android:text="@string/name_placeholder"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButtonDescriptionBack" />
-
-    <TextView
-        android:id="@+id/textViewDescriptionBasicInfo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:text="@string/basic_dog_info_placeholder"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageViewDescriptionPhoto"
-        app:layout_constraintEnd_toStartOf="@+id/imageViewDescriptionPhoto"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDescriptionName" />
-
-    <TextView
-        android:id="@+id/textViewGeneralInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/general_info"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDescriptionBasicInfo" />
-
-    <Button
-        android:id="@+id/buttonDescriptionAdopt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/adopt"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewReactionToNewPeopleLabel" />
-
     <ImageButton
         android:id="@+id/imageButtonDescriptionBack"
         android:layout_width="wrap_content"
@@ -350,5 +17,361 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="?attr/actionModeCloseDrawable" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonDescriptionAdopt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonDescriptionBack"
+        app:layout_constraintVertical_bias="1.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textViewColorLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/color"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewStatusLabel" />
+
+            <TextView
+                android:id="@+id/textViewSheddingAmountPlaceholder"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:text="@string/shedding_amount_placeholder"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewSheddingAmountLabel"
+                app:layout_constraintStart_toEndOf="@+id/textViewSheddingAmountLabel"
+                app:layout_constraintTop_toTopOf="@+id/textViewSheddingAmountLabel" />
+
+            <TextView
+                android:id="@+id/textViewSheddingAmountLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/shedding_amount"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewGroomingNeedsLabel" />
+
+            <TextView
+                android:id="@+id/textViewOwnerExperienceNeededLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/owner_experience"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewSheddingAmountLabel" />
+
+            <TextView
+                android:id="@+id/textViewGroomingNeedsPlaceholder"
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:layout_marginStart="8dp"
+                android:text="@string/grooming_needs_placeholder"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewGroomingNeedsLabel"
+                app:layout_constraintStart_toEndOf="@+id/textViewGroomingNeedsLabel"
+                app:layout_constraintTop_toTopOf="@+id/textViewGroomingNeedsLabel" />
+
+            <TextView
+                android:id="@+id/textViewExerciseNeedsPlaceholder"
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:layout_marginStart="8dp"
+                android:text="@string/exercise_needs_placeholder"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewExerciseNeedsLabel"
+                app:layout_constraintStart_toEndOf="@+id/textViewExerciseNeedsLabel"
+                app:layout_constraintTop_toTopOf="@+id/textViewExerciseNeedsLabel" />
+
+            <TextView
+                android:id="@+id/textViewStatusLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/status"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewGeneralInfo" />
+
+            <TextView
+                android:id="@+id/textViewFenceRequiredPlaceholder"
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:layout_marginStart="8dp"
+                android:text="@string/fence_required_placeholder"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewFenceRequiredLabel"
+                app:layout_constraintStart_toEndOf="@+id/textViewFenceRequiredLabel"
+                app:layout_constraintTop_toTopOf="@+id/textViewFenceRequiredLabel" />
+
+            <TextView
+                android:id="@+id/textViewObedienceTrainingPlaceholder"
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:layout_marginStart="8dp"
+                android:text="@string/obedience_training_placeholder"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewObedienceTrainingLabel"
+                app:layout_constraintStart_toEndOf="@+id/textViewObedienceTrainingLabel"
+                app:layout_constraintTop_toTopOf="@+id/textViewObedienceTrainingLabel" />
+
+            <TextView
+                android:id="@+id/textViewDescriptionStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="@string/status_placeholder"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewStatusLabel"
+                app:layout_constraintStart_toEndOf="@+id/textViewStatusLabel"
+                app:layout_constraintTop_toTopOf="@+id/textViewStatusLabel"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
+                android:id="@+id/textViewHouseTrainedLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/house_trained"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewFenceRequiredLabel" />
+
+            <TextView
+                android:id="@+id/textViewHouseTrainedPlaceholder"
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:layout_marginStart="8dp"
+                android:text="@string/house_trained_placeholder"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewHouseTrainedLabel"
+                app:layout_constraintStart_toEndOf="@+id/textViewHouseTrainedLabel"
+                app:layout_constraintTop_toTopOf="@+id/textViewHouseTrainedLabel" />
+
+            <TextView
+                android:id="@+id/textViewExerciseNeedsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/exercise_needs"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewObedienceTrainingLabel" />
+
+            <TextView
+                android:id="@+id/textViewCurrentSizePlaceholder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/current_size_placeholder"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewCurrentSizeLabel"
+                app:layout_constraintStart_toEndOf="@+id/textViewCurrentSizeLabel"
+                app:layout_constraintTop_toTopOf="@+id/textViewCurrentSizeLabel" />
+
+            <TextView
+                android:id="@+id/textViewCurrentSizeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/current_size"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewColorLabel" />
+
+            <TextView
+                android:id="@+id/textViewPotentialSizePlaceholder"
+                android:layout_width="wrap_content"
+                android:layout_height="22dp"
+                android:layout_marginStart="8dp"
+                android:text="@string/potential_size_placeholder"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewPotentialSizeLabel"
+                app:layout_constraintStart_toEndOf="@+id/textViewPotentialSizeLabel"
+                app:layout_constraintTop_toTopOf="@+id/textViewPotentialSizeLabel" />
+
+            <TextView
+                android:id="@+id/textViewObedienceTrainingLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/obedience_training"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewHouseTrainedLabel" />
+
+            <TextView
+                android:id="@+id/textViewGroomingNeedsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/grooming_needs"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewExerciseNeedsLabel" />
+
+            <TextView
+                android:id="@+id/textViewColorPlaceholder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/color_placeholder"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewColorLabel"
+                app:layout_constraintStart_toEndOf="@+id/textViewColorLabel"
+                app:layout_constraintTop_toTopOf="@+id/textViewColorLabel" />
+
+            <TextView
+                android:id="@+id/textViewOwnerExerpiencePlaceholder"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:text="@string/owner_experience_placeholder"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewOwnerExperienceNeededLabel"
+                app:layout_constraintStart_toEndOf="@+id/textViewOwnerExperienceNeededLabel"
+                app:layout_constraintTop_toTopOf="@+id/textViewOwnerExperienceNeededLabel" />
+
+            <TextView
+                android:id="@+id/textViewFenceRequiredLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/fence_required"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewPotentialSizeLabel" />
+
+            <TextView
+                android:id="@+id/textViewReactionToNewPeopleLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/reaction"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewOwnerExperienceNeededLabel" />
+
+            <TextView
+                android:id="@+id/textViewPotentialSizeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/potential_size"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewCurrentSizeLabel" />
+
+            <TextView
+                android:id="@+id/textViewReactionPlaceholder"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:text="@string/reaction_placeholder"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewReactionToNewPeopleLabel"
+                app:layout_constraintStart_toEndOf="@+id/textViewReactionToNewPeopleLabel"
+                app:layout_constraintTop_toTopOf="@+id/textViewReactionToNewPeopleLabel" />
+
+            <ImageView
+                android:id="@+id/imageViewDescriptionPhoto"
+                android:layout_width="190dp"
+                android:layout_height="185dp"
+                android:layout_marginTop="48dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/textViewDescriptionName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="4dp"
+                android:text="@string/name_placeholder"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageButtonDescriptionBack" />
+
+            <TextView
+                android:id="@+id/textViewDescriptionBasicInfo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="@string/basic_dog_info_placeholder"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageViewDescriptionPhoto"
+                app:layout_constraintEnd_toStartOf="@+id/imageViewDescriptionPhoto"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewDescriptionName" />
+
+            <TextView
+                android:id="@+id/textViewGeneralInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/general_info"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewDescriptionBasicInfo" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/buttonDescriptionAdopt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/adopt"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
