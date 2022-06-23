@@ -19,7 +19,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
-public class AppActivity extends AppCompatActivity implements FragmentEmployeeHome.IEmployeeHomeListener, FragmentCreateDogProfile.ICreateDogListener, DogProfileAdapter.IDogProfileAdapterListener, FragmentFosterHome.IFosterHomeListener, FragmentUserHome.IUserHomeListener {
+public class AppActivity extends AppCompatActivity implements FragmentEmployeeHome.IEmployeeHomeListener, FragmentCreateDogProfile.ICreateDogListener, DogProfileAdapter.IDogProfileAdapterListener, FragmentFosterHome.IFosterHomeListener, FragmentUserHome.IUserHomeListener, FragmentCreateApplication.IApplicationListener, FragmentDogDescription.IDogDescriptionListener {
+
     // String userId;
 
     // Firebase Authentication / db
@@ -75,7 +76,7 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
             }
         });
 
-        // TODO: set logout listener
+
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -159,6 +160,14 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
     }
 
     @Override
+    public void onViewApplicationPress() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragmentContainerAppActivity,
+                        FragmentDisplayUserApplication.newInstance(),
+                        "view-application").commit();
+    }
+
+    @Override
     public void backToHomeFragment() {
         beginHomeFragment();
     }
@@ -172,6 +181,28 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
     // Sends user to adoption application for the specified dog
     @Override
     public void onAdoptButtonPressed(Dog toAdopt) {
-        // TODO: start adopt dog fragment
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragmentContainerAppActivity,
+                        FragmentCreateApplication.newInstance(toAdopt),
+                        "create-application").commit();
+    }
+
+    @Override
+    public void backToHome() {
+        beginHomeFragment();
+    }
+
+    @Override
+    public void onDogDescriptionBackPressed() {
+        beginViewDogProfilesFragment();
+    }
+
+    @Override
+    public void onMoreInfoButtonPressed(Dog dog) {
+        Log.d("description", dog.toString());
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragmentContainerAppActivity,
+                        FragmentDogDescription.newInstance(dog),
+                        "create-dog-profile").commit();
     }
 }
