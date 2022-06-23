@@ -56,7 +56,8 @@
 
             <EditText
                 android:id="@+id/editTextDogName"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Name"
@@ -74,7 +75,8 @@
 
             <EditText
                 android:id="@+id/editTextCreateDogAge"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Age"
@@ -121,7 +123,8 @@
 
             <EditText
                 android:id="@+id/editTextCreateDogBreed"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Breed"
@@ -168,7 +171,8 @@
 
             <EditText
                 android:id="@+id/editTextCreateColor"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Color"
@@ -186,7 +190,8 @@
 
             <EditText
                 android:id="@+id/editTextCreateDogSize"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="lbs"
@@ -205,6 +210,7 @@
             <EditText
                 android:id="@+id/editTextCreatePotentialSize"
                 android:layout_width="match_parent"
+                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="lbs"
@@ -238,22 +244,20 @@
 
                 <RadioButton
                     android:id="@+id/radioButtonCreateNoneObedience"
-                    android:layout_width="200px"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/none" />
 
                 <RadioButton
                     android:id="@+id/radioButtonNoneObedience"
-                    android:layout_width="200px"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:text="@string/basic" />
 
                 <RadioButton
                     android:id="@+id/radioButtonCreateAdvancedObedience"
-                    android:layout_width="200px"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:text="@string/advanced" />
 
             </RadioGroup>
