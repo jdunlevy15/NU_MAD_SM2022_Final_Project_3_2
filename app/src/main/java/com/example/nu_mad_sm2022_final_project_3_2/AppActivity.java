@@ -158,10 +158,18 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
     }
 
     @Override
+    public void onUpdateDogProfilePress() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragmentContainerAppActivity,
+                        FragmentUpdateDogProfile.newInstance(),
+                        "update-dog-profile").commit();
+    }
+
+    @Override
     public void onViewApplicationsPress() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentContainerAppActivity,
-                        FragmentApplicationRecyclerView.newInstance(false),
+                        FragmentApplicationRecyclerView.newInstance(Role.EMPLOYEE),
                         "appliation-view").commit();
     }
 
@@ -170,7 +178,7 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
     public void onViewApplicationPress() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentContainerAppActivity,
-                        FragmentApplicationRecyclerView.newInstance(true),
+                        FragmentApplicationRecyclerView.newInstance(Role.ADOPTER),
                         "appliation-view").commit();
     }
 
@@ -200,10 +208,10 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
     }
 
     @Override
-    public void toApplicationView(boolean fromUser, Application application) {
+    public void toApplicationView(Role role, Application application) {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentContainerAppActivity,
-                        FragmentDisplayApplication.newInstance(fromUser, application),
+                        FragmentDisplayApplication.newInstance(role, application),
                         "view-application").commit();
     }
 
@@ -222,10 +230,10 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
     }
 
     @Override
-    public void backToRecyclerView(boolean isUser) {
+    public void backToRecyclerView(Role role) {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentContainerAppActivity,
-                        FragmentApplicationRecyclerView.newInstance(isUser),
+                        FragmentApplicationRecyclerView.newInstance(role),
                         "application-view").commit();
     }
 }

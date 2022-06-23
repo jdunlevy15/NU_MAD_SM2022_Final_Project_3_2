@@ -89,10 +89,17 @@ public class FragmentFosterHome extends Fragment {
             }
         });
 
+        buttonUpdateDog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onUpdateDogProfilePress();
+            }
+        });
+
         buttonViewApplications.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dListener.backToRecyclerView(false);
+                dListener.backToRecyclerView(Role.FOSTER);
             }
         });
 
@@ -101,5 +108,6 @@ public class FragmentFosterHome extends Fragment {
 
     public interface IFosterHomeListener {
         void onViewDogProfilesPress();
+        void onUpdateDogProfilePress();
     }
 }

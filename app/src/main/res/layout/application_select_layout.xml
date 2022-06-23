@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/messageCardView"
+        android:id="@+id/applicationCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
@@ -15,9 +15,10 @@
         app:contentPadding="5dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/applicationCardLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/applicationCardLayout">
+            android:background="#FFFFFF">
 
 
             <TextView

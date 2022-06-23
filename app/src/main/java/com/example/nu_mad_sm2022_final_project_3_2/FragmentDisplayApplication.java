@@ -28,10 +28,10 @@ import org.w3c.dom.Text;
 public class FragmentDisplayApplication extends Fragment {
 
     // arguments
-    private static final String ARG_USER = "user_type";
+    private static final String ARG_USER = "role";
     private static final String ARG_APP = "application";
     Application thisApplication;
-    boolean isUser;
+    Role role;
 
     // debug tag
     private final String TAG = "application";
@@ -54,10 +54,10 @@ public class FragmentDisplayApplication extends Fragment {
         // Required empty public constructor
     }
 
-    public static FragmentDisplayApplication newInstance(boolean userType, Application application) {
+    public static FragmentDisplayApplication newInstance(Role role, Application application) {
         FragmentDisplayApplication fragment = new FragmentDisplayApplication();
         Bundle args = new Bundle();
-        args.putBoolean(ARG_USER, userType);
+        args.putSerializable(ARG_USER, role);
         args.putSerializable(ARG_APP, application);
         fragment.setArguments(args);
         return fragment;
@@ -67,7 +67,7 @@ public class FragmentDisplayApplication extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            isUser = getArguments().getBoolean(ARG_USER);
+            role = (Role) getArguments().getSerializable(ARG_USER);
             thisApplication = (Application) getArguments().getSerializable(ARG_APP);
         }
     }
@@ -109,7 +109,7 @@ public class FragmentDisplayApplication extends Fragment {
         db = FirebaseFirestore.getInstance();
 ;
         // hide approve and reject button since the user shouldnt be able to use them
-        if (isUser) {
+        if (role == Role.ADOPTER) {
             approveButton.setEnabled(false);
             approveButton.setVisibility(View.INVISIBLE);
             rejectButton.setEnabled(false);
@@ -169,7 +169,7 @@ public class FragmentDisplayApplication extends Fragment {
                             @Override
                             public void onSuccess(Void unused) {
                                 Log.d(TAG, "application succsesfully approved");
-                                dListener.backToRecyclerView(isUser);
+                                dListener.backToRecyclerView(role);
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
@@ -193,7 +193,7 @@ public class FragmentDisplayApplication extends Fragment {
                             @Override
                             public void onSuccess(Void unused) {
                                 Log.d(TAG, "application succsesfully rejected");
-                                dListener.backToRecyclerView(isUser);
+                                dListener.backToRecyclerView(role);
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
@@ -209,7 +209,7 @@ public class FragmentDisplayApplication extends Fragment {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dListener.backToRecyclerView(isUser);
+                dListener.backToRecyclerView(role);
             }
         });
 
@@ -217,6 +217,6 @@ public class FragmentDisplayApplication extends Fragment {
     }
 
     public interface IDisplayApplicationListener {
-        void backToRecyclerView(boolean isUser);
+        void backToRecyclerView(Role role);
     }
 }

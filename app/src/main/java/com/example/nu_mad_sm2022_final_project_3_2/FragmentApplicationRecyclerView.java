@@ -15,9 +15,11 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -32,8 +34,8 @@ import java.util.ArrayList;
 public class FragmentApplicationRecyclerView extends Fragment {
 
     // args
-    private static final String ARG_USER = "is_user";
-    boolean isUser;
+    private static final String ARG_USER = "role";
+    Role role;
 
     // tag
     private final String TAG = "recycle";
@@ -52,10 +54,10 @@ public class FragmentApplicationRecyclerView extends Fragment {
         // Required empty public constructor
     }
 
-    public static FragmentApplicationRecyclerView newInstance(boolean isUser) {
+    public static FragmentApplicationRecyclerView newInstance(Role role) {
         FragmentApplicationRecyclerView fragment = new FragmentApplicationRecyclerView();
         Bundle args = new Bundle();
-        args.putBoolean(ARG_USER, isUser);
+        args.putSerializable(ARG_USER, role);
         fragment.setArguments(args);
         return fragment;
     }
@@ -64,7 +66,7 @@ public class FragmentApplicationRecyclerView extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            isUser = getArguments().getBoolean(ARG_USER);
+            role = (Role) getArguments().getSerializable(ARG_USER);
         }
     }
 
@@ -85,7 +87,7 @@ public class FragmentApplicationRecyclerView extends Fragment {
         mUser = mAuth.getCurrentUser();
 
         // get applications just for this user
-        if (isUser) {
+        if (role == Role.ADOPTER) {
             db.collection("applications")
                     .get()
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -101,7 +103,7 @@ public class FragmentApplicationRecyclerView extends Fragment {
                                         applications.add(tempApp);
                                     }
                                 }
-                                applicationsAdapter = new ApplicationsAdapter(applications, getContext(), true);
+                                applicationsAdapter = new ApplicationsAdapter(applications, getContext(), Role.ADOPTER);
                                 applicationsRecyclerView.setAdapter(applicationsAdapter);
                             }
                         }
@@ -110,6 +112,53 @@ public class FragmentApplicationRecyclerView extends Fragment {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             Toast.makeText(getContext(), "error getting applications", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
+        // get only dogs that this foster parent is an owner of
+        else if (role == Role.FOSTER) {
+            db.collection("users")
+                    .document(mUser.getUid())
+                    .get()
+                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            User loggedIn = documentSnapshot.toObject(User.class);
+                            db.collection("applications")
+                                    .get()
+                                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                            if (task.isSuccessful()) {
+                                                ArrayList<Application> applications = new ArrayList<Application>();
+                                                if (loggedIn.getDogId() != null) {
+                                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                                        Application tempApp = document.toObject(Application.class);
+                                                        if (tempApp.getDogID().equals(loggedIn.getDogId())) {
+                                                            applications.add(tempApp);
+                                                        }
+                                                    }
+                                                }
+                                                else {
+                                                    Toast.makeText(getContext(), "You dont foster a dog", Toast.LENGTH_SHORT).show();
+                                                }
+                                                applicationsAdapter = new ApplicationsAdapter(applications, getContext(), Role.FOSTER);
+                                                applicationsRecyclerView.setAdapter(applicationsAdapter);
+                                            }
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(getContext(), "error getting applications", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getContext(), "DB Failure", Toast.LENGTH_SHORT).show();
                         }
                     });
         }
@@ -127,7 +176,7 @@ public class FragmentApplicationRecyclerView extends Fragment {
                                     applications.add(tempApp);
                                     Log.d(TAG, "onComplete: " + tempApp.toString());
                                 }
-                                applicationsAdapter = new ApplicationsAdapter(applications, getContext(), false);
+                                applicationsAdapter = new ApplicationsAdapter(applications, getContext(), Role.EMPLOYEE);
                                 applicationsRecyclerView.setAdapter(applicationsAdapter);
                             }
                         }
