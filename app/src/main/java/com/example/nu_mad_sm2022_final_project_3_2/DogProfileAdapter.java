@@ -134,12 +134,12 @@ public class DogProfileAdapter extends RecyclerView.Adapter<DogProfileAdapter.Vi
                         @Override
                         public void onSuccess(ListResult listResult) {
                             // imageFiles = new ArrayList<StorageReference>(listResult.getItems());
-                            setImageFiles(new ArrayList<StorageReference>(listResult.getItems()));
-
+                            // setImageFiles(new ArrayList<StorageReference>(listResult.getItems()));
+                            ArrayList<StorageReference> theseImages = new ArrayList<StorageReference>(listResult.getItems());
 
                             // Set first image
-                            if (imageFiles.size() > 0) {
-                                imageFiles.get(0).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            if (theseImages.size() > 0) {
+                                theseImages.get(0).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
                                     public void onSuccess(Uri uri) {
                                         progressBar.setVisibility(View.GONE);
@@ -152,6 +152,9 @@ public class DogProfileAdapter extends RecyclerView.Adapter<DogProfileAdapter.Vi
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             Log.d("images","couldn't load images");
+                            setImageFiles(new ArrayList<StorageReference>());
+                            imageViewDog.setVisibility(View.INVISIBLE);
+                            progressBar.setVisibility(View.VISIBLE);
                         }
                     });
 
@@ -201,12 +204,15 @@ public class DogProfileAdapter extends RecyclerView.Adapter<DogProfileAdapter.Vi
 
 
             // Set on click listeners
+            /*
             imageButtonBack.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     listener.onBackButtonPressed();
                 }
             });
+
+             */
 
             buttonAdopt.setOnClickListener(new View.OnClickListener() {
                 @Override
