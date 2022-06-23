@@ -38,6 +38,7 @@ public class Dog implements Serializable {
         this.id = id;
         this.name = name;
         this.breed = breed;
+        this.age = age;
         this.gender = gender;
         this.status = status;
         this.color = color;
