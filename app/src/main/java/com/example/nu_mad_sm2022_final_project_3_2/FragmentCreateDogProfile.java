@@ -309,6 +309,7 @@ public class FragmentCreateDogProfile extends Fragment {
                             public void onSuccess(Void unused) {
                                 Toast.makeText(getContext(), "Successfully Created Dog Profile", Toast.LENGTH_SHORT).show();
                                 // go back to the home fragment
+                                cListener.backToHomeFragment();
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {

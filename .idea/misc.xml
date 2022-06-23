@@ -4,18 +4,22 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/activity_app.xml" value="0.32741546630859375" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.36041666666666666" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.24270833333333333" />
         <entry key="app/src/main/res/layout/create_account.xml" value="0.359375" />
-        <entry key="app/src/main/res/layout/create_adoption_application.xml" value="0.32169435762511894" />
-        <entry key="app/src/main/res/layout/create_dog_profile.xml" value="0.3067708333333333" />
-        <entry key="app/src/main/res/layout/dog_description.xml" value="0.3745468139648438" />
+        <entry key="app/src/main/res/layout/create_adoption_application.xml" value="0.3763955905352753" />
+        <entry key="app/src/main/res/layout/create_dog_profile.xml" value="0.2693726937269373" />
+        <entry key="app/src/main/res/layout/dog_description.xml" value="0.3067708333333333" />
         <entry key="app/src/main/res/layout/dog_profile.xml" value="0.3067708333333333" />
+        <entry key="app/src/main/res/layout/fragment_create_application.xml" value="0.22864583333333333" />
+        <entry key="app/src/main/res/layout/fragment_create_dog_profile.xml" value="0.24270833333333333" />
+
         <entry key="app/src/main/res/layout/fragment_dog_description.xml" value="0.36041666666666666" />
+
         <entry key="app/src/main/res/layout/fragment_employee_home.xml" value="0.34742650274020526" />
         <entry key="app/src/main/res/layout/fragment_foster_home.xml" value="0.3463541666666667" />
         <entry key="app/src/main/res/layout/fragment_loading.xml" value="0.240625" />
         <entry key="app/src/main/res/layout/fragment_user_home.xml" value="0.36041666666666666" />
-        <entry key="app/src/main/res/layout/fragment_view_dogs.xml" value="0.36041666666666666" />
+        <entry key="app/src/main/res/layout/fragment_view_dogs.xml" value="0.24270833333333333" />
         <entry key="app/src/main/res/layout/home_screen.xml" value="0.3067708333333333" />
         <entry key="app/src/main/res/layout/sign_in.xml" value="0.3067708333333333" />
         <entry key="app/src/main/res/layout/view_adoption_application.xml" value="0.3067708333333333" />
