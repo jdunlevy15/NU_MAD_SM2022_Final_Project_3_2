@@ -18,6 +18,7 @@ public class User implements Serializable {
     private String phoneNumber;
     private String email;
     private String username;
+    private String dogId;
 
     public String getUsername() {
         return username;
@@ -34,6 +35,7 @@ public class User implements Serializable {
         this.email = email;
         this.username = username;
         this.role = role;
+        this.dogId = null;
     }
 
     public User () {}
@@ -107,6 +109,10 @@ public class User implements Serializable {
     public void setRole(Role role) {
         this.role = role;
     }
+
+    public String getDogId() { return dogId; }
+
+    public void setDogId(String dogId) { this.dogId = dogId; }
 
     @Override
     public String toString() {

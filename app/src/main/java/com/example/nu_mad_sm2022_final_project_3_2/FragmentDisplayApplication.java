@@ -1,8 +1,10 @@
 package com.example.nu_mad_sm2022_final_project_3_2;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -12,9 +14,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.w3c.dom.Text;
@@ -22,10 +28,10 @@ import org.w3c.dom.Text;
 public class FragmentDisplayApplication extends Fragment {
 
     // arguments
-    private static final String ARG_USER = "user_type";
+    private static final String ARG_USER = "role";
     private static final String ARG_APP = "application";
     Application thisApplication;
-    boolean isUser;
+    Role role;
 
     // debug tag
     private final String TAG = "application";
@@ -36,19 +42,22 @@ public class FragmentDisplayApplication extends Fragment {
     private FirebaseFirestore db;
 
     // view items to hide sicne this is for the user
-    private Button approveButton, rejectButton;
+    private Button approveButton, rejectButton, backButton;
     private TextView firstNameET, lastNameET, ageET, addressET, cityET, stateET,
-            emailET, phoneET, question1ET, question2ET;
+            emailET, phoneET, question1ET, question2ET, dogLabelET;
     private TextView statusTV;
+
+    // activity communication
+    private IDisplayApplicationListener dListener;
 
     public FragmentDisplayApplication() {
         // Required empty public constructor
     }
 
-    public static FragmentDisplayApplication newInstance(boolean userType, Application application) {
+    public static FragmentDisplayApplication newInstance(Role role, Application application) {
         FragmentDisplayApplication fragment = new FragmentDisplayApplication();
         Bundle args = new Bundle();
-        args.putBoolean(ARG_USER, userType);
+        args.putSerializable(ARG_USER, role);
         args.putSerializable(ARG_APP, application);
         fragment.setArguments(args);
         return fragment;
@@ -58,8 +67,18 @@ public class FragmentDisplayApplication extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            isUser = getArguments().getBoolean(ARG_USER);
+            role = (Role) getArguments().getSerializable(ARG_USER);
             thisApplication = (Application) getArguments().getSerializable(ARG_APP);
+        }
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof IDisplayApplicationListener) {
+            dListener = (IDisplayApplicationListener) context;
+        } else {
+            throw new RuntimeException(context.toString() + "Must Implement Interface");
         }
     }
 
@@ -83,9 +102,14 @@ public class FragmentDisplayApplication extends Fragment {
         question1ET = view.findViewById(R.id.applicationQuestion1EditText);
         question2ET = view.findViewById(R.id.applicationQuestion2EditText);
         statusTV = view.findViewById(R.id.applicationStatusLabel);
+        dogLabelET = view.findViewById(R.id.dogName);
+        backButton = view.findViewById(R.id.applicationBackButton);
 
+        // firebase
+        db = FirebaseFirestore.getInstance();
+;
         // hide approve and reject button since the user shouldnt be able to use them
-        if (isUser) {
+        if (role == Role.ADOPTER) {
             approveButton.setEnabled(false);
             approveButton.setVisibility(View.INVISIBLE);
             rejectButton.setEnabled(false);
@@ -113,6 +137,86 @@ public class FragmentDisplayApplication extends Fragment {
         question1ET.setText(thisApplication.getQuestion1());
         question2ET.setText(thisApplication.getQuestion2());
 
+        // get dog info for title
+        db.collection("dogs")
+                .document(thisApplication.getDogID())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        Dog thisDog = documentSnapshot.toObject(Dog.class);
+                        if (thisDog != null) {
+                            dogLabelET.setText(thisDog.getName());
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getContext(), "DB Rerieval Failure", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        // set approval onclick
+        approveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                thisApplication.setStatus(ApplicationStatus.ACCEPTED);
+                db.collection("applications")
+                        .document(thisApplication.getApplicationID())
+                        .set(thisApplication)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Log.d(TAG, "application succsesfully approved");
+                                dListener.backToRecyclerView(role);
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(getContext(), "Failure to Approve Applicant", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+            }
+        });
+
+        // set rejection on click
+        rejectButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                thisApplication.setStatus(ApplicationStatus.REJECTED);
+                db.collection("applications")
+                        .document(thisApplication.getApplicationID())
+                        .set(thisApplication)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Log.d(TAG, "application succsesfully rejected");
+                                dListener.backToRecyclerView(role);
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(getContext(), "Failure to Reject Applicant", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+            }
+        });
+
+        // nav using back button
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dListener.backToRecyclerView(role);
+            }
+        });
+
         return view;
+    }
+
+    public interface IDisplayApplicationListener {
+        void backToRecyclerView(Role role);
     }
 }

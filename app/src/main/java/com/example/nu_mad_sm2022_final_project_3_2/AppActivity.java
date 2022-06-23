@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class AppActivity extends AppCompatActivity implements FragmentEmployeeHome.IEmployeeHomeListener, FragmentCreateDogProfile.ICreateDogListener, DogProfileAdapter.IDogProfileAdapterListener, FragmentFosterHome.IFosterHomeListener, FragmentUserHome.IUserHomeListener, FragmentCreateApplication.IApplicationListener,FragmentDogDescription.IDogDescriptionListener, ApplicationsAdapter.IAdapterListener {
+public class AppActivity extends AppCompatActivity implements FragmentEmployeeHome.IEmployeeHomeListener, FragmentCreateDogProfile.ICreateDogListener, DogProfileAdapter.IDogProfileAdapterListener, FragmentFosterHome.IFosterHomeListener, FragmentUserHome.IUserHomeListener, FragmentCreateApplication.IApplicationListener,FragmentDogDescription.IDogDescriptionListener, ApplicationsAdapter.IAdapterListener, FragmentDisplayApplication.IDisplayApplicationListener {
     // String userId;
 
     // Firebase Authentication / db
@@ -158,10 +158,18 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
     }
 
     @Override
+    public void onUpdateDogProfilePress() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragmentContainerAppActivity,
+                        FragmentUpdateDogProfile.newInstance(),
+                        "update-dog-profile").commit();
+    }
+
+    @Override
     public void onViewApplicationsPress() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentContainerAppActivity,
-                        FragmentApplicationRecyclerView.newInstance(false),
+                        FragmentApplicationRecyclerView.newInstance(Role.EMPLOYEE),
                         "appliation-view").commit();
     }
 
@@ -170,7 +178,7 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
     public void onViewApplicationPress() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentContainerAppActivity,
-                        FragmentApplicationRecyclerView.newInstance(true),
+                        FragmentApplicationRecyclerView.newInstance(Role.ADOPTER),
                         "appliation-view").commit();
     }
 
@@ -200,10 +208,10 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
     }
 
     @Override
-    public void toApplicationView(boolean fromUser, Application application) {
+    public void toApplicationView(Role role, Application application) {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentContainerAppActivity,
-                        FragmentDisplayApplication.newInstance(fromUser, application),
+                        FragmentDisplayApplication.newInstance(role, application),
                         "view-application").commit();
     }
 
@@ -219,5 +227,13 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
                 .replace(R.id.fragmentContainerAppActivity,
                         FragmentDogDescription.newInstance(dog),
                         "create-dog-profile").commit();
+    }
+
+    @Override
+    public void backToRecyclerView(Role role) {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragmentContainerAppActivity,
+                        FragmentApplicationRecyclerView.newInstance(role),
+                        "application-view").commit();
     }
 }

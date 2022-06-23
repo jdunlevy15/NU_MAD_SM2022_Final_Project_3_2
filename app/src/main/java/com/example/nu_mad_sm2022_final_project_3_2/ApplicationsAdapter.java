@@ -1,6 +1,7 @@
 package com.example.nu_mad_sm2022_final_project_3_2;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,12 +24,12 @@ import java.util.ArrayList;
 public class ApplicationsAdapter extends RecyclerView.Adapter<ApplicationsAdapter.ViewHolder> {
 
     private ArrayList<Application> applications;
-    private boolean isUser;
+    private Role role;
     private IAdapterListener aListener;
 
-    public ApplicationsAdapter(ArrayList<Application> applications, Context context, boolean isUser) {
+    public ApplicationsAdapter(ArrayList<Application> applications, Context context, Role role) {
         this.applications = applications;
-        this.isUser = isUser;
+        this.role = role;
         if (context instanceof IAdapterListener) {
             this.aListener = (IAdapterListener) context;
         }
@@ -48,6 +50,13 @@ public class ApplicationsAdapter extends RecyclerView.Adapter<ApplicationsAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Application application = applications.get(position);
+        // change color of card based on application status
+        if (application.getStatus() == ApplicationStatus.ACCEPTED) {
+            holder.getApplicationCardView().setCardBackgroundColor(Color.parseColor("#54FF72"));
+        }
+        if (application.getStatus() == ApplicationStatus.REJECTED) {
+            holder.getApplicationCardView().setCardBackgroundColor(Color.parseColor("#FF7254"));
+        }
         String applicantName = application.getFirstName();
         String dogID = applications.get(position).getDogID();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -65,10 +74,14 @@ public class ApplicationsAdapter extends RecyclerView.Adapter<ApplicationsAdapte
                             holder.getViewButton().setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    if (isUser) {
-                                        aListener.toApplicationView(true, application);
-                                    } else  {
-                                        aListener.toApplicationView(false, application);
+                                    if (role == Role.ADOPTER) {
+                                        aListener.toApplicationView(Role.ADOPTER, application);
+                                    }
+                                    else if (role == Role.FOSTER) {
+                                        aListener.toApplicationView(Role.FOSTER, application);
+                                    }
+                                    else  {
+                                        aListener.toApplicationView(Role.EMPLOYEE, application);
                                     }
                                 }
                             });
@@ -93,6 +106,7 @@ public class ApplicationsAdapter extends RecyclerView.Adapter<ApplicationsAdapte
         private final TextView dogName;
         private final TextView applicantName;
         private final Button viewButton;
+        private final CardView applicationCardView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -100,6 +114,7 @@ public class ApplicationsAdapter extends RecyclerView.Adapter<ApplicationsAdapte
             dogName = itemView.findViewById(R.id.cardDogNameTextView);
             applicantName = itemView.findViewById(R.id.cardApplicantNameTextView);
             viewButton = itemView.findViewById(R.id.cardViewApplicationButton);
+            applicationCardView = itemView.findViewById(R.id.applicationCardView);
         }
 
         public TextView getDogName() {
@@ -113,9 +128,13 @@ public class ApplicationsAdapter extends RecyclerView.Adapter<ApplicationsAdapte
         public Button getViewButton() {
             return viewButton;
         }
+
+        public CardView getApplicationCardView() {
+            return applicationCardView;
+        }
     }
 
     public interface IAdapterListener {
-        void toApplicationView(boolean fromUser, Application application);
+        void toApplicationView(Role role, Application application);
     }
 }

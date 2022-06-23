@@ -15,23 +15,32 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
-// fragment for creating a dog profile
-public class FragmentCreateDogProfile extends Fragment {
+public class FragmentUpdateDogProfile extends Fragment {
 
     // debug tag
     private final String TAG = "dog";
 
     // firebase
     private FirebaseFirestore db;
+    private FirebaseAuth mAuth;
+    private FirebaseUser mUser;
 
     // data sending
-    private ICreateDogListener cListener;
+    private FragmentCreateDogProfile.ICreateDogListener cListener;
 
     // view items needed
     private EditText dogNameET, dogAgeET, dogBreedET, dogColorET, dogCurrentSizeET, dogPotentialSizeET;
@@ -53,13 +62,15 @@ public class FragmentCreateDogProfile extends Fragment {
     private boolean fenceSet = false;
     private boolean fenceRequired = false;
 
-    public FragmentCreateDogProfile() {
+    // dog id
+    private String dogID = null;
+
+    public FragmentUpdateDogProfile() {
         // Required empty public constructor
     }
 
-    // constructor
-    public static FragmentCreateDogProfile newInstance() {
-        FragmentCreateDogProfile fragment = new FragmentCreateDogProfile();
+    public static FragmentUpdateDogProfile newInstance() {
+        FragmentUpdateDogProfile fragment = new FragmentUpdateDogProfile();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -74,8 +85,8 @@ public class FragmentCreateDogProfile extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
 
-        if (context instanceof ICreateDogListener) {
-            cListener = (ICreateDogListener) context;
+        if (context instanceof FragmentCreateDogProfile.ICreateDogListener) {
+            cListener = (FragmentCreateDogProfile.ICreateDogListener) context;
         } else {
             throw new RuntimeException(context.toString() + "Must Implement Interface");
         }
@@ -108,6 +119,51 @@ public class FragmentCreateDogProfile extends Fragment {
 
         // firebase
         db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
+
+        // check if user even has a dog
+        db.collection("users")
+                .document(mUser.getUid())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        User loggedIn = documentSnapshot.toObject(User.class);
+                        if (loggedIn.getDogId() == null) {
+                            Toast.makeText(getContext(), "You dont foster a dog", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        db.collection("dogs")
+                                .document(loggedIn.getDogId())
+                                .get()
+                                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                        Dog myDog = documentSnapshot.toObject(Dog.class);
+                                        dogNameET.setText(myDog.getName());
+                                        dogAgeET.setText(String.valueOf(myDog.getAge()));
+                                        dogBreedET.setText(myDog.getBreed());
+                                        dogColorET.setText(myDog.getColor());
+                                        dogCurrentSizeET.setText(String.valueOf(myDog.getCurrentWeight()));
+                                        dogPotentialSizeET.setText(String.valueOf(myDog.getCurrentWeight()));
+                                        dogID = myDog.getId();
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(getContext(), "DB Failure", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getContext(), "DB Failure", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
         // get data from radio buttons
         dogSexRG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -281,8 +337,10 @@ public class FragmentCreateDogProfile extends Fragment {
                     return;
                 }
 
-                // generate unique id for dog
-                String dogID = UUID.randomUUID().toString();
+                // get dog to set id
+                if (dogID == null) {
+                    Toast.makeText(getContext(), "Error Getting Dog", Toast.LENGTH_SHORT).show();
+                }
 
                 // create dog object
                 Dog dogToAdd = new Dog(dogID, dogName, dogBreed, ageInt, dogSex, dogStatus,
@@ -316,9 +374,5 @@ public class FragmentCreateDogProfile extends Fragment {
         });
 
         return view;
-    }
-
-    public interface ICreateDogListener {
-        void backToHomeFragment();
     }
 }

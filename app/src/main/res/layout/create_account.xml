@@ -60,17 +60,18 @@
 
             <EditText
                 android:id="@+id/applicationFirstNameEditText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="@string/placeholder_text"
+                android:hint="@string/application_first_name"
+                android:importantForAutofill="no"
                 android:inputType="textPersonName"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/applicationLastNameLabel"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/applicationFirstNameLabel"
-                app:layout_constraintTop_toTopOf="@+id/applicationFirstNameLabel"
-                android:importantForAutofill="no" />
+                app:layout_constraintTop_toTopOf="@+id/applicationFirstNameLabel" />
 
             <TextView
                 android:id="@+id/applicationLastNameLabel"
@@ -84,10 +85,11 @@
 
             <EditText
                 android:id="@+id/applicationLastNameEditText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="@string/placeholder_text"
+                android:hint="@string/application_last_name"
                 android:inputType="textPersonName"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/applicationLastNameLabel"
@@ -107,10 +109,11 @@
 
             <EditText
                 android:id="@+id/applicationAgeEditText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="@string/placeholder_text"
+                android:hint="@string/age"
                 android:inputType="textPersonName"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/applicationAgeLabel"
@@ -130,10 +133,11 @@
 
             <EditText
                 android:id="@+id/applicationAddressEditText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="@string/placeholder_text"
+                android:hint="@string/application_address"
                 android:inputType="textPersonName"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/applicationAddressLabel"
@@ -153,10 +157,11 @@
 
             <EditText
                 android:id="@+id/applicationCityEditText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="@string/placeholder_text"
+                android:hint="@string/application_city"
                 android:inputType="textPersonName"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/applicationCityLabel"
@@ -176,10 +181,11 @@
 
             <EditText
                 android:id="@+id/applicationStateEditText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="@string/placeholder_text"
+                android:hint="@string/application_state"
                 android:inputType="textPersonName"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/applicationStateLabel"
@@ -199,10 +205,11 @@
 
             <EditText
                 android:id="@+id/applicationEmailEditText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="@string/placeholder_text"
+                android:hint="@string/application_email"
                 android:inputType="textEmailAddress"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/applicationEmailLabel"
@@ -222,10 +229,11 @@
 
             <EditText
                 android:id="@+id/applicationPhoneEditText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="@string/placeholder_text"
+                android:hint="@string/application_phone"
                 android:inputType="phone"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/applicationPhoneLabel"
@@ -256,19 +264,19 @@
 
             <EditText
                 android:id="@+id/accountUsernameEditText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="32dp"
                 android:layout_marginBottom="3dp"
                 android:ems="10"
-                android:hint="@string/placeholder_text"
+                android:hint="@string/login_username"
+                android:importantForAutofill="no"
                 android:inputType="textPersonName"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/accountUsernameLabel"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/applicationPhoneEditText"
-                app:layout_constraintTop_toTopOf="@+id/accountUsernameLabel"
-                android:importantForAutofill="no" />
+                app:layout_constraintTop_toTopOf="@+id/accountUsernameLabel" />
 
             <TextView
                 android:id="@+id/accountPasswordLabel"
@@ -282,9 +290,9 @@
 
             <EditText
                 android:id="@+id/accountPasswordEditText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="32dp"
                 android:layout_marginBottom="3dp"
                 android:ems="10"
                 android:hint="@string/login_password_placeholder"
@@ -308,9 +316,9 @@
 
             <EditText
                 android:id="@+id/accountConfirmPasswordEditText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="32dp"
                 android:layout_marginBottom="3dp"
                 android:ems="10"
                 android:hint="@string/login_password_placeholder"

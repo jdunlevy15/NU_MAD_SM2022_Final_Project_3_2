@@ -21,7 +21,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="@string/placeholder_text"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/adopHeader"
         app:layout_constraintStart_toEndOf="@+id/adopHeader"
@@ -42,7 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="@string/application_pending_status"
+        android:text="@string/inprogress_status"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/applicationStatusHeader"
@@ -93,10 +92,10 @@
                 android:id="@+id/applicationFirstNameEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
                 android:ems="10"
-                android:hint="@string/placeholder_text"
+                android:hint="@string/application_first_name"
                 android:inputType="textPersonName"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/applicationLastNameLabel"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/applicationFirstNameLabel"
@@ -116,10 +115,10 @@
                 android:id="@+id/applicationLastNameEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
                 android:ems="10"
-                android:hint="@string/placeholder_text"
+                android:hint="@string/application_last_name"
                 android:inputType="textPersonName"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/applicationLastNameLabel"
                 app:layout_constraintEnd_toEndOf="@+id/applicationFirstNameEditText"
                 app:layout_constraintStart_toStartOf="@+id/applicationFirstNameEditText"
@@ -140,13 +139,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="@string/placeholder_text"
+                android:hint="@string/age"
                 android:inputType="textPersonName"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/applicationAgeLabel"
-                app:layout_constraintTop_toBottomOf="@+id/applicationAgeLabel"
                 app:layout_constraintEnd_toEndOf="@+id/applicationLastNameEditText"
-                app:layout_constraintStart_toStartOf="@+id/applicationLastNameEditText"  />
+                app:layout_constraintStart_toStartOf="@+id/applicationLastNameEditText"
+                app:layout_constraintTop_toBottomOf="@+id/applicationAgeLabel" />
 
             <TextView
                 android:id="@+id/applicationAddressLabel"
@@ -162,13 +161,13 @@
                 android:id="@+id/applicationAddressEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
                 android:ems="10"
-                android:hint="@string/placeholder_text"
+                android:hint="@string/application_address"
                 android:inputType="textPersonName"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/applicationAddressLabel"
                 app:layout_constraintEnd_toEndOf="@+id/applicationAgeEditText"
                 app:layout_constraintStart_toStartOf="@+id/applicationAgeEditText"
-                app:layout_constraintBottom_toBottomOf="@+id/applicationAddressLabel"
                 app:layout_constraintTop_toBottomOf="@+id/applicationAddressLabel" />
 
             <TextView
@@ -185,13 +184,13 @@
                 android:id="@+id/applicationCityEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
                 android:ems="10"
-                android:hint="@string/placeholder_text"
+                android:hint="@string/application_city"
                 android:inputType="textPersonName"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/applicationCityLabel"
                 app:layout_constraintEnd_toEndOf="@+id/applicationAddressEditText"
                 app:layout_constraintStart_toStartOf="@+id/applicationAddressEditText"
-                app:layout_constraintBottom_toBottomOf="@+id/applicationCityLabel"
                 app:layout_constraintTop_toBottomOf="@+id/applicationCityLabel" />
 
             <TextView
@@ -208,13 +207,13 @@
                 android:id="@+id/applicationStateEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
                 android:ems="10"
-                android:hint="@string/placeholder_text"
+                android:hint="@string/application_state"
                 android:inputType="textPersonName"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/applicationStateLabel"
                 app:layout_constraintEnd_toEndOf="@+id/applicationCityEditText"
                 app:layout_constraintStart_toStartOf="@+id/applicationCityEditText"
-                app:layout_constraintBottom_toBottomOf="@+id/applicationStateLabel"
                 app:layout_constraintTop_toBottomOf="@+id/applicationStateLabel" />
 
             <TextView
@@ -231,13 +230,13 @@
                 android:id="@+id/applicationEmailEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
                 android:ems="10"
-                android:hint="@string/placeholder_text"
+                android:hint="@string/application_email"
                 android:inputType="textEmailAddress"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/applicationEmailLabel"
                 app:layout_constraintEnd_toEndOf="@+id/applicationStateEditText"
                 app:layout_constraintStart_toStartOf="@+id/applicationStateEditText"
-                app:layout_constraintBottom_toBottomOf="@+id/applicationEmailLabel"
                 app:layout_constraintTop_toBottomOf="@+id/applicationEmailLabel" />
 
             <TextView
@@ -254,13 +253,13 @@
                 android:id="@+id/applicationPhoneEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
                 android:ems="10"
-                android:hint="@string/placeholder_text"
+                android:hint="@string/application_phone"
                 android:inputType="phone"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/applicationPhoneLabel"
                 app:layout_constraintEnd_toEndOf="@+id/applicationEmailEditText"
                 app:layout_constraintStart_toStartOf="@+id/applicationEmailEditText"
-                app:layout_constraintBottom_toBottomOf="@+id/applicationPhoneLabel"
                 app:layout_constraintTop_toBottomOf="@+id/applicationPhoneLabel" />
 
             <TextView
@@ -290,7 +289,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:ems="10"
-                android:hint="@string/placeholder_text"
+                android:hint="@string/answer_placeholder"
                 android:inputType="textPersonName"
                 app:layout_constraintStart_toStartOf="@+id/applicationQuestionLabel1"
                 app:layout_constraintTop_toBottomOf="@+id/applicationQuestionLabel1" />
@@ -311,7 +310,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:ems="10"
-                android:hint="@string/placeholder_text"
+                android:hint="@string/answer_placeholder"
                 android:inputType="textPersonName"
                 app:layout_constraintStart_toStartOf="@+id/applicationQuestion2Header"
                 app:layout_constraintTop_toBottomOf="@+id/applicationQuestion2Header" />

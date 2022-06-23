@@ -21,6 +21,7 @@ public class FragmentFosterHome extends Fragment {
     private static final String ARG_USER_ID = "user_id";
     private User currUser;
     private IFosterHomeListener listener;
+    private FragmentDisplayApplication.IDisplayApplicationListener dListener;
 
     TextView nameHeader;
     Button buttonViewDogsForAdoption, buttonUpdateDog, buttonViewApplications;
@@ -48,6 +49,12 @@ public class FragmentFosterHome extends Fragment {
 
         else {
             throw new RuntimeException(context.toString() + " IFosterHomeListener");
+        }
+
+        if (context instanceof FragmentDisplayApplication.IDisplayApplicationListener) {
+            dListener = (FragmentDisplayApplication.IDisplayApplicationListener) context;
+        } else {
+            throw new RuntimeException(context.toString() + "Must Implement Interface");
         }
     }
 
@@ -82,10 +89,25 @@ public class FragmentFosterHome extends Fragment {
             }
         });
 
+        buttonUpdateDog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onUpdateDogProfilePress();
+            }
+        });
+
+        buttonViewApplications.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dListener.backToRecyclerView(Role.FOSTER);
+            }
+        });
+
         return view;
     }
 
     public interface IFosterHomeListener {
         void onViewDogProfilesPress();
+        void onUpdateDogProfilePress();
     }
 }
