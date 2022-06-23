@@ -85,6 +85,13 @@ public class FragmentEmployeeHome extends Fragment {
             }
         });
 
+        buttonViewApplications.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                eListener.onViewApplicationsPress();
+            }
+        });
+
 
         return view;
     }
@@ -92,5 +99,6 @@ public class FragmentEmployeeHome extends Fragment {
     public interface IEmployeeHomeListener {
         void onCreateDogProfilePress();
         void onViewDogProfilesPress();
+        void onViewApplicationsPress();
     }
 }

@@ -20,6 +20,8 @@ public class Application implements Serializable {
     private String UserID;
     private String DogID;
 
+    public Application() {}
+
     public Application(String applicationID, String firstName, String lastName, int age, Address address, String email, String phone, String question1, String question2, ApplicationStatus status, String userID, String dogID) {
         ApplicationID = applicationID;
         this.firstName = firstName;
