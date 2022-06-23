@@ -12,8 +12,10 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageViewDogProfile"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageViewDogProfile" />
+        app:layout_constraintTop_toTopOf="@+id/imageViewDogProfile"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/imageViewDogProfile"
@@ -63,20 +65,25 @@
 
     <Button
         android:id="@+id/buttonAdopt"
-        android:layout_width="wrap_content"
+        android:layout_width="147dp"
         android:layout_height="wrap_content"
         android:text="@string/adopt"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonMoreDetails"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonMoreDetails" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonMoreDetails"
+        app:layout_constraintTop_toTopOf="@+id/buttonMoreDetails"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/buttonMoreDetails"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="147dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="28dp"
         android:layout_marginTop="8dp"
         android:text="@string/more_info"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonAdopt"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewDogBasicInfo" />
 
