@@ -42,6 +42,7 @@ import com.squareup.picasso.Picasso;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class DogProfileAdapter extends RecyclerView.Adapter<DogProfileAdapter.ViewHolder> implements Serializable {
     private ArrayList<Dog> dogs;
@@ -50,7 +51,9 @@ public class DogProfileAdapter extends RecyclerView.Adapter<DogProfileAdapter.Vi
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReference();
 
-    ArrayList<StorageReference>  imageFiles = new ArrayList<>();
+    HashMap<String, Integer> mapDogToImageIndex = new HashMap<>();
+
+    // ArrayList<StorageReference>  imageFiles = new ArrayList<>();
     int imageIndex = 0;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -121,10 +124,13 @@ public class DogProfileAdapter extends RecyclerView.Adapter<DogProfileAdapter.Vi
         Button buttonAdopt = holder.getButtonAdopt();
         Button buttonMoreInfo = holder.getButtonMoreInfo();
 
+        // Local image array
+        ArrayList<StorageReference> images;
+
 
         Dog dog = this.dogs.get(position);
+        mapDogToImageIndex.put(dog.getId(), 0);
         if (dog != null) {
-            // TODO: download images
 
             // ArrayList<StorageReference>  imageFiles = new ArrayList<>();
             String path = "images/" + dog.getId() + "/";
@@ -139,11 +145,12 @@ public class DogProfileAdapter extends RecyclerView.Adapter<DogProfileAdapter.Vi
 
                             // Set first image
                             if (theseImages.size() > 0) {
-                                theseImages.get(0).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                theseImages.get(mapDogToImageIndex.get(dog.getId())).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
                                     public void onSuccess(Uri uri) {
                                         progressBar.setVisibility(View.GONE);
                                         Glide.with(holder.getView()).load(uri).into(imageViewDog);
+                                        mapDogToImageIndex.put(dog.getId(), mapDogToImageIndex.get(dog.getId()) + 1);
                                     }
                                 });
                             }
@@ -152,14 +159,55 @@ public class DogProfileAdapter extends RecyclerView.Adapter<DogProfileAdapter.Vi
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             Log.d("images","couldn't load images");
-                            setImageFiles(new ArrayList<StorageReference>());
+                            // setImageFiles(new ArrayList<StorageReference>());
                             imageViewDog.setVisibility(View.INVISIBLE);
                             progressBar.setVisibility(View.VISIBLE);
                         }
                     });
 
             // TODO: toggle images when clicked
+            imageViewDog.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    imageViewDog.setVisibility(View.INVISIBLE);
+                    progressBar.setVisibility(View.VISIBLE);
+                    imagesRef.listAll()
+                            .addOnSuccessListener(new OnSuccessListener<ListResult>() {
+                                @Override
+                                public void onSuccess(ListResult listResult) {
+                                    // imageFiles = new ArrayList<StorageReference>(listResult.getItems());
+                                    // setImageFiles(new ArrayList<StorageReference>(listResult.getItems()));
+                                    ArrayList<StorageReference> theseImages = new ArrayList<StorageReference>(listResult.getItems());
 
+                                    // Set first image
+                                    if (theseImages.size() > 0) {
+                                        int currIndex = mapDogToImageIndex.get(dog.getId());
+                                        if (currIndex >= theseImages.size()) {
+                                            mapDogToImageIndex.put(dog.getId(), 0);
+                                            currIndex = 0;
+                                        }
+                                        theseImages.get(currIndex).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                            @Override
+                                            public void onSuccess(Uri uri) {
+                                                Glide.with(holder.getView()).load(uri).into(imageViewDog);
+                                                progressBar.setVisibility(View.GONE);
+                                                imageViewDog.setVisibility(View.VISIBLE);
+                                                mapDogToImageIndex.put(dog.getId(), mapDogToImageIndex.get(dog.getId()) + 1);
+                                            }
+                                        });
+                                    }
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.d("images","couldn't load images");
+                                    // setImageFiles(new ArrayList<StorageReference>());
+                                    imageViewDog.setVisibility(View.INVISIBLE);
+                                    progressBar.setVisibility(View.VISIBLE);
+                                }
+                            });
+                }
+            });
             /*
             imageViewDog.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -197,8 +245,8 @@ public class DogProfileAdapter extends RecyclerView.Adapter<DogProfileAdapter.Vi
 
              */
 
-            // Update text views:
-            textViewName.setText(dog.getName());
+                    // Update text views:
+                    textViewName.setText(dog.getName());
             String basicInfo = dog.getBreed() + ", " + dog.getAge() + ", " + dog.getGender();
             textViewBasicInfo.setText(basicInfo);
 
@@ -233,10 +281,13 @@ public class DogProfileAdapter extends RecyclerView.Adapter<DogProfileAdapter.Vi
 
     }
 
+    /*
     private void setImageFiles(ArrayList<StorageReference> items) {
         this.imageFiles = items;
         notifyDataSetChanged();
     }
+
+     */
 
     @Override
     public int getItemCount() {
