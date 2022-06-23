@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class AppActivity extends AppCompatActivity implements FragmentEmployeeHome.IEmployeeHomeListener, FragmentCreateDogProfile.ICreateDogListener, DogProfileAdapter.IDogProfileAdapterListener, FragmentFosterHome.IFosterHomeListener, FragmentUserHome.IUserHomeListener, FragmentCreateApplication.IApplicationListener, ApplicationsAdapter.IAdapterListener {
+public class AppActivity extends AppCompatActivity implements FragmentEmployeeHome.IEmployeeHomeListener, FragmentCreateDogProfile.ICreateDogListener, DogProfileAdapter.IDogProfileAdapterListener, FragmentFosterHome.IFosterHomeListener, FragmentUserHome.IUserHomeListener, FragmentCreateApplication.IApplicationListener,FragmentDogDescription.IDogDescriptionListener, ApplicationsAdapter.IAdapterListener {
     // String userId;
 
     // Firebase Authentication / db
@@ -74,7 +74,7 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
             }
         });
 
-        // TODO: set logout listener
+
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -205,5 +205,19 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
                 .replace(R.id.fragmentContainerAppActivity,
                         FragmentDisplayApplication.newInstance(fromUser, application),
                         "view-application").commit();
+    }
+
+    @Override
+    public void onDogDescriptionBackPressed() {
+        beginViewDogProfilesFragment();
+    }
+
+    @Override
+    public void onMoreInfoButtonPressed(Dog dog) {
+        Log.d("description", dog.toString());
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragmentContainerAppActivity,
+                        FragmentDogDescription.newInstance(dog),
+                        "create-dog-profile").commit();
     }
 }
