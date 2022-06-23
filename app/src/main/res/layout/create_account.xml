@@ -60,7 +60,8 @@
 
             <EditText
                 android:id="@+id/applicationFirstNameEditText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/application_first_name"
@@ -84,7 +85,8 @@
 
             <EditText
                 android:id="@+id/applicationLastNameEditText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/application_last_name"
@@ -107,7 +109,8 @@
 
             <EditText
                 android:id="@+id/applicationAgeEditText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/age"
@@ -130,7 +133,8 @@
 
             <EditText
                 android:id="@+id/applicationAddressEditText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/application_address"
@@ -153,7 +157,8 @@
 
             <EditText
                 android:id="@+id/applicationCityEditText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/application_city"
@@ -176,7 +181,8 @@
 
             <EditText
                 android:id="@+id/applicationStateEditText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/application_state"
@@ -199,7 +205,8 @@
 
             <EditText
                 android:id="@+id/applicationEmailEditText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/application_email"
@@ -222,7 +229,8 @@
 
             <EditText
                 android:id="@+id/applicationPhoneEditText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/application_phone"
@@ -256,9 +264,9 @@
 
             <EditText
                 android:id="@+id/accountUsernameEditText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="32dp"
                 android:layout_marginBottom="3dp"
                 android:ems="10"
                 android:hint="@string/login_username"
@@ -282,9 +290,9 @@
 
             <EditText
                 android:id="@+id/accountPasswordEditText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="32dp"
                 android:layout_marginBottom="3dp"
                 android:ems="10"
                 android:hint="@string/login_password_placeholder"
@@ -308,9 +316,9 @@
 
             <EditText
                 android:id="@+id/accountConfirmPasswordEditText"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="32dp"
                 android:layout_marginBottom="3dp"
                 android:ems="10"
                 android:hint="@string/login_password_placeholder"
