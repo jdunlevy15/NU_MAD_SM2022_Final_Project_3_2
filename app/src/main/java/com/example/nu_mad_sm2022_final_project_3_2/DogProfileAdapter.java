@@ -208,46 +208,11 @@ public class DogProfileAdapter extends RecyclerView.Adapter<DogProfileAdapter.Vi
                             });
                 }
             });
-            /*
-            imageViewDog.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.d("images", "image clicked");
-                    progressBar.setVisibility(View.VISIBLE);
-                    imageViewDog.setVisibility(View.INVISIBLE);
-                    imageIndex++;
-                    if (imageIndex >= imageFiles.size()) {
-                        imageIndex = 0;
-                    }
 
-                    Log.d("images","new images index: " + imageIndex);
 
-                    imageFiles.get(imageIndex).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            Log.d("images","got new image!");
-                            Log.d("images", uri.toString());
-                            progressBar.setVisibility(View.GONE);
-                            imageViewDog.setVisibility(View.VISIBLE);
-
-                            // Picasso.get().load("https://i.imgur.com/DvpvklR.png").into(imageView);
-                            Picasso.get().load(uri).into(imageViewDog);
-
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.d("images","couldn't get new image :(");
-                        }
-                    });
-                }
-            });
-
-             */
-
-                    // Update text views:
-                    textViewName.setText(dog.getName());
-            String basicInfo = dog.getBreed() + ", " + dog.getAge() + ", " + dog.getGender();
+            // Update text views:
+            textViewName.setText(dog.getName());
+            String basicInfo = dog.getBreed() + ", Age: " + dog.getAge() + ", " + dog.getGender();
             textViewBasicInfo.setText(basicInfo);
 
 
