@@ -45,7 +45,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="64dp"
-                android:text="@string/placeholder_text"
                 app:layout_constraintBottom_toBottomOf="@+id/cardDogNameLabel"
                 app:layout_constraintStart_toEndOf="@+id/cardDogNameLabel"
                 app:layout_constraintTop_toTopOf="@+id/cardDogNameLabel" />
@@ -54,7 +53,6 @@
                 android:id="@+id/cardApplicantNameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/placeholder_text"
                 app:layout_constraintBottom_toBottomOf="@+id/cardApplicantNameLabel"
                 app:layout_constraintStart_toStartOf="@+id/cardDogNameTextView"
                 app:layout_constraintTop_toTopOf="@+id/cardApplicantNameLabel" />

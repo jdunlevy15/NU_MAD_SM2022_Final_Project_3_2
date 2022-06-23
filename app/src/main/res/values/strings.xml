@@ -121,4 +121,7 @@
     <string name="card_applicant_label">Applicant Name:</string>
     <string name="card_view_button">View</string>
     <string name="search">Search</string>
+    <string name="back_button">Back</string>
+    <string name="answer_placeholder">Answer:</string>
+    <string name="inprogress_status">In Progress</string>
 </resources>

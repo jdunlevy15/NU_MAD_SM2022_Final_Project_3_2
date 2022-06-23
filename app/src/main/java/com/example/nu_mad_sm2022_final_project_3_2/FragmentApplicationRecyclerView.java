@@ -101,7 +101,7 @@ public class FragmentApplicationRecyclerView extends Fragment {
                                         applications.add(tempApp);
                                     }
                                 }
-                                applicationsAdapter = new ApplicationsAdapter(applications, getContext(), false);
+                                applicationsAdapter = new ApplicationsAdapter(applications, getContext(), true);
                                 applicationsRecyclerView.setAdapter(applicationsAdapter);
                             }
                         }

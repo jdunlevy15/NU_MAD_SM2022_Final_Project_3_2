@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class AppActivity extends AppCompatActivity implements FragmentEmployeeHome.IEmployeeHomeListener, FragmentCreateDogProfile.ICreateDogListener, DogProfileAdapter.IDogProfileAdapterListener, FragmentFosterHome.IFosterHomeListener, FragmentUserHome.IUserHomeListener, FragmentCreateApplication.IApplicationListener,FragmentDogDescription.IDogDescriptionListener, ApplicationsAdapter.IAdapterListener {
+public class AppActivity extends AppCompatActivity implements FragmentEmployeeHome.IEmployeeHomeListener, FragmentCreateDogProfile.ICreateDogListener, DogProfileAdapter.IDogProfileAdapterListener, FragmentFosterHome.IFosterHomeListener, FragmentUserHome.IUserHomeListener, FragmentCreateApplication.IApplicationListener,FragmentDogDescription.IDogDescriptionListener, ApplicationsAdapter.IAdapterListener, FragmentDisplayApplication.IDisplayApplicationListener {
     // String userId;
 
     // Firebase Authentication / db
@@ -219,5 +219,13 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
                 .replace(R.id.fragmentContainerAppActivity,
                         FragmentDogDescription.newInstance(dog),
                         "create-dog-profile").commit();
+    }
+
+    @Override
+    public void backToRecyclerView(boolean isUser) {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragmentContainerAppActivity,
+                        FragmentApplicationRecyclerView.newInstance(isUser),
+                        "application-view").commit();
     }
 }
