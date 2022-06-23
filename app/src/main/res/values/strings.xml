@@ -117,5 +117,8 @@
     <string name="dog_reaction_cautious">Cautious</string>
 
     <string name="dog_profiles">Dog Profiles:</string>
+    <string name="card_dog_label">Dog Name:</string>
+    <string name="card_applicant_label">Applicant Name:</string>
+    <string name="card_view_button">View</string>
     <string name="search">Search</string>
 </resources>

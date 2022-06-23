@@ -17,10 +17,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 
-public class AppActivity extends AppCompatActivity implements FragmentEmployeeHome.IEmployeeHomeListener, FragmentCreateDogProfile.ICreateDogListener, DogProfileAdapter.IDogProfileAdapterListener, FragmentFosterHome.IFosterHomeListener, FragmentUserHome.IUserHomeListener, FragmentCreateApplication.IApplicationListener, FragmentDogDescription.IDogDescriptionListener {
-
+public class AppActivity extends AppCompatActivity implements FragmentEmployeeHome.IEmployeeHomeListener, FragmentCreateDogProfile.ICreateDogListener, DogProfileAdapter.IDogProfileAdapterListener, FragmentFosterHome.IFosterHomeListener, FragmentUserHome.IUserHomeListener, FragmentCreateApplication.IApplicationListener,FragmentDogDescription.IDogDescriptionListener, ApplicationsAdapter.IAdapterListener {
     // String userId;
 
     // Firebase Authentication / db
@@ -160,11 +158,20 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
     }
 
     @Override
+    public void onViewApplicationsPress() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragmentContainerAppActivity,
+                        FragmentApplicationRecyclerView.newInstance(false),
+                        "appliation-view").commit();
+    }
+
+    // application view from user
+    @Override
     public void onViewApplicationPress() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentContainerAppActivity,
-                        FragmentDisplayUserApplication.newInstance(),
-                        "view-application").commit();
+                        FragmentApplicationRecyclerView.newInstance(true),
+                        "appliation-view").commit();
     }
 
     @Override
@@ -190,6 +197,14 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
     @Override
     public void backToHome() {
         beginHomeFragment();
+    }
+
+    @Override
+    public void toApplicationView(boolean fromUser, Application application) {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragmentContainerAppActivity,
+                        FragmentDisplayApplication.newInstance(fromUser, application),
+                        "view-application").commit();
     }
 
     @Override
