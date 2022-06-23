@@ -61,33 +61,23 @@
         app:layout_constraintStart_toStartOf="@+id/textViewDogName"
         app:layout_constraintTop_toBottomOf="@+id/textViewDogName" />
 
-    <ImageView
-        android:id="@+id/imageViewSwipeUpPrompt"
-        android:layout_width="31dp"
-        android:layout_height="17dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDogBasicInfo"
-        app:srcCompat="@android:drawable/arrow_up_float" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/more_info"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewSwipeUpPrompt" />
-
     <Button
         android:id="@+id/buttonAdopt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:text="@string/adopt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonMoreDetails" />
+
+    <Button
+        android:id="@+id/buttonMoreDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/more_info"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDogBasicInfo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
