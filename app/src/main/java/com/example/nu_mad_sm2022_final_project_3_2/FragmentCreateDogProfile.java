@@ -137,17 +137,21 @@ public class FragmentCreateDogProfile extends Fragment {
             }
         });
 
+
         dogObedienceTraningRG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if (i == R.id.radioButtonCreateNoneObedience) {
-                    dogObedienceTraining = Training.BASIC;
+                    Log.d("radio", "obedience: needs");
+                    dogObedienceTraining = Training.NEEDS;
                 }
                 else if (i == R.id.radioButtonCreateAdvancedObedience) {
+                    Log.d("radio", "obedience: advanced");
                     dogObedienceTraining = Training.WELL;
                 }
-                else {
-                    dogObedienceTraining = Training.NEEDS;
+                else if (i == R.id.radioButtonBasicObedience){
+                    Log.d("radio", "obedience: basic");
+                    dogObedienceTraining = Training.BASIC;
                 }
             }
         });

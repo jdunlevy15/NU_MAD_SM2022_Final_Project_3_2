@@ -197,13 +197,16 @@ public class FragmentUpdateDogProfile extends Fragment {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if (i == R.id.radioButtonCreateNoneObedience) {
-                    dogObedienceTraining = Training.BASIC;
+                    Log.d("radio", "obedience: needs");
+                    dogObedienceTraining = Training.NEEDS;
                 }
                 else if (i == R.id.radioButtonCreateAdvancedObedience) {
+                    Log.d("radio", "obedience: advanced");
                     dogObedienceTraining = Training.WELL;
                 }
-                else {
-                    dogObedienceTraining = Training.NEEDS;
+                else if (i == R.id.radioButtonBasicObedience){
+                    Log.d("radio", "obedience: basic");
+                    dogObedienceTraining = Training.BASIC;
                 }
             }
         });
@@ -337,6 +340,7 @@ public class FragmentUpdateDogProfile extends Fragment {
                 }
 
                 // create dog object
+                Log.d("radio", "setting dog, obedience: " + dogObedienceTraining);
                 Dog dogToAdd = new Dog(dogID, dogName, dogBreed, ageInt, dogSex, dogStatus,
                         dogColor, Integer.parseInt(dogCurrentSize), Integer.parseInt(dogPotentialSize), fenceRequired,
                         houseTrained, dogObedienceTraining, dogExerciseNeeds,
