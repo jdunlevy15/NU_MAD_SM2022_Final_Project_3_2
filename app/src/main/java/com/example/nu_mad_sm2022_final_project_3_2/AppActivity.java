@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,13 +13,23 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
-public class AppActivity extends AppCompatActivity implements FragmentEmployeeHome.IEmployeeHomeListener, FragmentCreateDogProfile.ICreateDogListener, DogProfileAdapter.IDogProfileAdapterListener, FragmentFosterHome.IFosterHomeListener, FragmentUserHome.IUserHomeListener, FragmentCreateApplication.IApplicationListener,FragmentDogDescription.IDogDescriptionListener, ApplicationsAdapter.IAdapterListener, FragmentDisplayApplication.IDisplayApplicationListener {
+public class AppActivity extends AppCompatActivity implements FragmentEmployeeHome.IEmployeeHomeListener,
+        FragmentCreateDogProfile.ICreateDogListener, DogProfileAdapter.IDogProfileAdapterListener,
+        FragmentFosterHome.IFosterHomeListener, FragmentUserHome.IUserHomeListener,
+        FragmentCreateApplication.IApplicationListener,FragmentDogDescription.IDogDescriptionListener,
+        ApplicationsAdapter.IAdapterListener, FragmentDisplayApplication.IDisplayApplicationListener,
+        FragmentCameraController.ICameraControllerListener {
     // String userId;
 
     // Firebase Authentication / db
@@ -26,6 +37,7 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
     private FirebaseUser mUser;
     private FirebaseFirestore db;
     private User currUser;
+    private FirebaseStorage storage;
 
     // Buttons
     private Button buttonHome;
@@ -44,6 +56,7 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         db = FirebaseFirestore.getInstance();
+        storage = FirebaseStorage.getInstance();
 
         // If user not authorized, return to sign in activity
         // TODO: check if null is the right thing to check for?
@@ -187,6 +200,16 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
         beginHomeFragment();
     }
 
+    @Override
+    public void startDogProfileCamera(String dogId) {
+        // Start camera fragment to update dog profile pictures
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragmentContainerAppActivity,
+                        FragmentCameraController.newInstance(dogId),
+                        "camera-controller").addToBackStack(null).commit();
+    }
+
+
     // Sends user back to home screen after viewing dog profiles
     @Override
     public void onBackButtonPressed() {
@@ -235,5 +258,34 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
                 .replace(R.id.fragmentContainerAppActivity,
                         FragmentApplicationRecyclerView.newInstance(role),
                         "application-view").commit();
+    }
+
+    @Override
+    public void onPhotoTaken(Uri imageURI, String dogId) {
+        Log.d("photo", "in on photo taken");
+        // Upload the given image URI to storage for the given dog id
+        String path = "images/" + dogId;
+        Log.d("photo", path);
+        StorageReference storageReference = storage.getReference(path);
+        UploadTask uploadImage = storageReference.putFile(imageURI);
+        uploadImage.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Log.d("photo", "upload success");
+                getSupportFragmentManager().popBackStack();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("photo", "upload failed");
+                e.printStackTrace();
+                Toast.makeText(AppActivity.this, "Image upload failed! Try again!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public void onGalleryPress() {
+
     }
 }

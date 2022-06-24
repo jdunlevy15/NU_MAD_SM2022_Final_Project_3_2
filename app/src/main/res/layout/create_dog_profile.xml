@@ -57,8 +57,8 @@
             <EditText
                 android:id="@+id/editTextDogName"
                 android:layout_width="match_parent"
-                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
                 android:ems="10"
                 android:hint="Name"
                 android:inputType="textPersonName"
@@ -76,8 +76,8 @@
             <EditText
                 android:id="@+id/editTextCreateDogAge"
                 android:layout_width="match_parent"
-                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
                 android:ems="10"
                 android:hint="Age"
                 android:inputType="number"
@@ -124,8 +124,8 @@
             <EditText
                 android:id="@+id/editTextCreateDogBreed"
                 android:layout_width="match_parent"
-                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
                 android:ems="10"
                 android:hint="Breed"
                 android:inputType="textPersonName"
@@ -172,8 +172,8 @@
             <EditText
                 android:id="@+id/editTextCreateColor"
                 android:layout_width="match_parent"
-                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
                 android:ems="10"
                 android:hint="Color"
                 android:inputType="textPersonName"
@@ -191,8 +191,8 @@
             <EditText
                 android:id="@+id/editTextCreateDogSize"
                 android:layout_width="match_parent"
-                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
                 android:ems="10"
                 android:hint="lbs"
                 android:inputType="number"
@@ -210,8 +210,8 @@
             <EditText
                 android:id="@+id/editTextCreatePotentialSize"
                 android:layout_width="match_parent"
-                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
                 android:ems="10"
                 android:hint="lbs"
                 android:inputType="number"
@@ -406,21 +406,20 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:textSize="14sp"
                 android:orientation="horizontal"
-                >
+                android:textSize="14sp">
+
                 <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:id="@+id/radioButtonReactionFriendly"
-                    android:text="@string/dog_reaction_friendly">
-                </RadioButton>
-                <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@string/dog_reaction_friendly"></RadioButton>
+
+                <RadioButton
                     android:id="@+id/radioButtonReactionCautous"
-                    android:text="@string/dog_reaction_cautious">
-                </RadioButton>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dog_reaction_cautious"></RadioButton>
             </RadioGroup>
 
             <TextView
@@ -496,11 +495,11 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/buttonSubmitCreateProfile"
-        android:layout_width="wrap_content"
+        android:id="@+id/buttonContinueCreateProfile"
+        android:layout_width="138dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="@string/submit"
+        android:text="@string/continue_str"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

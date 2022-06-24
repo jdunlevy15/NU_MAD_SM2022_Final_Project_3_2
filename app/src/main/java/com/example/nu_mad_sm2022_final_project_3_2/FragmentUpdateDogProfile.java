@@ -15,19 +15,12 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.ArrayList;
-import java.util.UUID;
 
 public class FragmentUpdateDogProfile extends Fragment {
 
@@ -115,7 +108,7 @@ public class FragmentUpdateDogProfile extends Fragment {
         dogSheddingAmountRG = view.findViewById(R.id.radioGroupCreateShedding);
         dogGroomingNeedsRG = view.findViewById(R.id.radioGroupCreateGrooming);
         dogReactionRG = view.findViewById(R.id.radionGroupReaction);
-        submitButton = view.findViewById(R.id.buttonSubmitCreateProfile);
+        submitButton = view.findViewById(R.id.buttonContinueCreateProfile);
 
         // firebase
         db = FirebaseFirestore.getInstance();

@@ -38,6 +38,7 @@ public class FragmentCreateDogProfile extends Fragment {
     private RadioGroup dogSexRG, dogStatusRG, dogObedienceTraningRG, dogHouseTrainingRG, dogFenceRequiredRG;
     private RadioGroup dogExerciseNeedsRG, dogExperienceNeedsRG, dogSheddingAmountRG, dogGroomingNeedsRG, dogReactionRG;
     private Button submitButton;
+    boolean picturesAdded = false;
 
     // values to be inputted by user
     private Gender dogSex = null;
@@ -104,7 +105,8 @@ public class FragmentCreateDogProfile extends Fragment {
         dogSheddingAmountRG = view.findViewById(R.id.radioGroupCreateShedding);
         dogGroomingNeedsRG = view.findViewById(R.id.radioGroupCreateGrooming);
         dogReactionRG = view.findViewById(R.id.radionGroupReaction);
-        submitButton = view.findViewById(R.id.buttonSubmitCreateProfile);
+        submitButton = view.findViewById(R.id.buttonContinueCreateProfile);
+        // addPicturesButton = view.findViewById(R.id.buttonAddPic);
 
         // firebase
         db = FirebaseFirestore.getInstance();
@@ -220,6 +222,8 @@ public class FragmentCreateDogProfile extends Fragment {
             }
         });
 
+
+
         dogSheddingAmountRG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -247,10 +251,13 @@ public class FragmentCreateDogProfile extends Fragment {
             }
         });
 
+
+
         // when submit button is pressed
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 // input validation
                 if (!houseSet || !fenceSet) {
                     Toast.makeText(getContext(), "Fill Out All Fields", Toast.LENGTH_SHORT).show();
@@ -303,7 +310,8 @@ public class FragmentCreateDogProfile extends Fragment {
                             public void onSuccess(Void unused) {
                                 Toast.makeText(getContext(), "Successfully Created Dog Profile", Toast.LENGTH_SHORT).show();
                                 // go back to the home fragment
-                                cListener.backToHomeFragment();
+                                // cListener.backToHomeFragment();
+                                cListener.startDogProfileCamera(dogID);
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
@@ -320,5 +328,6 @@ public class FragmentCreateDogProfile extends Fragment {
 
     public interface ICreateDogListener {
         void backToHomeFragment();
+        void startDogProfileCamera(String dogId);
     }
 }

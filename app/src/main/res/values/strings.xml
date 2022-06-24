@@ -124,4 +124,9 @@
     <string name="back_button">Back</string>
     <string name="answer_placeholder">Answer:</string>
     <string name="inprogress_status">In Progress</string>
+
+    <string name="button_add_picture">Add Images</string>
+    <string name="continue_str">Continue</string>
+    <string name="gallery">Gallery</string>
+    <string name="capture">Capture</string>
 </resources>
