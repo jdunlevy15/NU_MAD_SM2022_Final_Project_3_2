@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -180,6 +181,16 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
                 .replace(R.id.fragmentContainerAppActivity,
                         FragmentApplicationRecyclerView.newInstance(Role.ADOPTER),
                         "appliation-view").commit();
+    }
+
+    @Override
+    public void onVolunteerPress() {
+        Intent toVolunteerSite = new Intent();
+        toVolunteerSite.setAction(Intent.ACTION_VIEW);
+        toVolunteerSite.addCategory(Intent.CATEGORY_BROWSABLE);
+        toVolunteerSite.setFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
+        toVolunteerSite.setData(Uri.parse("https://pawsforcompassion.org/get-involved/?gclid=Cj0KCQjwntCVBhDdARIsAMEwAClQJfk4ZDN-IkL-DTntaNPY52UxMNizbrtWdZJAC8SYx28MRvsQRH4aAru_EALw_wcB"));
+        startActivity(toVolunteerSite);
     }
 
     @Override

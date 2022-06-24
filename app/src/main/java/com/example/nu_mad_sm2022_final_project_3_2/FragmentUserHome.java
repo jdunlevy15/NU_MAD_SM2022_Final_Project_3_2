@@ -90,12 +90,20 @@ public class FragmentUserHome extends Fragment {
             }
         });
 
+        buttonVolunteer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onVolunteerPress();
+            }
+        });
+
         return view;
     }
 
     public interface IUserHomeListener {
         void onViewDogProfilesPress();
         void onViewApplicationPress();
+        void onVolunteerPress();
     }
 
 }
