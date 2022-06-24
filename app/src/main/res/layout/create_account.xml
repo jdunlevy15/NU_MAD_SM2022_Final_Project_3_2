@@ -328,52 +328,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/accountPasswordEditText"
                 app:layout_constraintTop_toTopOf="@+id/accountConfirmPasswordLabel" />
-
-            <TextView
-                android:id="@+id/accountTypeLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/account_type_label"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/accountConfirmPasswordLabel"
-                app:layout_constraintTop_toBottomOf="@+id/accountConfirmPasswordLabel" />
-
-            <RadioGroup
-                android:id="@+id/accountTypeRadioGroup"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                app:layout_constraintBottom_toBottomOf="@+id/accountTypeLabel"
-                app:layout_constraintEnd_toEndOf="@+id/accountConfirmPasswordEditText"
-                app:layout_constraintStart_toStartOf="@+id/accountConfirmPasswordEditText"
-                app:layout_constraintTop_toBottomOf="@+id/accountTypeLabel"
-                app:layout_constraintVertical_bias="1.0">
-
-                <RadioButton
-                    android:id="@+id/accountApplicantRadioButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    android:text="@string/user" />
-
-                <RadioButton
-                    android:id="@+id/accountParentRadioButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    android:text="@string/parent" />
-
-                <RadioButton
-                    android:id="@+id/accountFosterParentRadioButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    android:text="@string/account_type_foster_parent" />
-
-                <RadioButton
-                    android:id="@+id/accountEmployeeRadioButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    android:text="@string/account_type_employee" />
-            </RadioGroup>
         </LinearLayout>
     </ScrollView>
 
