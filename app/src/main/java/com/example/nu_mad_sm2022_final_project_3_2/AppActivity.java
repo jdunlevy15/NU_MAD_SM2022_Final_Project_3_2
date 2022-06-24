@@ -264,7 +264,7 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentContainerAppActivity,
                         FragmentDogDescription.newInstance(dog),
-                        "create-dog-profile").commit();
+                        "create-dog-profile").addToBackStack(null).commit();
     }
 
     @Override
