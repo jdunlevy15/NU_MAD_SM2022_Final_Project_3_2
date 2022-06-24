@@ -22,7 +22,7 @@ public class FragmentEmployeeHome extends Fragment {
     private User currUser;
 
     TextView nameHeader;
-    Button buttonViewDogsForAdoption, buttonAddDog, buttonViewApplications;
+    Button buttonViewDogsForAdoption, getButtonViewDogsForFoster, buttonAddDog, buttonViewApplications;
     IEmployeeHomeListener eListener;
 
     public FragmentEmployeeHome() {
@@ -69,6 +69,7 @@ public class FragmentEmployeeHome extends Fragment {
         buttonAddDog = view.findViewById(R.id.buttonEmployeeAddDog);
         buttonViewApplications = view.findViewById(R.id.buttonEmployeeViewApplications);
         buttonViewDogsForAdoption = view.findViewById(R.id.buttonEmployeeHomescreenViewDogs);
+        getButtonViewDogsForFoster = view.findViewById(R.id.buttonEmployeeHomescreenViewDogsFoster);
 
         // TODO: button on click listeners (delegate to app activity to start new fragment)
         buttonAddDog.setOnClickListener(new View.OnClickListener() {
@@ -81,7 +82,14 @@ public class FragmentEmployeeHome extends Fragment {
         buttonViewDogsForAdoption.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                eListener.onViewDogProfilesPress();
+                eListener.onViewDogAdoptProfilesPress();
+            }
+        });
+
+        getButtonViewDogsForFoster.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                eListener.onViewDogFosterProfilesPress();
             }
         });
 
@@ -98,7 +106,8 @@ public class FragmentEmployeeHome extends Fragment {
 
     public interface IEmployeeHomeListener {
         void onCreateDogProfilePress();
-        void onViewDogProfilesPress();
+        void onViewDogAdoptProfilesPress();
+        void onViewDogFosterProfilesPress();
         void onViewApplicationsPress();
     }
 }

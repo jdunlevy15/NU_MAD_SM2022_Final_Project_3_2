@@ -30,7 +30,7 @@
         app:layout_constraintTop_toTopOf="@+id/textViewFosterWelcome" />
 
     <Button
-        android:id="@+id/buttonFosterViewDogs"
+        android:id="@+id/buttonFosterViewDogsAdopt"
         android:layout_width="0dp"
         android:layout_height="72dp"
         android:layout_marginStart="64dp"
@@ -47,9 +47,9 @@
         android:layout_height="72dp"
         android:layout_marginTop="24dp"
         android:text="@string/update_dog_profile"
-        app:layout_constraintEnd_toEndOf="@+id/buttonFosterViewDogs"
-        app:layout_constraintStart_toStartOf="@+id/buttonFosterViewDogs"
-        app:layout_constraintTop_toBottomOf="@+id/buttonFosterViewDogs" />
+        app:layout_constraintEnd_toEndOf="@+id/buttonFosterViewDogsAdopt"
+        app:layout_constraintStart_toStartOf="@+id/buttonFosterViewDogsAdopt"
+        app:layout_constraintTop_toBottomOf="@+id/buttonFosterViewDogsFoster" />
 
     <Button
         android:id="@+id/buttonFosterViewApplications"
@@ -60,4 +60,14 @@
         app:layout_constraintEnd_toEndOf="@+id/buttonFosterUpdateProfiles"
         app:layout_constraintStart_toStartOf="@+id/buttonFosterUpdateProfiles"
         app:layout_constraintTop_toBottomOf="@+id/buttonFosterUpdateProfiles" />
+
+    <Button
+        android:id="@+id/buttonFosterViewDogsFoster"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/home_view_foster_dogs_label"
+        app:layout_constraintEnd_toEndOf="@+id/buttonFosterViewDogsAdopt"
+        app:layout_constraintStart_toStartOf="@+id/buttonFosterViewDogsAdopt"
+        app:layout_constraintTop_toBottomOf="@+id/buttonFosterViewDogsAdopt" />
 </androidx.constraintlayout.widget.ConstraintLayout>

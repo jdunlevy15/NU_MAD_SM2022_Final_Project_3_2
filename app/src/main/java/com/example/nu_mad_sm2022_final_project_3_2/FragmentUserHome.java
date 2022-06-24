@@ -25,7 +25,7 @@ public class FragmentUserHome extends Fragment {
 
     // UI elements
     TextView nameHeader;
-    Button buttonViewDogsForAdoption, buttonViewAppStatus, buttonVolunteer;
+    Button buttonViewDogsForAdoption, buttonViewDogsForFoster, buttonViewAppStatus, buttonVolunteer;
 
     public FragmentUserHome() {
         // Required empty public constructor
@@ -73,13 +73,20 @@ public class FragmentUserHome extends Fragment {
         buttonViewDogsForAdoption = view.findViewById(R.id.buttonUserHomeScreenAdopt);
         buttonViewAppStatus = view.findViewById(R.id.buttonUserViewStatus);
         buttonVolunteer = view.findViewById(R.id.buttonUserVolunteer);
+        buttonViewDogsForFoster = view.findViewById(R.id.buttonUserHomeScreenFoster);
 
 
-        // TODO: button on click listeners (delegate to app activity to start new fragment)
         buttonViewDogsForAdoption.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onViewDogProfilesPress();
+                listener.onViewDogAdoptProfilesPress();
+            }
+        });
+
+        buttonViewDogsForFoster.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onViewDogFosterProfilesPress();
             }
         });
 
@@ -94,7 +101,8 @@ public class FragmentUserHome extends Fragment {
     }
 
     public interface IUserHomeListener {
-        void onViewDogProfilesPress();
+        void onViewDogAdoptProfilesPress();
+        void onViewDogFosterProfilesPress();
         void onViewApplicationPress();
     }
 

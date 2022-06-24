@@ -123,11 +123,11 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
 
     }
 
-    private void beginViewDogProfilesFragment() {
+    private void beginViewDogProfilesFragment(DogStatus status) {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentContainerAppActivity,
-                        FragmentViewDogs.newInstance(),
-                        "view-dog-profiles").commit();
+                        FragmentViewDogs.newInstance(status),
+                        "view-dog-profiles").addToBackStack(null).commit();
     }
 
 
@@ -172,8 +172,14 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
     }
 
     @Override
-    public void onViewDogProfilesPress() {
-        beginViewDogProfilesFragment();
+    public void onViewDogAdoptProfilesPress() {
+        beginViewDogProfilesFragment(DogStatus.ADOPT);
+    }
+
+    @Override
+    public void onViewDogFosterProfilesPress() {
+        Log.d("role", "In onViewFosterProfilesPress");
+        beginViewDogProfilesFragment(DogStatus.FOSTER);
     }
 
     @Override
@@ -248,7 +254,8 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
 
     @Override
     public void onDogDescriptionBackPressed() {
-        beginViewDogProfilesFragment();
+        // beginViewDogProfilesFragment();
+        getSupportFragmentManager().popBackStack();
     }
 
     @Override
@@ -266,6 +273,11 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
                 .replace(R.id.fragmentContainerAppActivity,
                         FragmentApplicationRecyclerView.newInstance(role),
                         "application-view").commit();
+    }
+
+    @Override
+    public void onApplicationApproved(Application app, User user) {
+
     }
 
     @Override
