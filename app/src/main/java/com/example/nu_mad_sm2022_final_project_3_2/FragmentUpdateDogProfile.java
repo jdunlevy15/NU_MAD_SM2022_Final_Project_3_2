@@ -141,6 +141,17 @@ public class FragmentUpdateDogProfile extends Fragment {
                                         dogCurrentSizeET.setText(String.valueOf(myDog.getCurrentWeight()));
                                         dogPotentialSizeET.setText(String.valueOf(myDog.getCurrentWeight()));
                                         dogID = myDog.getId();
+
+                                        dogSex = myDog.getGender();
+                                        dogStatus= myDog.getStatus();
+                                        dogObedienceTraining = myDog.getObedienceTraining();
+                                        dogExerciseNeeds = myDog.getExerciseNeeds();
+                                        dogExperienceNeeds = myDog.getOwnerExperienceNeeded();
+                                        dogGroomingNeeds = myDog.getGroomingNeeds();
+                                        dogSheddingAmount = myDog.getSheddingAmount();
+                                        dogReaction = myDog.getReactionToNewPeople();
+                                        houseTrained = myDog.isHouseTrained();
+                                        fenceRequired = myDog.isFenceRequired();
                                     }
                                 })
                                 .addOnFailureListener(new OnFailureListener() {
@@ -301,10 +312,6 @@ public class FragmentUpdateDogProfile extends Fragment {
             @Override
             public void onClick(View view) {
                 // input validation
-                if (!houseSet || !fenceSet) {
-                    Toast.makeText(getContext(), "Fill Out All Fields", Toast.LENGTH_SHORT).show();
-                    return;
-                }
 
                 String dogAge = dogAgeET.getText().toString();
                 String dogBreed = dogBreedET.getText().toString();
@@ -322,13 +329,6 @@ public class FragmentUpdateDogProfile extends Fragment {
                 }
 
                 int ageInt = Integer.parseInt(dogAge);
-
-                if (dogSex == null || dogStatus == null || dogObedienceTraining == null ||
-                        dogExerciseNeeds == null || dogExperienceNeeds == null ||
-                        dogGroomingNeeds == null || dogSheddingAmount == null || dogReaction == null) {
-                    Toast.makeText(getContext(), "Fill Out All Fields", Toast.LENGTH_SHORT).show();
-                    return;
-                }
 
                 // get dog to set id
                 if (dogID == null) {
