@@ -13,6 +13,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.google.android.gms.common.internal.AccountType;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -29,11 +30,6 @@ public class RegisterActivity extends AppCompatActivity {
     EditText editTextFirstName, editTextLastName, editTextAge, editTextAddress, editTextCity,
             editTextState, editTextEmail, editTextPhone, editTextUsername, editTextPassword,
             editTextConfirmPassword;
-
-    /*
-    RadioGroup radioGroupAccountType;
-    RadioButton radioButtonApplicant, radioButtonFoster, radioButtonEmployee, radioButtonParent;
-     */
 
     Button buttonSignUp;
 
@@ -59,37 +55,7 @@ public class RegisterActivity extends AppCompatActivity {
         editTextUsername = findViewById(R.id.accountUsernameEditText);
         editTextPassword = findViewById(R.id.accountPasswordEditText);
         editTextConfirmPassword = findViewById(R.id.accountConfirmPasswordEditText);
-        /*
-        radioGroupAccountType = findViewById(R.id.accountTypeRadioGroup);
-        radioButtonEmployee = findViewById(R.id.accountEmployeeRadioButton);
-        radioButtonFoster = findViewById(R.id.accountFosterParentRadioButton);
-        radioButtonApplicant = findViewById(R.id.accountApplicantRadioButton);
-        radioButtonParent = findViewById(R.id.accountParentRadioButton);
-
-         */
         buttonSignUp = findViewById(R.id.accountSignUpButton);
-
-        /*
-        radioGroupAccountType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-                if (checkedId == R.id.accountEmployeeRadioButton) {
-                    Log.d("signup", "employee radio button pressed");
-                    accountType = Role.EMPLOYEE;
-                } else if (checkedId == R.id.accountFosterParentRadioButton) {
-                    Log.d("signup", "foster radio button pressed");
-                    accountType = Role.FOSTER;
-                } else if (checkedId == R.id.accountApplicantRadioButton) {
-                    Log.d("signup", "user radio button pressed");
-                    accountType = Role.APPLICANT;
-                } else {
-                    Log.d("signup", "adopter radio button pressed");
-                    accountType = Role.ADOPTER;
-                }
-            }
-        });
-
-         */
 
         buttonSignUp.setOnClickListener(new View.OnClickListener() {
             @Override

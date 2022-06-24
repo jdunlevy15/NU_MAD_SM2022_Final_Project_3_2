@@ -97,6 +97,13 @@ public class FragmentUserHome extends Fragment {
             }
         });
 
+        buttonVolunteer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onVolunteerPress();
+            }
+        });
+
         return view;
     }
 
@@ -104,6 +111,6 @@ public class FragmentUserHome extends Fragment {
         void onViewDogAdoptProfilesPress();
         void onViewDogFosterProfilesPress();
         void onViewApplicationPress();
+        void onVolunteerPress();
     }
-
 }

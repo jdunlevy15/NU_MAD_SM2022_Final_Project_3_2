@@ -67,23 +67,13 @@
         app:layout_constraintTop_toBottomOf="@+id/loginPasswordEditText" />
 
     <Button
-        android:id="@+id/loginForgotPasswordButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/login_forgot_password_button"
-        app:layout_constraintEnd_toEndOf="@+id/loginSignInButton"
-        app:layout_constraintStart_toStartOf="@+id/loginSignInButton"
-        app:layout_constraintTop_toBottomOf="@+id/loginSignInButton" />
-
-    <Button
         android:id="@+id/loginCreateAccountButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="@string/login_create_account_button"
-        app:layout_constraintEnd_toEndOf="@+id/loginForgotPasswordButton"
-        app:layout_constraintStart_toStartOf="@+id/loginForgotPasswordButton"
-        app:layout_constraintTop_toBottomOf="@+id/loginForgotPasswordButton" />
+        app:layout_constraintEnd_toEndOf="@+id/loginSignInButton"
+        app:layout_constraintStart_toStartOf="@+id/loginSignInButton"
+        app:layout_constraintTop_toBottomOf="@+id/loginSignInButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

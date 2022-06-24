@@ -208,6 +208,13 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
     }
 
     @Override
+    public void onVolunteerPress() {
+        Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.arlboston.org/get-involved/volunteer-foster/"));
+        myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
+        startActivity(myIntent);
+    }
+
+    @Override
     public void backToHomeFragment() {
         beginHomeFragment();
     }
