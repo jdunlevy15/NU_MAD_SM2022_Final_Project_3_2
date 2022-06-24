@@ -39,7 +39,7 @@ public class FragmentUpdateDogProfile extends Fragment {
     private EditText dogNameET, dogAgeET, dogBreedET, dogColorET, dogCurrentSizeET, dogPotentialSizeET;
     private RadioGroup dogSexRG, dogStatusRG, dogObedienceTraningRG, dogHouseTrainingRG, dogFenceRequiredRG;
     private RadioGroup dogExerciseNeedsRG, dogExperienceNeedsRG, dogSheddingAmountRG, dogGroomingNeedsRG, dogReactionRG;
-    private Button submitButton;
+    private Button addPicturesButton, submitButton;
 
     // values to be inputted by user
     private Gender dogSex = null;
@@ -109,6 +109,7 @@ public class FragmentUpdateDogProfile extends Fragment {
         dogGroomingNeedsRG = view.findViewById(R.id.radioGroupCreateGrooming);
         dogReactionRG = view.findViewById(R.id.radionGroupReaction);
         submitButton = view.findViewById(R.id.buttonSubmitCreateProfile);
+        addPicturesButton = view.findViewById(R.id.buttonAddPic);
 
         // firebase
         db = FirebaseFirestore.getInstance();
@@ -365,6 +366,15 @@ public class FragmentUpdateDogProfile extends Fragment {
                         });
             }
         });
+
+        addPicturesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cListener.startDogProfileCamera(dogID);
+            }
+        });
+
+
 
         return view;
     }

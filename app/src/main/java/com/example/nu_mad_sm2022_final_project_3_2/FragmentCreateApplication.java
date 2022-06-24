@@ -38,7 +38,7 @@ public class FragmentCreateApplication extends Fragment {
     // debug tag
     private final String TAG = "dog";
 
-    // appactivity communication
+    // app activity communication
     private IApplicationListener aListener;
 
     // firebase
