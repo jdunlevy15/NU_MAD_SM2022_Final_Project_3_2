@@ -102,7 +102,7 @@ public class FragmentDogDescription extends Fragment {
         textViewHouseTrained = view.findViewById(R.id.textViewHouseTrainedPlaceholder);
         textViewObedience = view.findViewById(R.id.textViewObedienceTrainingPlaceholder);
         textViewExercise = view.findViewById(R.id.textViewExerciseNeedsPlaceholder);
-        textViewGrooming = view.findViewById(R.id.textViewGroomingNeedsLabel);
+        textViewGrooming = view.findViewById(R.id.textViewGroomingNeedsPlaceholder);
         textViewShedding = view.findViewById(R.id.textViewSheddingAmountPlaceholder);
         textViewOwnerExperience = view.findViewById(R.id.textViewOwnerExerpiencePlaceholder);
         textViewReaction = view.findViewById(R.id.textViewReactionPlaceholder);
