@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/adopHeader"
+        android:id="@+id/applicationHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -22,9 +22,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/adopHeader"
-        app:layout_constraintStart_toEndOf="@+id/adopHeader"
-        app:layout_constraintTop_toTopOf="@+id/adopHeader" />
+        app:layout_constraintBottom_toBottomOf="@+id/applicationHeader"
+        app:layout_constraintStart_toEndOf="@+id/applicationHeader"
+        app:layout_constraintTop_toTopOf="@+id/applicationHeader" />
 
     <TextView
         android:id="@+id/applicationStatusHeader"
@@ -33,8 +33,8 @@
         android:layout_marginTop="8dp"
         android:text="@string/application_status_header"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="@+id/adopHeader"
-        app:layout_constraintTop_toBottomOf="@+id/adopHeader" />
+        app:layout_constraintStart_toStartOf="@+id/applicationHeader"
+        app:layout_constraintTop_toBottomOf="@+id/applicationHeader" />
 
     <TextView
         android:id="@+id/applicationStatusLabel"
@@ -60,7 +60,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/applicationStatusHeader"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -314,6 +314,60 @@
                 android:inputType="textPersonName"
                 app:layout_constraintStart_toStartOf="@+id/applicationQuestion2Header"
                 app:layout_constraintTop_toBottomOf="@+id/applicationQuestion2Header" />
+
+            <TextView
+                android:id="@+id/applicationQuestion3HeaderCreate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/application_general_question3"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/applicationQuestion3EditTextCreate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="@string/answer_placeholder"
+                android:inputType="textMultiLine" />
+
+            <TextView
+                android:id="@+id/applicationQuestion4HeaderCreate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/application_general_question4"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/applicationQuestion4EditTextCreate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="@string/answer_placeholder"
+                android:inputType="textMultiLine" />
+
+            <TextView
+                android:id="@+id/applicationQuestion5HeaderCreate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/applicaiton_general_question5"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/applicationQuestion5EditTextCreate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="@string/answer_placeholder"
+                android:inputType="textMultiLine" />
         </LinearLayout>
     </ScrollView>
 

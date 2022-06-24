@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -20,8 +21,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import org.w3c.dom.Text;
 
@@ -43,8 +47,8 @@ public class FragmentDisplayApplication extends Fragment {
 
     // view items to hide sicne this is for the user
     private Button approveButton, rejectButton, backButton;
-    private TextView firstNameET, lastNameET, ageET, addressET, cityET, stateET,
-            emailET, phoneET, question1ET, question2ET, dogLabelET;
+    private TextView headerTV, firstNameET, lastNameET, ageET, addressET, cityET, stateET,
+            emailET, phoneET, question1ET, question2ET, question3ET, question4ET, question5ET, dogLabelET;
     private TextView statusTV;
 
     // activity communication
@@ -101,9 +105,13 @@ public class FragmentDisplayApplication extends Fragment {
         phoneET = view.findViewById(R.id.applicationPhoneEditText);
         question1ET = view.findViewById(R.id.applicationQuestion1EditText);
         question2ET = view.findViewById(R.id.applicationQuestion2EditText);
+        question3ET = view.findViewById(R.id.applicationQuestion3EditText);
+        question4ET = view.findViewById(R.id.applicationQuestion4EditText);
+        question5ET = view.findViewById(R.id.applicationQuestion5EditText);
         statusTV = view.findViewById(R.id.applicationStatusLabel);
         dogLabelET = view.findViewById(R.id.dogName);
         backButton = view.findViewById(R.id.applicationBackButton);
+        headerTV = view.findViewById(R.id.applicationHeader);
 
         // firebase
         db = FirebaseFirestore.getInstance();
@@ -117,6 +125,12 @@ public class FragmentDisplayApplication extends Fragment {
         }
 
         // fill in based on application
+        if (thisApplication.getApplicationType().equals(DogStatus.ADOPT)) {
+            headerTV.setText(R.string.application_adopt_header);
+        } else if (thisApplication.getApplicationType().equals(DogStatus.FOSTER)){
+            headerTV.setText(R.string.application_foster_header);
+        }
+
         ApplicationStatus applicationStatus = thisApplication.getStatus();
         statusTV.setText(applicationStatus.toString());
         if (applicationStatus == ApplicationStatus.ACCEPTED) {
@@ -136,6 +150,9 @@ public class FragmentDisplayApplication extends Fragment {
         phoneET.setText(thisApplication.getPhone());
         question1ET.setText(thisApplication.getQuestion1());
         question2ET.setText(thisApplication.getQuestion2());
+        question3ET.setText(thisApplication.getQuestion3());
+        question4ET.setText(thisApplication.getQuestion4());
+        question5ET.setText(thisApplication.getQuestion5());
 
         // get dog info for title
         db.collection("dogs")
@@ -161,6 +178,11 @@ public class FragmentDisplayApplication extends Fragment {
         approveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Ensure applicant doesn't currently have a foster dog ??
+
+
+
+                // Mark application as accepted
                 thisApplication.setStatus(ApplicationStatus.ACCEPTED);
                 db.collection("applications")
                         .document(thisApplication.getApplicationID())
@@ -178,6 +200,184 @@ public class FragmentDisplayApplication extends Fragment {
                                 Toast.makeText(getContext(), "Failure to Approve Applicant", Toast.LENGTH_SHORT).show();
                             }
                         });
+
+                // If foster application, update user to foster type, and update dog's foster field
+                DocumentReference userRef = db.collection("users")
+                        .document(thisApplication.getUserID());
+
+                if(thisApplication.getApplicationType().equals(DogStatus.FOSTER)) {
+                    userRef.get()
+                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                @Override
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    User applicant = documentSnapshot.toObject(User.class);
+                                    userRef.update("role", Role.FOSTER)
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void unused) {
+                                                    userRef.update("dogId", thisApplication.getDogID())
+                                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                @Override
+                                                                public void onSuccess(Void unused) {
+                                                                    // Update the dog's owner field to the approved applicant
+                                                                    DocumentReference dogRef = db.collection("dogs")
+                                                                            .document(thisApplication.getDogID());
+
+                                                                    dogRef.update("fosterParent", applicant)
+                                                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                                @Override
+                                                                                public void onSuccess(Void unused) {
+                                                                                    dogRef.update("owner", null)
+                                                                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                                                @Override
+                                                                                                public void onSuccess(Void unused) {
+                                                                                                    dogRef.update("status", DogStatus.ADOPT);
+                                                                                                }
+                                                                                            })
+                                                                                            .addOnFailureListener(new OnFailureListener() {
+                                                                                                @Override
+                                                                                                public void onFailure(@NonNull Exception e) {
+                                                                                                    Toast.makeText(getContext(), "Unable to update dog's owner field in db.", Toast.LENGTH_SHORT).show();
+                                                                                                }
+                                                                                            });
+                                                                                }
+                                                                            }).addOnFailureListener(new OnFailureListener() {
+                                                                                @Override
+                                                                                public void onFailure(@NonNull Exception e) {
+                                                                                    e.printStackTrace();
+                                                                                    Toast.makeText(getContext(), "Unable to update dog's foster field in db.", Toast.LENGTH_SHORT).show();
+                                                                                }
+                                                                            });
+                                                                }
+                                                            }).addOnFailureListener(new OnFailureListener() {
+                                                                @Override
+                                                                public void onFailure(@NonNull Exception e) {
+                                                                    e.printStackTrace();
+                                                                    Toast.makeText(getContext(), "Unable to update user's dogId field", Toast.LENGTH_SHORT).show();
+                                                                }
+                                                            });
+
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    e.printStackTrace();
+                                                    Toast.makeText(getContext(), "Unable to update user to FOSTER role.", Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(getContext(), "Unable to find user in db", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+
+
+                } else if (thisApplication.getApplicationType().equals(DogStatus.ADOPT)) {
+                    // If adoption application, change the user type back to normal user
+                    // Update the dogs foster field to null, owner field to the approved applicant
+                    userRef.get()
+                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                @Override
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    User applicant = documentSnapshot.toObject(User.class);
+                                    Role newRole = Role.APPLICANT;
+                                    if (applicant.getRole().equals(Role.EMPLOYEE)) {
+                                        newRole = Role.EMPLOYEE;
+                                    }
+                                    userRef.update("role", newRole)
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void unused) {
+                                                    userRef.update("dogId", thisApplication.getDogID())
+                                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                @Override
+                                                                public void onSuccess(Void unused) {
+                                                                    DocumentReference dogRef = db.collection("dogs")
+                                                                            .document(thisApplication.getDogID());
+                                                                    dogRef
+                                                                            .get()
+                                                                            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                                                                        @Override
+                                                                                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                                                                            Dog dog = documentSnapshot.toObject(Dog.class);
+
+                                                                                            dogRef.update("fosterParent", null)
+                                                                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                                                        @Override
+                                                                                                        public void onSuccess(Void unused) {
+                                                                                                            dogRef.update("owner", applicant)
+                                                                                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                                                                        @Override
+                                                                                                                        public void onSuccess(Void unused) {
+                                                                                                                            DocumentReference fosterRef = db.collection("users").document(dog.getFosterParent().getId());
+                                                                                                                            Role newRole = Role.APPLICANT;
+                                                                                                                            if (dog.getFosterParent().getRole().equals(Role.EMPLOYEE)) {
+                                                                                                                                newRole = Role.EMPLOYEE;
+                                                                                                                            }
+
+                                                                                                                            fosterRef.update("role", newRole)
+                                                                                                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                                                                                        @Override
+                                                                                                                                        public void onSuccess(Void unused) {
+                                                                                                                                            //TODO: change to fosterDogId?
+                                                                                                                                            fosterRef.update("dogId", null);
+                                                                                                                                        }
+                                                                                                                                    });
+
+                                                                                                                        }
+                                                                                                                    })
+                                                                                                                    .addOnFailureListener(new OnFailureListener() {
+                                                                                                                        @Override
+                                                                                                                        public void onFailure(@NonNull Exception e) {
+                                                                                                                            Toast.makeText(getContext(), "Unable to update dog's owner field in db.", Toast.LENGTH_SHORT).show();
+                                                                                                                        }
+                                                                                                                    });
+                                                                                                        }
+                                                                                                    }).addOnFailureListener(new OnFailureListener() {
+                                                                                                        @Override
+                                                                                                        public void onFailure(@NonNull Exception e) {
+                                                                                                            e.printStackTrace();
+                                                                                                            Toast.makeText(getContext(), "Unable to update dog's foster field in db.", Toast.LENGTH_SHORT).show();
+                                                                                                        }
+                                                                                                    });
+                                                                                        }
+                                                                                    });
+
+
+                                                                }
+                                                            }).addOnFailureListener(new OnFailureListener() {
+                                                                @Override
+                                                                public void onFailure(@NonNull Exception e) {
+                                                                    e.printStackTrace();
+                                                                    Toast.makeText(getContext(), "Unable to update user's dogId field", Toast.LENGTH_SHORT).show();
+                                                                }
+                                                            });
+                                                }
+                                            }).addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    e.printStackTrace();
+                                                    Toast.makeText(getContext(), "Unable to update user to APPLICANT role.", Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(getContext(), "Unable to find user in db", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                }
+
+
+
+                //
             }
         });
 
@@ -218,5 +418,6 @@ public class FragmentDisplayApplication extends Fragment {
 
     public interface IDisplayApplicationListener {
         void backToRecyclerView(Role role);
+        void onApplicationApproved(Application app, User user);
     }
 }

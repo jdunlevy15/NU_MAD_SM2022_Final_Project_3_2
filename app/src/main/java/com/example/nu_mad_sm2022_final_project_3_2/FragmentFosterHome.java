@@ -24,7 +24,7 @@ public class FragmentFosterHome extends Fragment {
     private FragmentDisplayApplication.IDisplayApplicationListener dListener;
 
     TextView nameHeader;
-    Button buttonViewDogsForAdoption, buttonUpdateDog, buttonViewApplications;
+    Button buttonViewDogsForAdoption, buttonViewDogsForFoster, buttonUpdateDog, buttonViewApplications;
 
     public FragmentFosterHome() {
         // Required empty public constructor
@@ -79,13 +79,21 @@ public class FragmentFosterHome extends Fragment {
 
         buttonUpdateDog = view.findViewById(R.id.buttonFosterUpdateProfiles);
         buttonViewApplications = view.findViewById(R.id.buttonFosterViewApplications);
-        buttonViewDogsForAdoption = view.findViewById(R.id.buttonFosterViewDogs);
+        buttonViewDogsForAdoption = view.findViewById(R.id.buttonFosterViewDogsAdopt);
+        buttonViewDogsForFoster = view.findViewById(R.id.buttonFosterViewDogsFoster);
 
         // TODO: set button on click listeners
         buttonViewDogsForAdoption.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onViewDogProfilesPress();
+                listener.onViewDogAdoptProfilesPress();
+            }
+        });
+
+        buttonViewDogsForFoster.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onViewDogFosterProfilesPress();
             }
         });
 
@@ -107,7 +115,8 @@ public class FragmentFosterHome extends Fragment {
     }
 
     public interface IFosterHomeListener {
-        void onViewDogProfilesPress();
+        void onViewDogAdoptProfilesPress();
+        void onViewDogFosterProfilesPress();
         void onUpdateDogProfilePress();
     }
 }

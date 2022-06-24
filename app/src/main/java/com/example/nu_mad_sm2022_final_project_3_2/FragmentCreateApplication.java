@@ -47,9 +47,9 @@ public class FragmentCreateApplication extends Fragment {
     private FirebaseFirestore db;
 
     // declare view items
-    private TextView statusTV, dogNameTV;
+    private TextView statusTV, dogNameTV, headerTV;
     private EditText firstNameET, lastNameET, ageET, addressET, cityET, stateET,
-            emailET, phoneET, question1ET, question2ET;
+            emailET, phoneET, question1ET, question2ET, question3ET, question4ET, question5ET;
     private Button submitButton;
 
     public FragmentCreateApplication() {
@@ -100,6 +100,7 @@ public class FragmentCreateApplication extends Fragment {
 
         // init view items
         statusTV = view.findViewById(R.id.applicationStatusLabel);
+        headerTV = view.findViewById(R.id.applicationHeader);
         firstNameET = view.findViewById(R.id.applicationFirstNameEditText);
         lastNameET = view.findViewById(R.id.applicationLastNameEditText);
         ageET = view.findViewById(R.id.applicationAgeEditText);
@@ -110,10 +111,19 @@ public class FragmentCreateApplication extends Fragment {
         phoneET = view.findViewById(R.id.applicationPhoneEditText);
         question1ET = view.findViewById(R.id.applicationQuestion1EditText);
         question2ET = view.findViewById(R.id.applicationQuestion2EditText);
+        question3ET = view.findViewById(R.id.applicationQuestion3EditTextCreate);
+        question4ET = view.findViewById(R.id.applicationQuestion4EditTextCreate);
+        question5ET = view.findViewById(R.id.applicationQuestion5EditTextCreate);
         dogNameTV = view.findViewById(R.id.dogName);
         submitButton = view.findViewById(R.id.applicationSubmitButton);
 
         // init dog name in header
+        if (currDog.getStatus().equals(DogStatus.ADOPT)) {
+            headerTV.setText(R.string.application_adopt_header);
+        } else if (currDog.getStatus().equals(DogStatus.FOSTER)){
+            headerTV.setText(R.string.application_foster_header);
+        }
+
         dogNameTV.setText(currDog.getName().toUpperCase());
 
         // fill in view items with user info
@@ -168,12 +178,17 @@ public class FragmentCreateApplication extends Fragment {
                 String inputtedPhone = phoneET.getText().toString();
                 String inputtedQuestion1 = question1ET.getText().toString();
                 String inputtedQuestion2 = question2ET.getText().toString();
+                String inputtedQuestion3 = question3ET.getText().toString();
+                String inputtedQuestion4 = question4ET.getText().toString();
+                String inputtedQuestion5 = question5ET.getText().toString();
 
                 if (inputtedFirstName.equals("") || inputtedLastName.equals("") ||
                         inputtedAge.equals("") || inputtedAddress.equals("") ||
                         inputtedCity.equals("") || inputtedState.equals("") ||
                         inputtedEmail.equals("") || inputtedPhone.equals("") ||
-                        inputtedQuestion1.equals("") || inputtedQuestion2.equals("")) {
+                        inputtedQuestion1.equals("") || inputtedQuestion2.equals("") ||
+                        inputtedQuestion3.equals("") || inputtedQuestion4.equals("") ||
+                        inputtedQuestion5.equals("")) {
                     Toast.makeText(getContext(), "Fill Out All Fields", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -181,9 +196,9 @@ public class FragmentCreateApplication extends Fragment {
                 // build application object
                 Address userAddress = new Address(inputtedAddress, inputtedCity, inputtedState);
                 ApplicationStatus userStatus = ApplicationStatus.PENDING;
-                Application application = new Application(applicationID, inputtedFirstName, inputtedLastName,
+                Application application = new Application(applicationID, currDog.getStatus(), inputtedFirstName, inputtedLastName,
                         Integer.parseInt(inputtedAge), userAddress, inputtedEmail, inputtedPhone,
-                        inputtedQuestion1, inputtedQuestion2, userStatus, userID, dogID);
+                        inputtedQuestion1, inputtedQuestion2, inputtedQuestion3, inputtedQuestion4, inputtedQuestion5, userStatus, userID, dogID);
 
                 // send to firebase db
                 db.collection("applications").document(applicationID)

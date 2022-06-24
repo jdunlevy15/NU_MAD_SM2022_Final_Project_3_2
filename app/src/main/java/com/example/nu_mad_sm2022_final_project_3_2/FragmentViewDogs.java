@@ -35,15 +35,18 @@ public class FragmentViewDogs extends Fragment {
     // private FirebaseUser mUser;
     private FirebaseFirestore db;
     private Dogs dogs;
+    private DogStatus status;
     private RecyclerView recyclerViewDogProfiles;
     private RecyclerView.LayoutManager recyclerViewLayoutManager;
     private DogProfileAdapter dogProfileAdapter;
 
-
+    private static final String ARG_STATUS = "param_status";
 
     public FragmentViewDogs() {
         // Required empty public constructor
     }
+
+
 
     /**
      * Use this factory method to create a new instance of
@@ -52,9 +55,10 @@ public class FragmentViewDogs extends Fragment {
      * @return A new instance of fragment FragmentViewDogs.
      */
     // TODO: Rename and change types and number of parameters
-    public static FragmentViewDogs newInstance() {
+    public static FragmentViewDogs newInstance(DogStatus status) {
         FragmentViewDogs fragment = new FragmentViewDogs();
         Bundle args = new Bundle();
+        args.putSerializable(ARG_STATUS, status);
         fragment.setArguments(args);
         return fragment;
     }
@@ -63,6 +67,7 @@ public class FragmentViewDogs extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
+            status = (DogStatus) getArguments().getSerializable(ARG_STATUS);
         }
 
         // Initialize firebase
@@ -84,8 +89,14 @@ public class FragmentViewDogs extends Fragment {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         Log.d("dogs", "got the dogs!");
-                        ArrayList<Dog> currDogs = new ArrayList<Dog>(queryDocumentSnapshots.toObjects(Dog.class));
-                        dogs.setDogs(currDogs);
+                        ArrayList<Dog> allDogs = new ArrayList<Dog>(queryDocumentSnapshots.toObjects(Dog.class));
+                        ArrayList<Dog> statusDogs = new ArrayList<>();
+                        for (Dog dog : allDogs) {
+                            if (dog.getStatus().equals(status)) {
+                                statusDogs.add(dog);
+                            }
+                        }
+                        dogs.setDogs(statusDogs);
                         dogProfileAdapter.updateDogs(dogs.getDogs());
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -126,7 +137,13 @@ public class FragmentViewDogs extends Fragment {
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                             ArrayList<Dog> newDogs = new ArrayList<Dog>(queryDocumentSnapshots.toObjects(Dog.class));
-                            dogs.setDogs(newDogs);
+                            ArrayList<Dog> statusDogs = new ArrayList<>();
+                            for (Dog dog : newDogs) {
+                                if (dog.getStatus().equals(status)) {
+                                    statusDogs.add(dog);
+                                }
+                            }
+                            dogs.setDogs(statusDogs);
                             dogProfileAdapter.notifyDataSetChanged();
                         }
                     }).addOnFailureListener(new OnFailureListener() {

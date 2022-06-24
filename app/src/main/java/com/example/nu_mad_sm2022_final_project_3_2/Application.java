@@ -7,7 +7,8 @@ import java.io.Serializable;
 @Keep
 public class Application implements Serializable {
 
-    private String ApplicationID;
+    private String applicationID;
+    private DogStatus applicationType;
     private String firstName;
     private String lastName;
     private int age;
@@ -16,14 +17,19 @@ public class Application implements Serializable {
     private String phone;
     private String question1;
     private String question2;
+    private String question3;
+    private String question4;
+    private String question5;
     private ApplicationStatus status;
-    private String UserID;
-    private String DogID;
+    private String userID;
+    private String dogID;
 
     public Application() {}
 
-    public Application(String applicationID, String firstName, String lastName, int age, Address address, String email, String phone, String question1, String question2, ApplicationStatus status, String userID, String dogID) {
-        ApplicationID = applicationID;
+
+    public Application(String applicationID, DogStatus applicationType, String firstName, String lastName, int age, Address address, String email, String phone, String question1, String question2, String question3, String question4, String question5, ApplicationStatus status, String userID, String dogID) {
+        this.applicationID = applicationID;
+        this.applicationType = applicationType;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -32,33 +38,44 @@ public class Application implements Serializable {
         this.phone = phone;
         this.question1 = question1;
         this.question2 = question2;
+        this.question3 = question3;
+        this.question4 = question4;
+        this.question5 = question5;
         this.status = status;
-        UserID = userID;
-        DogID = dogID;
+        this.userID = userID;
+        this.dogID = dogID;
     }
 
     public String getApplicationID() {
-        return ApplicationID;
+        return this.applicationID;
     }
 
     public void setApplicationID(String applicationID) {
-        ApplicationID = applicationID;
+        this.applicationID = applicationID;
+    }
+
+    public DogStatus getApplicationType() {
+        return applicationType;
+    }
+
+    public void setApplicationType(DogStatus applicationType) {
+        this.applicationType = applicationType;
     }
 
     public String getUserID() {
-        return UserID;
+        return userID;
     }
 
     public void setUserID(String userID) {
-        UserID = userID;
+        this.userID = userID;
     }
 
     public String getDogID() {
-        return DogID;
+        return dogID;
     }
 
     public void setDogID(String dogID) {
-        DogID = dogID;
+        this.dogID = dogID;
     }
 
     public String getFirstName() {
@@ -125,6 +142,30 @@ public class Application implements Serializable {
         this.question2 = question2;
     }
 
+    public String getQuestion3() {
+        return question3;
+    }
+
+    public void setQuestion3(String question3) {
+        this.question3 = question3;
+    }
+
+    public String getQuestion4() {
+        return question4;
+    }
+
+    public void setQuestion4(String question4) {
+        this.question4 = question4;
+    }
+
+    public String getQuestion5() {
+        return question5;
+    }
+
+    public void setQuestion5(String question5) {
+        this.question5 = question5;
+    }
+
     public ApplicationStatus getStatus() {
         return status;
     }
@@ -136,7 +177,8 @@ public class Application implements Serializable {
     @Override
     public String toString() {
         return "Application{" +
-                "ApplicationID='" + ApplicationID + '\'' +
+                "applicationID='" + applicationID + '\'' +
+                ", applicationType='" + applicationType + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
@@ -145,9 +187,12 @@ public class Application implements Serializable {
                 ", phone='" + phone + '\'' +
                 ", question1='" + question1 + '\'' +
                 ", question2='" + question2 + '\'' +
+                ", question3='" + question3 + '\'' +
+                ", question4='" + question4 + '\'' +
+                ", question5='" + question5 + '\'' +
                 ", status=" + status +
-                ", UserID='" + UserID + '\'' +
-                ", DogID='" + DogID + '\'' +
+                ", UserID='" + userID + '\'' +
+                ", DogID='" + dogID + '\'' +
                 '}';
     }
 }

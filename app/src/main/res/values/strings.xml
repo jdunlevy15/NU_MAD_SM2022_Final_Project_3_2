@@ -62,11 +62,13 @@
 
     <string name="home_welcome_label">Welcome,</string>
     <string name="home_view_dogs_label">View dogs for adoption</string>
+    <string name="home_view_foster_dogs_label">View dogs to Foster</string>
     <string name="home_application_status_label">View application status</string>
     <string name="home_volunteer_label">Volunteer</string>
 
     <string name="application_header">Application:</string>
-    <string name="application_adopt_header">Adopt</string>
+    <string name="application_adopt_header">Adoption Application:</string>
+    <string name="application_foster_header">Foster Application:</string>
     <string name="application_status_header">Status:</string>
     <string name="application_personal_information_header">Personal Information:</string>
     <string name="application_general_information_header">General Information:</string>
@@ -79,8 +81,11 @@
     <string name="application_email">Email:</string>
     <string name="application_phone">Phone:</string>
     <string name="application_address">Address</string>
-    <string name="application_general_question1">Why are you looking to adopt a pet?</string>
-    <string name="application_general_question2">Do you currently have or recently had a pet?</string>
+    <string name="application_general_question1">Why are you looking to adopt/foster a pet?</string>
+    <string name="application_general_question2">Do you currently have any pets? If so, describe them.</string>
+    <string name="application_general_question3">Have you owned any pets in the past 4 years?</string>
+    <string name="application_general_question4">How many people live in your household? (Include ages)</string>
+    <string name="applicaiton_general_question5">How long will your dog be alone each day?</string>
     <string name="application_edit_button">Edit</string>
     <string name="application_approve_button">Approve</string>
     <string name="application_reject_button">Reject</string>
