@@ -67,7 +67,7 @@
         android:id="@+id/buttonAdopt"
         android:layout_width="147dp"
         android:layout_height="wrap_content"
-        android:text="@string/adopt"
+        android:text="@string/apply_button"
         app:layout_constraintBottom_toBottomOf="@+id/buttonMoreDetails"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

@@ -56,7 +56,7 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app);
-        setTitle("User Home");
+        setTitle("Fetcher");
 
         // Initial auth
         mAuth = FirebaseAuth.getInstance();
@@ -274,6 +274,7 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
                         FragmentApplicationRecyclerView.newInstance(role),
                         "application-view").commit();
     }
+
 
     @Override
     public void onApplicationApproved(Application app, User user) {

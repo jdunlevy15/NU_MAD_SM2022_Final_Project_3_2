@@ -26,6 +26,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import org.w3c.dom.Text;
 
@@ -178,8 +180,8 @@ public class FragmentDisplayApplication extends Fragment {
         approveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Ensure applicant doesn't currently have a foster dog ??
-
+                DocumentReference userRef = db.collection("users")
+                        .document(thisApplication.getUserID());
 
 
                 // Mark application as accepted
@@ -191,19 +193,62 @@ public class FragmentDisplayApplication extends Fragment {
                             @Override
                             public void onSuccess(Void unused) {
                                 Log.d(TAG, "application succsesfully approved");
-                                dListener.backToRecyclerView(role);
+                                userRef
+                                        .get()
+                                        .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                            @Override
+                                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                                User applicant = documentSnapshot.toObject(User.class);
+                                                if (applicant.getRole().equals(Role.FOSTER)) {
+                                                    dListener.backToHome();
+                                                } else {
+                                                    dListener.backToRecyclerView(role);
+                                                }
+                                            }
+                                        });
+
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
+                                e.printStackTrace();
                                 Toast.makeText(getContext(), "Failure to Approve Applicant", Toast.LENGTH_SHORT).show();
                             }
                         });
 
+                // Mark other applications for the same dog as rejected
+                db.collection("applications")
+                        .whereEqualTo("dogID", thisApplication.getDogID())
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                            @Override
+                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                for (QueryDocumentSnapshot documentSnapshot: queryDocumentSnapshots) {
+                                    Application toReject = documentSnapshot.toObject(Application.class);
+                                    if (!toReject.getApplicationID().equals(thisApplication.getApplicationID())) {
+                                        db.collection("applications")
+                                                .document(toReject.getApplicationID())
+                                                .update("status", ApplicationStatus.REJECTED)
+                                                .addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        e.printStackTrace();
+                                                        Toast.makeText(getContext(), "Unable to reject application " + toReject.getApplicationID(), Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
+                                    }
+                                }
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(getContext(), "Unable to reject other applications for this dog.", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
                 // If foster application, update user to foster type, and update dog's foster field
-                DocumentReference userRef = db.collection("users")
-                        .document(thisApplication.getUserID());
+
 
                 if(thisApplication.getApplicationType().equals(DogStatus.FOSTER)) {
                     userRef.get()
@@ -313,21 +358,26 @@ public class FragmentDisplayApplication extends Fragment {
                                                                                                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                                                                                         @Override
                                                                                                                         public void onSuccess(Void unused) {
-                                                                                                                            DocumentReference fosterRef = db.collection("users").document(dog.getFosterParent().getId());
-                                                                                                                            Role newRole = Role.APPLICANT;
-                                                                                                                            if (dog.getFosterParent().getRole().equals(Role.EMPLOYEE)) {
-                                                                                                                                newRole = Role.EMPLOYEE;
-                                                                                                                            }
-
-                                                                                                                            fosterRef.update("role", newRole)
+                                                                                                                            dogRef.update("status", DogStatus.NONE)
                                                                                                                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                                                                                                         @Override
                                                                                                                                         public void onSuccess(Void unused) {
-                                                                                                                                            //TODO: change to fosterDogId?
-                                                                                                                                            fosterRef.update("dogId", null);
+                                                                                                                                            DocumentReference fosterRef = db.collection("users").document(dog.getFosterParent().getId());
+                                                                                                                                            Role newRole = Role.APPLICANT;
+                                                                                                                                            if (dog.getFosterParent().getRole().equals(Role.EMPLOYEE)) {
+                                                                                                                                                newRole = Role.EMPLOYEE;
+                                                                                                                                            }
+
+                                                                                                                                            fosterRef.update("role", newRole)
+                                                                                                                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                                                                                                        @Override
+                                                                                                                                                        public void onSuccess(Void unused) {
+                                                                                                                                                            //TODO: change to fosterDogId?
+                                                                                                                                                            fosterRef.update("dogId", null);
+                                                                                                                                                        }
+                                                                                                                                                    });
                                                                                                                                         }
                                                                                                                                     });
-
                                                                                                                         }
                                                                                                                     })
                                                                                                                     .addOnFailureListener(new OnFailureListener() {
@@ -418,6 +468,7 @@ public class FragmentDisplayApplication extends Fragment {
 
     public interface IDisplayApplicationListener {
         void backToRecyclerView(Role role);
+        void backToHome();
         void onApplicationApproved(Application app, User user);
     }
 }

@@ -348,7 +348,8 @@
                 app:layout_constraintEnd_toEndOf="@+id/accountConfirmPasswordEditText"
                 app:layout_constraintStart_toStartOf="@+id/accountConfirmPasswordEditText"
                 app:layout_constraintTop_toBottomOf="@+id/accountTypeLabel"
-                app:layout_constraintVertical_bias="1.0">
+                app:layout_constraintVertical_bias="1.0"
+                tools:visibility="gone">
 
                 <RadioButton
                     android:id="@+id/accountApplicantRadioButton"
