@@ -136,4 +136,5 @@
     <string name="capture">Capture</string>
 
     <string name="no_images_found">No Images Found for this Dog</string>
+    <string name="apply_button">Apply</string>
 </resources>

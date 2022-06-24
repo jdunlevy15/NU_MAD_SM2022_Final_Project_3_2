@@ -328,6 +328,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/accountPasswordEditText"
                 app:layout_constraintTop_toTopOf="@+id/accountConfirmPasswordLabel" />
+
         </LinearLayout>
     </ScrollView>
 

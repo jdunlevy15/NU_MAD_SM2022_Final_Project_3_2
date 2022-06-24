@@ -31,10 +31,6 @@ public class RegisterActivity extends AppCompatActivity {
             editTextState, editTextEmail, editTextPhone, editTextUsername, editTextPassword,
             editTextConfirmPassword;
 
-    RadioGroup radioGroupAccountType;
-    RadioButton radioButtonApplicant, radioButtonFoster, radioButtonEmployee, radioButtonParent;
-    Role accountType = Role.APPLICANT;
-
     Button buttonSignUp;
 
 
@@ -87,10 +83,13 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
+                /*
                 if (accountType == null) {
                     Toast.makeText(RegisterActivity.this, "Please select an account type.", Toast.LENGTH_LONG).show();
                     return;
                 }
+
+                 */
 
                 // Check both password entries match
                 if (!editTextPassword.getText().toString().equals(editTextConfirmPassword.getText().toString())) {
@@ -116,7 +115,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                             // Create new user with the new id
                             User thisUser = new User(userId, firstName, lastName, ageInt, userAddress,
-                                    phone, email, username, accountType);
+                                    phone, email, username, Role.APPLICANT);
 
                             // Add new user to db
                             db.collection("users")

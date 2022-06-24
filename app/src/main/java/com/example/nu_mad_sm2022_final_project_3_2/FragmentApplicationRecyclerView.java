@@ -134,7 +134,7 @@ public class FragmentApplicationRecyclerView extends Fragment {
                                                 if (loggedIn.getDogId() != null) {
                                                     for (QueryDocumentSnapshot document : task.getResult()) {
                                                         Application tempApp = document.toObject(Application.class);
-                                                        if (tempApp.getDogID().equals(loggedIn.getDogId())) {
+                                                        if (tempApp.getDogID().equals(loggedIn.getDogId()) && tempApp.getStatus().equals(ApplicationStatus.PENDING)) {
                                                             applications.add(tempApp);
                                                         }
                                                     }
@@ -162,7 +162,7 @@ public class FragmentApplicationRecyclerView extends Fragment {
                         }
                     });
         }
-        // get all applications
+        // get all ACTIVE applications
         else {
             db.collection("applications")
                     .get()
@@ -173,7 +173,9 @@ public class FragmentApplicationRecyclerView extends Fragment {
                                 ArrayList<Application> applications = new ArrayList<Application>();
                                 for (QueryDocumentSnapshot document : task.getResult()) {
                                     Application tempApp = document.toObject(Application.class);
-                                    applications.add(tempApp);
+                                    if (tempApp.getStatus().equals(ApplicationStatus.PENDING)) {
+                                        applications.add(tempApp);
+                                    }
                                     Log.d(TAG, "onComplete: " + tempApp.toString());
                                 }
                                 applicationsAdapter = new ApplicationsAdapter(applications, getContext(), Role.EMPLOYEE);
