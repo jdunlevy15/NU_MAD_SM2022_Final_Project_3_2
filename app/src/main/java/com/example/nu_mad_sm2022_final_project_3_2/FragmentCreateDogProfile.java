@@ -27,6 +27,9 @@ public class FragmentCreateDogProfile extends Fragment {
     // debug tag
     private final String TAG = "dog";
 
+    // generate unique id for dog
+    private final String dogID = UUID.randomUUID().toString();
+
     // firebase
     private FirebaseFirestore db;
 
@@ -37,7 +40,8 @@ public class FragmentCreateDogProfile extends Fragment {
     private EditText dogNameET, dogAgeET, dogBreedET, dogColorET, dogCurrentSizeET, dogPotentialSizeET;
     private RadioGroup dogSexRG, dogStatusRG, dogObedienceTraningRG, dogHouseTrainingRG, dogFenceRequiredRG;
     private RadioGroup dogExerciseNeedsRG, dogExperienceNeedsRG, dogSheddingAmountRG, dogGroomingNeedsRG, dogReactionRG;
-    private Button submitButton;
+    private Button addPicturesButton, submitButton;
+    boolean picturesAdded = false;
 
     // values to be inputted by user
     private Gender dogSex = null;
@@ -105,6 +109,7 @@ public class FragmentCreateDogProfile extends Fragment {
         dogGroomingNeedsRG = view.findViewById(R.id.radioGroupCreateGrooming);
         dogReactionRG = view.findViewById(R.id.radionGroupReaction);
         submitButton = view.findViewById(R.id.buttonSubmitCreateProfile);
+        addPicturesButton = view.findViewById(R.id.buttonAddPic);
 
         // firebase
         db = FirebaseFirestore.getInstance();
@@ -220,6 +225,8 @@ public class FragmentCreateDogProfile extends Fragment {
             }
         });
 
+
+
         dogSheddingAmountRG.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -247,10 +254,21 @@ public class FragmentCreateDogProfile extends Fragment {
             }
         });
 
+
+        addPicturesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cListener.startDogProfileCamera(dogID);
+            }
+        });
+
+
+
         // when submit button is pressed
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 // input validation
                 if (!houseSet || !fenceSet) {
                     Toast.makeText(getContext(), "Fill Out All Fields", Toast.LENGTH_SHORT).show();
@@ -281,8 +299,7 @@ public class FragmentCreateDogProfile extends Fragment {
                     return;
                 }
 
-                // generate unique id for dog
-                String dogID = UUID.randomUUID().toString();
+
 
                 // create dog object
                 Dog dogToAdd = new Dog(dogID, dogName, dogBreed, ageInt, dogSex, dogStatus,
@@ -304,6 +321,7 @@ public class FragmentCreateDogProfile extends Fragment {
                                 Toast.makeText(getContext(), "Successfully Created Dog Profile", Toast.LENGTH_SHORT).show();
                                 // go back to the home fragment
                                 cListener.backToHomeFragment();
+                                // cListener.startDogProfileCamera(dogID);
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
@@ -320,5 +338,8 @@ public class FragmentCreateDogProfile extends Fragment {
 
     public interface ICreateDogListener {
         void backToHomeFragment();
+        void startDogProfileCamera(String dogId);
     }
+
+
 }

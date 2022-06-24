@@ -24,6 +24,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="96dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -57,8 +58,8 @@
             <EditText
                 android:id="@+id/editTextDogName"
                 android:layout_width="match_parent"
-                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
                 android:ems="10"
                 android:hint="Name"
                 android:inputType="textPersonName"
@@ -76,8 +77,8 @@
             <EditText
                 android:id="@+id/editTextCreateDogAge"
                 android:layout_width="match_parent"
-                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
                 android:ems="10"
                 android:hint="Age"
                 android:inputType="number"
@@ -124,8 +125,8 @@
             <EditText
                 android:id="@+id/editTextCreateDogBreed"
                 android:layout_width="match_parent"
-                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
                 android:ems="10"
                 android:hint="Breed"
                 android:inputType="textPersonName"
@@ -172,8 +173,8 @@
             <EditText
                 android:id="@+id/editTextCreateColor"
                 android:layout_width="match_parent"
-                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
                 android:ems="10"
                 android:hint="Color"
                 android:inputType="textPersonName"
@@ -191,8 +192,8 @@
             <EditText
                 android:id="@+id/editTextCreateDogSize"
                 android:layout_width="match_parent"
-                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
                 android:ems="10"
                 android:hint="lbs"
                 android:inputType="number"
@@ -210,8 +211,8 @@
             <EditText
                 android:id="@+id/editTextCreatePotentialSize"
                 android:layout_width="match_parent"
-                android:layout_marginEnd="24dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
                 android:ems="10"
                 android:hint="lbs"
                 android:inputType="number"
@@ -406,21 +407,20 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:textSize="14sp"
                 android:orientation="horizontal"
-                >
+                android:textSize="14sp">
+
                 <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:id="@+id/radioButtonReactionFriendly"
-                    android:text="@string/dog_reaction_friendly">
-                </RadioButton>
-                <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@string/dog_reaction_friendly"></RadioButton>
+
+                <RadioButton
                     android:id="@+id/radioButtonReactionCautous"
-                    android:text="@string/dog_reaction_cautious">
-                </RadioButton>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dog_reaction_cautious"></RadioButton>
             </RadioGroup>
 
             <TextView
@@ -492,17 +492,32 @@
                     android:layout_height="wrap_content"
                     android:text="@string/high" />
             </RadioGroup>
+
         </LinearLayout>
     </ScrollView>
 
     <Button
         android:id="@+id/buttonSubmitCreateProfile"
-        android:layout_width="wrap_content"
+        android:layout_width="138dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="@string/submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonAddPic" />
+
+    <Button
+        android:id="@+id/buttonAddPic"
+        android:layout_width="138dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="@string/button_add_picture"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonSubmitCreateProfile"
+        app:layout_constraintEnd_toStartOf="@+id/buttonSubmitCreateProfile"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/buttonSubmitCreateProfile"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

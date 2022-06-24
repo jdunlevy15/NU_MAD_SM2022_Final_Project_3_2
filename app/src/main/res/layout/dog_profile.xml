@@ -87,4 +87,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewDogBasicInfo" />
 
+    <TextView
+        android:id="@+id/textViewNoImagesFound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="196dp"
+        android:text="@string/no_images_found"
+        android:textSize="24sp"
+        android:textStyle="bold|italic"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/textViewDogName"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewDogProfile"
+        app:layout_constraintStart_toStartOf="@+id/imageViewDogProfile" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

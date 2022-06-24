@@ -54,12 +54,11 @@ public class DogProfileAdapter extends RecyclerView.Adapter<DogProfileAdapter.Vi
     HashMap<String, Integer> mapDogToImageIndex = new HashMap<>();
 
     // ArrayList<StorageReference>  imageFiles = new ArrayList<>();
-    int imageIndex = 0;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final ImageButton imageButtonBack;
         private final ImageView imageViewDog;
-        private final TextView textViewName, textViewBasicInfo;
+        private final TextView textViewName, textViewBasicInfo, textViewNoImages;
         private final ProgressBar progressBar;
         private final Button buttonAdopt, buttonMoreInfo;
         private final View view;
@@ -76,12 +75,14 @@ public class DogProfileAdapter extends RecyclerView.Adapter<DogProfileAdapter.Vi
             progressBar = view.findViewById(R.id.progressBarDogProfile);
             buttonAdopt = view.findViewById(R.id.buttonAdopt);
             buttonMoreInfo = view.findViewById(R.id.buttonMoreDetails);
+            textViewNoImages = view.findViewById(R.id.textViewNoImagesFound);
         }
 
         public ImageButton getImageButtonBack() {return imageButtonBack;}
         public ImageView getImageViewDog() {return imageViewDog;}
         public TextView getTextViewName() {return textViewName;}
         public TextView getTextViewBasicInfo() {return textViewBasicInfo;}
+        public TextView getTextViewNoImages() {return textViewNoImages;}
         public ProgressBar getProgressBar() {return progressBar;}
         public Button getButtonAdopt() {return buttonAdopt;}
         public Button getButtonMoreInfo() {return buttonMoreInfo;}
@@ -123,6 +124,7 @@ public class DogProfileAdapter extends RecyclerView.Adapter<DogProfileAdapter.Vi
         TextView textViewBasicInfo = holder.getTextViewBasicInfo();
         Button buttonAdopt = holder.getButtonAdopt();
         Button buttonMoreInfo = holder.getButtonMoreInfo();
+        TextView textViewNoImages = holder.getTextViewNoImages();
 
         // Local image array
         ArrayList<StorageReference> images;
@@ -149,10 +151,15 @@ public class DogProfileAdapter extends RecyclerView.Adapter<DogProfileAdapter.Vi
                                     @Override
                                     public void onSuccess(Uri uri) {
                                         progressBar.setVisibility(View.GONE);
+                                        textViewNoImages.setVisibility(View.INVISIBLE);
                                         Glide.with(holder.getView()).load(uri).into(imageViewDog);
                                         mapDogToImageIndex.put(dog.getId(), mapDogToImageIndex.get(dog.getId()) + 1);
                                     }
                                 });
+                            }
+                            else {
+                                progressBar.setVisibility(View.GONE);
+                                textViewNoImages.setVisibility(View.VISIBLE);
                             }
                         }
                     }).addOnFailureListener(new OnFailureListener() {
@@ -192,9 +199,13 @@ public class DogProfileAdapter extends RecyclerView.Adapter<DogProfileAdapter.Vi
                                                 Glide.with(holder.getView()).load(uri).into(imageViewDog);
                                                 progressBar.setVisibility(View.GONE);
                                                 imageViewDog.setVisibility(View.VISIBLE);
+                                                textViewNoImages.setVisibility(View.INVISIBLE);
                                                 mapDogToImageIndex.put(dog.getId(), mapDogToImageIndex.get(dog.getId()) + 1);
                                             }
                                         });
+                                    } else {
+                                        progressBar.setVisibility(View.GONE);
+                                        textViewNoImages.setVisibility(View.VISIBLE);
                                     }
                                 }
                             }).addOnFailureListener(new OnFailureListener() {

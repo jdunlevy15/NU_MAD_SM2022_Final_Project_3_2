@@ -1,11 +1,13 @@
 package com.example.nu_mad_sm2022_final_project_3_2;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,15 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.ListResult;
+import com.google.firebase.storage.StorageReference;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +39,8 @@ public class FragmentDogDescription extends Fragment {
     private ImageButton imageButtonBack;
     private Button buttonAdopt;
     private IDogDescriptionListener listener;
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    StorageReference storageRef = storage.getReference();
 
     // the fragment initialization parameters,
     private static final String ARG_DOG = "dog";
@@ -97,7 +110,11 @@ public class FragmentDogDescription extends Fragment {
         imageButtonBack = view.findViewById(R.id.imageButtonDescriptionBack);
         buttonAdopt = view.findViewById(R.id.buttonDescriptionAdopt);
 
+        imageViewDog = view.findViewById(R.id.imageViewDescriptionPhoto);
+
         // TODO: load image
+
+
 
         // Set text fields
         if (this.dog != null) {
@@ -124,6 +141,43 @@ public class FragmentDogDescription extends Fragment {
             textViewShedding.setText(dog.getSheddingAmount().toString());
             textViewOwnerExperience.setText(dog.getOwnerExperienceNeeded().toString());
             textViewReaction.setText(dog.getReactionToNewPeople().toString());
+
+            // ArrayList<StorageReference>  imageFiles = new ArrayList<>();
+            String path = "images/" + dog.getId() + "/";
+            StorageReference imagesRef = storageRef.child(path);
+            imagesRef.listAll()
+                    .addOnSuccessListener(new OnSuccessListener<ListResult>() {
+                        @Override
+                        public void onSuccess(ListResult listResult) {
+                            // imageFiles = new ArrayList<StorageReference>(listResult.getItems());
+                            // setImageFiles(new ArrayList<StorageReference>(listResult.getItems()));
+                            ArrayList<StorageReference> theseImages = new ArrayList<StorageReference>(listResult.getItems());
+
+                            // Set first image
+                            if (theseImages.size() > 0) {
+                                theseImages.get(0).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        // progressBar.setVisibility(View.GONE);
+                                        // textViewNoImages.setVisibility(View.INVISIBLE);
+                                        Glide.with(view).load(uri).into(imageViewDog);
+                                        //mapDogToImageIndex.put(dog.getId(), mapDogToImageIndex.get(dog.getId()) + 1);
+                                    }
+                                });
+                            } else {
+                                //progressBar.setVisibility(View.GONE);
+                                //textViewNoImages.setVisibility(View.VISIBLE);
+                            }
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.d("images", "couldn't load images");
+                            // setImageFiles(new ArrayList<StorageReference>());
+                            imageViewDog.setVisibility(View.INVISIBLE);
+                            //progressBar.setVisibility(View.VISIBLE);
+                        }
+                    });
 
             // TODO: set adopt on click listener
             buttonAdopt.setOnClickListener(new View.OnClickListener() {
