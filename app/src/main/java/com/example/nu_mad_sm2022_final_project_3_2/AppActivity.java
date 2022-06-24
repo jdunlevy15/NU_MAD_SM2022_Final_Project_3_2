@@ -1,5 +1,9 @@
 package com.example.nu_mad_sm2022_final_project_3_2;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -23,6 +27,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
+import java.util.UUID;
 
 public class AppActivity extends AppCompatActivity implements FragmentEmployeeHome.IEmployeeHomeListener,
         FragmentCreateDogProfile.ICreateDogListener, DogProfileAdapter.IDogProfileAdapterListener,
@@ -200,6 +206,8 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
         beginHomeFragment();
     }
 
+
+
     @Override
     public void startDogProfileCamera(String dogId) {
         // Start camera fragment to update dog profile pictures
@@ -264,7 +272,7 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
     public void onPhotoTaken(Uri imageURI, String dogId) {
         Log.d("photo", "in on photo taken");
         // Upload the given image URI to storage for the given dog id
-        String path = "images/" + dogId;
+        String path = "images/" + dogId + "/" + UUID.randomUUID();
         Log.d("photo", path);
         StorageReference storageReference = storage.getReference(path);
         UploadTask uploadImage = storageReference.putFile(imageURI);
@@ -284,8 +292,31 @@ public class AppActivity extends AppCompatActivity implements FragmentEmployeeHo
         });
     }
 
+    String currDogId;
+
+    ActivityResultLauncher<Intent> galleryLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if(result.getResultCode()==RESULT_OK){
+                        Intent data = result.getData();
+                        Uri selectedImageUri = data.getData();
+                        onPhotoTaken(selectedImageUri, currDogId);
+                    }
+                }
+            }
+    );
+
     @Override
-    public void onGalleryPress() {
+    public void onGalleryPress(String dogID) {
+        this.currDogId = dogID;
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        String[] mimeTypes = {"image/jpeg", "image/png"};
+        intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
+        intent.putExtra("DOG_ID", dogID);
+        galleryLauncher.launch(intent);
 
     }
 }

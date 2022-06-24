@@ -104,7 +104,7 @@ public class FragmentCameraController extends Fragment {
         galleryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cListener.onGalleryPress();
+                cListener.onGalleryPress(dogId);
             }
         });
 
@@ -183,6 +183,6 @@ public class FragmentCameraController extends Fragment {
 
     public interface ICameraControllerListener {
         void onPhotoTaken(Uri imageURI, String dogID);
-        void onGalleryPress();
+        void onGalleryPress(String dogID);
     }
 }

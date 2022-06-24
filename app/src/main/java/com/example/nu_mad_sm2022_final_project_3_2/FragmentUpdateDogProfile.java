@@ -108,7 +108,7 @@ public class FragmentUpdateDogProfile extends Fragment {
         dogSheddingAmountRG = view.findViewById(R.id.radioGroupCreateShedding);
         dogGroomingNeedsRG = view.findViewById(R.id.radioGroupCreateGrooming);
         dogReactionRG = view.findViewById(R.id.radionGroupReaction);
-        submitButton = view.findViewById(R.id.buttonContinueCreateProfile);
+        submitButton = view.findViewById(R.id.buttonSubmitCreateProfile);
 
         // firebase
         db = FirebaseFirestore.getInstance();

@@ -129,4 +129,6 @@
     <string name="continue_str">Continue</string>
     <string name="gallery">Gallery</string>
     <string name="capture">Capture</string>
+
+    <string name="no_images_found">No Images Found for this Dog</string>
 </resources>
